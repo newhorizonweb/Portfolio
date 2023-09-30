@@ -1,0 +1,81 @@
+/* 
+    Personal Portfolio - created by Uverit
+    Do not copy or distribute
+*/
+
+    /* Media breakpoints */
+    /* Width: 1440, 1200, 1024, 900, 768, 540, 440, 320 */
+
+
+
+    /* Body & Wrapper */
+
+body{
+    min-height:100vh;
+    padding:0 var(--size6);
+
+    background:linear-gradient(to bottom right,
+        var(--colorBg1a), var(--colorBg1b));
+    background-position:center;
+    background-repeat:no-repeat;
+    background-size:cover;
+}
+
+#app{
+    padding:var(--size8) 0;
+    display:flex;
+    flex-direction:column;
+    gap:var(--size8);
+}
+
+.wrapper{
+    width:min(1024px, 100%);
+    margin:0 auto;
+    padding:var(--size6);
+
+    position:relative;
+    z-index:100;
+}
+
+
+
+    /* Glass Tile */
+
+.glass-tile{
+    --border:2px;
+    position:relative;
+
+    background:linear-gradient(to bottom right,
+        var(--colorBg2a), var(--colorBg2b)),
+        url("../img/noise-texture.svg");
+
+    background-position:center;
+    background-repeat:repeat;
+    background-size:cover;
+
+    border:none;
+    box-shadow:inset 0 0 20px 0 rgb(125, 125, 125, 0.15),
+        0 0 20px 0 rgb(0, 0, 0, 0.2);
+    border-radius:var(--size4);
+    backdrop-filter:blur(20px);
+    transition:var(--trans2);
+
+    &:before{
+        content:"";
+        padding:var(--border);
+        position:absolute;
+        
+        inset:0;
+        mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+        -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+        -webkit-mask-composite:xor;
+        mask-composite:exclude;
+
+        border-radius:var(--size4);
+        background:linear-gradient(to bottom right,
+            var(--colorBorder1a), var(--colorBorder1b));
+
+        pointer-events:none;
+    }
+
+}
