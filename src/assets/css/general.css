@@ -43,6 +43,7 @@
     --txt-faded:#EEE;
     --txt-faded2:#CFCFCF;
     --txt-faded3:#B1B1B1;
+    --txt-head1:#554282;
 
         /* Sizes */
 
@@ -83,7 +84,7 @@
     /* Fonts */
 
 @font-face{
-    src:url(../fonts/Quicksand-VariableFont_wghtbold.woff2);
+    src:url(../fonts/Quicksand-VariableFont_wght.ttf);
     font-family:mainFont;
     font-display:fallback;
 }
@@ -135,10 +136,33 @@ label{
 }
 
 h1, h2, h3, h4, h5, h6{
+    position:relative;
     font-family:mainFont, Calibri, sans-serif;
-    color:var(--txt1);
+
     font-weight:800;
-    transition:var(--trans2);
+    text-transform:uppercase;
+    line-height:1;
+    letter-spacing:0.1em;
+
+    &:before, 
+    &:after{
+        content:attr(data-text);
+        transition:var(--trans2);
+    }
+
+    &:before{
+        -webkit-text-stroke:2px white;
+    }
+
+    &:after{
+        width:100%;
+        position:absolute;
+        left:0;
+
+        color:var(--txt-head1);
+        z-index:10;
+    }
+
 }
 
 h1{
@@ -215,21 +239,20 @@ h6{
 }
 
 ::-webkit-scrollbar-track{
-    background:var(--mainScrollBg);
-    filter:brightness(220%);
+    background:var(--colorBg1b);
 }
 
 ::-webkit-scrollbar-thumb{
-    background:var(--mainColor);
+    background:var(--color1a);
     border-radius:100px;
 }
 
 ::-webkit-scrollbar-thumb:hover{
-    background:var(--mainScrollHover);
+    background:var(--color1b);
 }
 
 ::-webkit-resizer{
-    background:var(--mainColor);
+    background:var(--color1a);
 }
 
 ::-webkit-scrollbar-corner{

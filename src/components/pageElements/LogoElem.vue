@@ -3,7 +3,10 @@
 
 <template>
 
-<svg class="logo" id='Layer_1' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 692 692'><path class='cls-2' d='M85,746a30.2,30.2,0,0,1-12.8-2.8A30.9,30.9,0,0,1,54,715V85a31,31,0,0,1,58.1-15L219,263.4a31,31,0,1,1-54.2,30L116,205.2V646.9L379.7,417.1a30.9,30.9,0,0,1,40.7,0L684,646.9V205.2l-48.7,88.2a31,31,0,0,1-54.3-30L687.9,70A31,31,0,0,1,746,85V715a31.1,31.1,0,0,1-51.4,23.4L400,481.6,105.4,738.4A31.3,31.3,0,0,1,85,746Z' transform='translate(-54 -54)'/><path class='cls-2' d='M400,686a31,31,0,0,1-27.1-16L254.3,455.4a31,31,0,1,1,54.3-29.9L400,590.9l91.4-165.4a31,31,0,1,1,54.3,29.9L427.1,670A31,31,0,0,1,400,686Z' transform='translate(-54 -54)'/><path class='cls-1' d='M400,376.2a131.1,131.1,0,0,1-131-131c0-72.2,58.8-131,131-131s131,58.8,131,131A131.1,131.1,0,0,1,400,376.2Zm0-200a69,69,0,1,0,69,69A69.1,69.1,0,0,0,400,176.2Z' transform='translate(-54 -54)'/></svg>
+<svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800"><polyline class="cls-1 logo-shape1" points="643.7 257.6 768.8 31.2 768.8 768.8 400 447.4 31.2 768.8 31.2 31.2 156.3 257.6"/><polyline class="cls-1 logo-shape2" points="261.2 447.4 400 698.6 538.8 447.4"/><circle class="cls-2 logo-shape3" cx="400" cy="218.8" r="117.1"/>
+
+<line class="cls-1 logo-line logo-line1" x1="227.2" y1="572.8" x2="572.8" y2="227.2"/><line class="cls-1 logo-line logo-line2" x1="572.8" y1="572.8" x2="227.2" y2="227.2"/>
+</svg>
 
 </template>
 
@@ -21,16 +24,54 @@ export default defineComponent({
 
 <style lang="scss">
 
-.cls-1{
-    fill:#ebdfff;
-}
-
-.cls-2{
-    fill:#FFF;
-}
-
 .logo{
-    width:56px;
+
+    .cls-1,
+    .cls-2{
+        fill:none;
+        stroke-linecap:round;
+        stroke-linejoin:round;
+        stroke-width:62px;
+        transition:var(--trans2);
+    }
+
+    .cls-1{
+        stroke:#FFF;
+    }
+    
+    .cls-2{
+        stroke:#ebdfff;
+    }
+
+    .logo-line{
+        opacity:0;
+        transform-origin:center;
+        
+    }
+
+}
+
+.nav-expand .nav-logo:hover{
+
+    .logo-shape1{
+        transform:translate(50%, -50%) scale(0.3);
+    }
+
+    .logo-shape2{
+        transform:translate(0, -100%);
+    }
+
+    .logo-shape3{
+        r:369px;
+        cy:400px;
+    }
+
+    .logo-line{
+        opacity:1;
+        transform:rotate(180deg);
+        transition-delay:var(--trans2);
+    }
+
 }
 
 </style>

@@ -56,8 +56,9 @@ export default defineComponent({
                 blob.classList.add("bg-blob");
 
                 // Random Size
-                const size = Math.random() * 
-                    (this.blobSizeMax - this.blobSizeMin) + this.blobSizeMin;
+                const size = Math.round(
+                    Math.random() * (this.blobSizeMax - this.blobSizeMin) + this.blobSizeMin
+                );
                 blob.style.width = size + "px";
                 blob.style.height = size + "px";
 

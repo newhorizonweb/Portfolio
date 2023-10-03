@@ -3,7 +3,7 @@
 
 <template>
 
-    <main>
+    <main class="wrapper glass-tile">
 
 
 
@@ -40,6 +40,8 @@ export default defineComponent({
 
 <style lang="scss">
 
-
+main.wrapper{
+    margin-top:var(--size6);
+}
 
 </style>
