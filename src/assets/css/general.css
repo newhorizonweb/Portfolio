@@ -14,8 +14,8 @@
 
         /* Colors */
 
-    --color1a:#07abdb;
-    --color1b:#07bdba;
+    --color1a:#B095FF;
+    --color1b:#BD51FF;
 
     --color2a:rgb(104, 36, 190, 0.1);
     --color2b:rgb(198, 73, 229, 0.45);
@@ -40,10 +40,13 @@
 
     --txt1:#FAFAFA;
     --txt2:#222;
+
     --txt-faded:#EEE;
     --txt-faded2:#CFCFCF;
     --txt-faded3:#B1B1B1;
-    --txt-head1:#554282;
+
+    --txt-head1:#0c0c4e;
+    --txt-head2:#554282;
 
         /* Sizes */
 
@@ -147,7 +150,6 @@ h1, h2, h3, h4, h5, h6{
     &:before, 
     &:after{
         content:attr(data-text);
-        transition:var(--trans2);
     }
 
     &:before{
@@ -163,6 +165,14 @@ h1, h2, h3, h4, h5, h6{
         z-index:10;
     }
 
+    .glass-tile &:after{
+        color:var(--txt-head2);
+    }
+
+}
+
+:is(h1, h2, h3):before{
+    -webkit-text-stroke:3px white;
 }
 
 h1{

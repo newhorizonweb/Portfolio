@@ -5,8 +5,6 @@
 
     <nav>
 
-        <div class="nav-placeholder"></div>
-
         <div class="nav-inner glass-tile"
             :class="{
                 'page-scrolled': isWindowScrolled,
@@ -216,7 +214,12 @@ nav .nav-inner{
     display:flex;
     justify-content:space-between;
 
-    transition:var(--trans2);
+    transition:all var(--trans2), 
+        width 0s, 
+        margin 0s,
+        right 0s, 
+        top 0s,
+        transform 0s;
     cursor:pointer;
 
     .nav-logo{
@@ -233,7 +236,9 @@ nav .nav-inner{
         display:flex;
         justify-content:space-between;
         gap:var(--size8);
-        transition:var(--trans2);
+        transition:all var(--trans2), 
+            right 0s, 
+            opacity 0s;
 
         & .nav-links{
             display:flex;
@@ -310,6 +315,12 @@ nav .nav-inner{
         flex-direction:column;
         align-items:flex-end;
         gap:0;
+
+        transition:all 0.25s, 
+            margin 0s,
+            right 0s, 
+            top 0s,
+            transform 0s;
         overflow:hidden;
 
         &:after{
@@ -318,8 +329,10 @@ nav .nav-inner{
             position:absolute;
             
             inset:0;
-            mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-            -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+            mask:linear-gradient(#000 0 0) content-box, 
+                linear-gradient(#000 0 0);
+            -webkit-mask:linear-gradient(#000 0 0) content-box, 
+                linear-gradient(#000 0 0);
             -webkit-mask-composite:xor;
             mask-composite:exclude;
 
@@ -341,6 +354,10 @@ nav .nav-inner{
         & .navbar{
             height:0;
             width:var(--navbar-width);
+
+            position:relative;
+            top:0;
+            right:-100%;
 
             flex-direction:column;
             align-items:flex-end;
@@ -412,6 +429,7 @@ nav .nav-inner{
                     (var(--size5) * 4) -    /* Nav Links Gaps */
                     (2px * 6)               /* <a> -2px margin */
                 );
+                right:0;
                 opacity:1;
             }
 
@@ -419,6 +437,22 @@ nav .nav-inner{
 
     }
     
+}
+
+@media screen and (width <= 440px){
+
+    nav .nav-inner{
+        --navbar-width:145px;
+    }
+
+}
+
+@media screen and (width <= 320px){
+
+    nav .nav-inner{
+        --navbar-width:135px;
+    }
+
 }
 
 </style>

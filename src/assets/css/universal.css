@@ -15,7 +15,7 @@ html{
 }
 
 body{
-    min-height:175vh;
+    min-height:275vh;
     padding:0 var(--size6);
 
     background:linear-gradient(to bottom right,
