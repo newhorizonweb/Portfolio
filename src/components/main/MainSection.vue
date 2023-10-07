@@ -3,9 +3,9 @@
 
 <template>
 
-    <main class="wrapper glass-tile">
+    <main>
 
-
+        <AboutSection />
 
     </main>
 
@@ -14,13 +14,14 @@
 
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent } from 'vue';
+import AboutSection from "./AboutSection.vue";
 
 export default defineComponent({
     name: "MainSection",
 
     components:{
-
+        AboutSection
     },
 
     data(){
@@ -40,8 +41,18 @@ export default defineComponent({
 
 <style lang="scss">
 
-main.wrapper{
-    margin-top:var(--size6);
+main{
+    padding-top:150px;
+
+    & .section-heading{
+        width:100%;
+        text-align:center;
+    }
+
+    & .tile-heading-capital{
+        text-transform:capitalize;
+    }
+
 }
 
 </style>

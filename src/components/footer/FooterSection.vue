@@ -3,8 +3,8 @@
 
 <template>
 
-    <footer>
-
+    <footer class="wrapper glass-tile">
+ 
         <p>v{{ appVersion }}</p>
 
     </footer>
@@ -41,6 +41,9 @@ export default defineComponent({
 
 <style lang="scss">
 
-
+footer.wrapper{
+    margin-top:300px;
+    padding:var(--size6);
+}
 
 </style>

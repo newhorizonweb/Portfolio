@@ -14,7 +14,7 @@
 
         /* Colors */
 
-    --color1a:#B095FF;
+    --color1a:#9b80ec;
     --color1b:#BD51FF;
 
     --color2a:rgb(104, 36, 190, 0.1);
@@ -46,7 +46,7 @@
     --txt-faded3:#B1B1B1;
 
     --txt-head1:#0c0c4e;
-    --txt-head2:#554282;
+    --txt-head2:#1e172e;
 
         /* Sizes */
 
@@ -152,10 +152,6 @@ h1, h2, h3, h4, h5, h6{
         content:attr(data-text);
     }
 
-    &:before{
-        -webkit-text-stroke:2px white;
-    }
-
     &:after{
         width:100%;
         position:absolute;
@@ -175,14 +171,18 @@ h1, h2, h3, h4, h5, h6{
     -webkit-text-stroke:3px white;
 }
 
+:is(h4, h5):before{
+    -webkit-text-stroke:1.5px white;
+}
+
 h1{
     font-size:38px;
 }
 h2{
-    font-size:32px;
+    font-size:34px;
 }
 h3{
-    font-size:28px;
+    font-size:32px;
 }
 h4{
     font-size:24px;
@@ -200,10 +200,10 @@ h6{
         font-size:32px;
     }
     h2{
-        font-size:28px;
+        font-size:30px;
     }
     h3{
-        font-size:24px;
+        font-size:28px;
     }
     h4{
         font-size:20px;

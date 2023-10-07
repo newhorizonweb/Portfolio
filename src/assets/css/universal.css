@@ -28,7 +28,6 @@ body{
 .wrapper{
     width:min(1024px, 100%);
     margin:0 auto;
-    padding:var(--size6);
 
     position:relative;
     z-index:100;
