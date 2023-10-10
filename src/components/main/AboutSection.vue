@@ -45,9 +45,9 @@
                 </div>
 
                 <div class="about-content">
-                    <h5 class="ac-heading"
+                    <h4 class="ac-heading"
                         data-text="Technologies">
-                    </h5>
+                    </h4>
 
                     <p class="about-txt">HTML, SVG</p>
                     <p class="about-txt">CSS, SCSS, Bootstrap</p>
@@ -56,9 +56,9 @@
                 </div>
 
                 <div class="about-content">
-                    <h5 class="ac-heading"
+                    <h4 class="ac-heading"
                         data-text="Practices">
-                    </h5>
+                    </h4>
 
                     <p class="about-txt">UI & UX</p>
                     <p class="about-txt">Responsive Web Design</p>
@@ -78,9 +78,9 @@
                 </div>
 
                 <div class="about-content">
-                    <h5 class="ac-heading"
+                    <h4 class="ac-heading"
                         data-text="Expertise">
-                    </h5>
+                    </h4>
 
                     <p class="about-txt">Websites</p>
                     <p class="about-txt">Logos, Icons</p>
@@ -89,9 +89,9 @@
                 </div>
 
                 <div class="about-content">
-                    <h5 class="ac-heading"
+                    <h4 class="ac-heading"
                         data-text="Tools">
-                    </h5>
+                    </h4>
 
                     <p class="about-txt">Figma, Canva</p>
                     <p class="about-txt">Adobe Illustrator</p>
@@ -111,9 +111,9 @@
                 </div>
 
                 <div class="about-content">
-                    <h5 class="ac-heading"
+                    <h4 class="ac-heading"
                         data-text="Technologies">
-                    </h5>
+                    </h4>
 
                     <p class="about-txt">On-Page SEO</p>
                     <p class="about-txt">Technical SEO</p>
@@ -122,9 +122,10 @@
                 </div>
 
                 <div class="about-content">
-                    <h5 class="ac-heading"
+                    <h4 class="ac-heading"
                         data-text="Practices">
-                    </h5>
+                    </h4>
+                    
                     <p class="about-txt">Core Web Vitals</p>
                     <p class="about-txt">Performance</p>
                     <p class="about-txt">Accessibility</p>

@@ -27,26 +27,37 @@ export default defineComponent({
 
     data(){
         return{
+            // Blob Settings
+            speedFactor: 2, // from 0 (no movement) | 10+ is really fast
+            blobSizeMin: 30,
+            blobSizeMax: 150,
+
+            // Blob Code
+            blobFPS: 30, // changed based on the screen width
             blobs: [] as BlobData[],
             blobNumber: this.calculateBlobNumber(),
-            blobSizeMin: 30,
-            blobSizeMax: 150
         }
     },
 
     mounted(){
+
         this.createBlob();
+        this.animationFrames();
         this.animateBlobs();
+
         window.addEventListener('resize', this.handleResize);
+
     },
 
-    beforeUnmount() {
+    beforeUnmount(){
         window.removeEventListener('resize', this.handleResize);
     },
 
     methods:{
 
         createBlob(){
+
+            // Blob Container
             const blobContainer: HTMLElement = this.$refs.bgBlobs as HTMLElement;
 
             for (let i = 0; i < this.blobNumber; i++){
@@ -75,8 +86,8 @@ export default defineComponent({
                         y: posY
                     },
                     speed:{
-                        x: (Math.random() * 2 - 1) / 4,
-                        y: (Math.random() * 2 - 1) / 4
+                        x: (Math.random() * 2 - 1),
+                        y: (Math.random() * 2 - 1)
                     }
                 };
 
@@ -86,49 +97,60 @@ export default defineComponent({
                 blobContainer.appendChild(blob);
 
             }
+
         },
 
         animateBlobs(){
+
+            // Blob Container
             const blobContainer: HTMLElement = this.$refs.bgBlobs as HTMLElement;
 
             const updateBlobs = () => {
+
+                // Calculate the speed based on the frametime
+                const blobSpeed = (1000 / this.blobFPS) / 100 * this.speedFactor;
+
+                // Adjust the position
                 for (let blobData of this.blobs){
 
-                    // Update position based on velocity
-                    blobData.position.x += blobData.speed.x;
-                    blobData.position.y += blobData.speed.y;
+                    // Update position based on velocity and delta-time
+                    blobData.position.x += blobData.speed.x * blobSpeed;
+                    blobData.position.y += blobData.speed.y * blobSpeed;
 
                     // Bounce the blob off the screen edge
                     if (blobData.position.x < 0 || 
-                        blobData.position.x + blobData.element.offsetWidth > blobContainer.offsetWidth){
+                        blobData.position.x + blobData.element.offsetWidth > blobContainer.offsetWidth) {
                         blobData.speed.x = -blobData.speed.x;
                     }
 
                     if (blobData.position.y < 0 ||
-                        blobData.position.y + blobData.element.offsetHeight > blobContainer.offsetHeight){
+                        blobData.position.y + blobData.element.offsetHeight > blobContainer.offsetHeight) {
                         blobData.speed.y = -blobData.speed.y;
                     }
 
                     // Set blob's new position
                     blobData.element.style.transform = 
-                        `translate3d(${blobData.position.x}px, ${blobData.position.y}px, 0px)`;
-
+                        `translate3d(${blobData.position.x}px, 
+                        ${blobData.position.y}px, 
+                        0px)`;
                 }
 
-                // Request the next frame
-                requestAnimationFrame(updateBlobs);
+                // Next Frame
+                setTimeout(updateBlobs, 1000 / this.blobFPS);
+
             };
 
-            // Initialize the animation
+            // Start the animation loop
             updateBlobs();
+
         },
 
-        calculateBlobNumber(): number{
+        calculateBlobNumber(){
             const width = window.innerWidth;
             let newBlobNumber = 10;
 
             switch (true){
-                case width <= 540:
+                case width <= 768:
                     newBlobNumber = 6;
                     break;
 
@@ -147,7 +169,26 @@ export default defineComponent({
             return newBlobNumber;
         },
 
-        adjustBlobsPosition() {
+        animationFrames(){
+
+            const width = window.innerWidth;
+
+            switch (true){
+                case width <= 768:
+                    this.blobFPS = 8;
+                    break;
+
+                case width <= 1440:
+                    this.blobFPS = 30;
+                    break;
+
+                default:
+                    this.blobFPS = 60;
+            }
+
+        },
+
+        adjustBlobsPosition(){
             const blobContainer: HTMLElement = this.$refs.bgBlobs as HTMLElement;
             
             this.blobs.forEach(blobData => {
@@ -168,11 +209,15 @@ export default defineComponent({
         },
 
         handleResize(){
+
             // Change the blob position (if they go out of the view)
             this.adjustBlobsPosition();
 
             // New blob number (based on the screen width)
             const newBlobNumber = this.calculateBlobNumber();
+
+            // Set the FPS
+            this.animationFrames();
 
             // Return if the blob count is the same as before
             if (this.blobNumber === newBlobNumber) return;
@@ -199,6 +244,7 @@ export default defineComponent({
 
             // Update the blob number
             this.blobNumber = newBlobNumber;
+
         }
 
     }
@@ -220,13 +266,13 @@ export default defineComponent({
 
     .bg-blob{
         will-change:transform;
-
-        overflow:hidden;
+        position:absolute;
         border-radius:50%;
 
-        position:absolute;
+        transition:0.1s;
+        overflow:hidden;
         z-index:10;
-
+        
         &:after{
             content:"";
             width:100%;
@@ -295,6 +341,31 @@ export default defineComponent({
     100%{
         transform:scale(1) rotate(360deg);
     }
+}
+
+@media screen and (width <= 1440px){
+
+    .bg-blobs{
+
+        .bg-blob{
+            transition:0.2s;
+        }
+
+    }
+
+}
+
+@media screen and (width <= 440px){
+
+    .bg-blobs{
+
+        .bg-blob{
+            transition:0.5s;
+
+        }
+
+    }
+
 }
 
 </style>

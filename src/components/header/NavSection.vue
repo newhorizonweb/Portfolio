@@ -220,9 +220,8 @@ nav .nav-inner{
         right 0s, 
         top 0s,
         transform 0s;
-    cursor:pointer;
 
-    .nav-logo{
+    & .nav-logo{
         display:flex;
     }
 
@@ -252,6 +251,7 @@ nav .nav-inner{
         display:flex;
         align-items:center;
         gap:var(--size3);
+        cursor:pointer;
 
         &:hover .nav-link-txt:before{
             -webkit-text-stroke-color:var(--color1a);
@@ -345,6 +345,10 @@ nav .nav-inner{
             opacity:0;
             transition:var(--trans2);
             pointer-events:none;
+        }
+
+        & .nav-logo{
+            cursor:pointer;
         }
 
         & .logo{

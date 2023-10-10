@@ -50,7 +50,7 @@ body{
     background-size:cover;
 
     border:none;
-    box-shadow:inset 0 0 20px 0 rgb(125, 125, 125, 0.15),
+    box-shadow:inset 0 0 20px 0 rgb(125, 125, 125, 0.3),
         0 0 20px 0 rgb(0, 0, 0, 0.2);
     border-radius:var(--size6);
     backdrop-filter:blur(20px);
@@ -72,6 +72,17 @@ body{
             var(--colorBorder1a), var(--colorBorder1b));
 
         pointer-events:none;
+    }
+
+}
+
+@media screen and (width <= 768px){
+
+    .glass-tile{
+        background:linear-gradient(to bottom right,
+            var(--colorBg2c), var(--colorBg2d)),
+            url("../img/noise-texture.svg");
+        backdrop-filter:blur(2px);
     }
 
 }

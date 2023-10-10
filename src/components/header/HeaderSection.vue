@@ -6,7 +6,9 @@
     <header>
         <NavSection />
 
-        <div class="hero wrapper" ref="heroSection">
+        <div class="hero wrapper" 
+            :class="{'parallax': !topPage}" 
+            ref="heroSection">
 
             <div class="hero-title">
                 <h1 class="pro-title"
@@ -44,8 +46,8 @@ export default defineComponent({
     data(){
         return{
             // Auto Scroll Animation Settings
-            scrollDuration: 2000, // in ms
-            framerate: 60, // FPS
+            scrollDuration: 1500, // in ms
+            framerate: 60, // FPS, max 100 - JS can't handle more (timing issue)
 
             // Auto Scroll Variables
             isAutoScrolling: false,
@@ -53,6 +55,7 @@ export default defineComponent({
             scrollPos: 0,
 
             // Other
+            startY: 0,
             pageScrollVal: 0,
             isMounted: false
         }
@@ -61,31 +64,55 @@ export default defineComponent({
     mounted(){
 
         this.isMounted = true;
+        
+        window.addEventListener("scroll", this.preventUserScroll, { passive: false });
 
-        window.addEventListener("scroll", () => {
-            this.pageScrollVal = window.scrollY as number;
+            /* Touch Scroll */
 
-            this.parallaxHero();
-            this.heroOpacity();
-
-            this.autoScrollDirection();
+        window.addEventListener('touchstart', (e) => {
+            this.startY = e.touches[0].clientY;
         });
+
+        window.addEventListener('touchmove', this.touchScrollThrottle, { passive: false });
 
     },
 
     methods:{
 
-            /* Parallax */
+            /* Page Scroll */
 
-        parallaxHero(){
-            (this.$refs.heroSection as HTMLElement).style.top = 
-                `-${this.pageScrollVal * 0.4}px`;
+        preventUserScroll(e: Event){
+
+            this.pageScrollVal = window.scrollY as number;
+
+            // Don't allow user scrolling during the auto scroll
+            this.autoScrollDirection();
+
+            if (window.scrollY <= window.innerHeight){
+                e.preventDefault();
+            }
+
         },
 
-        heroOpacity(){
-            const windowHeight = window.innerHeight;
-            (this.$refs.heroSection as HTMLElement).style.opacity = 
-                `${100 - (this.pageScrollVal / windowHeight * 100)}%`;
+        touchScrollThrottle(e: TouchEvent){
+
+            if (!this.isAutoScrolling && window.scrollY <= window.innerHeight){
+
+                // Prevent default scrolling
+                e.preventDefault();
+
+                // Calculate the touch scroll delta
+                const currentY = e.touches[0].clientY;
+                const deltaY = this.startY - currentY;
+
+                // Adjust the page's scroll position
+                window.scrollBy(0, deltaY);
+
+                // Update startY
+                this.startY = currentY;
+
+            }
+
         },
 
             /* Auto Scroll */
@@ -107,12 +134,14 @@ export default defineComponent({
         },
 
         enableScrolling(){
-            window.removeEventListener('wheel', this.preventScroll);
+            document.documentElement.classList.remove("no-scroll");
+            window.removeEventListener('scroll', this.preventScroll);
             window.removeEventListener('touchmove', this.preventScroll);
         },
 
         preventScrolling(){
-            window.addEventListener('wheel', this.preventScroll, { passive: false });
+            document.documentElement.classList.add("no-scroll");
+            window.addEventListener('scroll', this.preventScroll, { passive: false });
             window.addEventListener('touchmove', this.preventScroll, { passive: false });
         },
 
@@ -130,7 +159,13 @@ export default defineComponent({
                 /* Execution Conditions */
     
             // Do not execute the code while auto scrolling
-            if (this.isAutoScrolling) return;
+            // And check the direction conditions
+            if (this.isAutoScrolling ||
+                !this.topPage && direction === "down" ||
+                this.topPage && direction === "up" || 
+                window.scrollY >= window.innerHeight && direction === "up"){
+                return;
+            }
 
             // Do not execute the code when a nav-link was clicked
             if (document.body.classList.contains("nav-link-clicked")){
@@ -138,14 +173,10 @@ export default defineComponent({
                 return;
             }
 
-            // Check the scroll direction
-            if (!this.topPage && direction === "down") return;
-            if (this.topPage && direction === "up" || 
-                window.scrollY >= window.innerHeight && direction === "up"){
-                return;
-            }
-
                 /* Settings */
+
+            // Disable scrolling
+            this.preventScrolling();
 
             this.isAutoScrolling = true;
 
@@ -154,13 +185,12 @@ export default defineComponent({
 
             // Scroll start/end position
             const startPosition = window.scrollY;
-            const endPosition = direction === "down" ? window.innerHeight : 0;
+            const endPosition = direction === "down" ? window.innerHeight + 1 : 0;
+            const scrollRange = endPosition - startPosition;
             
-            // The number of frames
+            // Frames
             const totalFrames = (this.scrollDuration / 1000) * this.framerate;
-            
-            // Disable scrolling
-            this.preventScrolling();
+            const frameInterval = 1000 / this.framerate;
 
             // Easing (slower end of the animation)
             const easing = (t: number) => 1 - (1 - t) * (1 - t);
@@ -180,21 +210,21 @@ export default defineComponent({
                 }
 
                 // Update the scroll position
-                const progress = i / totalFrames;
-                const desiredScrollTop = 
-                    startPosition + (endPosition - startPosition) * easing(progress);
+                const scrollTo = startPosition + scrollRange * easing(i / totalFrames);
 
                 window.scrollTo({
-                    top: desiredScrollTop
+                    top: scrollTo
                 });
-
-                requestAnimationFrame(animateScroll);
+                
                 i++;
+                setTimeout(() => {
+                    requestAnimationFrame(animateScroll);
+                }, frameInterval)
 
             };
 
             // Start the animation
-            animateScroll();
+            requestAnimationFrame(animateScroll);
         }
 
     }
@@ -205,6 +235,10 @@ export default defineComponent({
 
 
 <style lang="scss">
+
+.no-scroll{
+    overflow:hidden;
+}
 
 header{
     height:100dvh;
@@ -226,6 +260,9 @@ header{
         display:flex;
         justify-content:space-between;
         align-items:center;
+
+        transition:top 2s ease-out,
+            opacity 1.5s ease-out;
 
         & .hero-title{
             display:flex;
@@ -259,6 +296,11 @@ header{
 
         }
 
+    }
+
+    & .hero.parallax{
+        top:-60vh;
+        opacity:0;
     }
 
 }
