@@ -67,8 +67,6 @@ export default defineComponent({
         
         window.addEventListener("scroll", this.preventUserScroll, { passive: false });
 
-            /* Touch Scroll */
-
         window.addEventListener('touchstart', (e) => {
             this.startY = e.touches[0].clientY;
         });

@@ -82,7 +82,7 @@ body{
         background:linear-gradient(to bottom right,
             var(--colorBg2c), var(--colorBg2d)),
             url("../img/noise-texture.svg");
-        backdrop-filter:blur(2px);
+        backdrop-filter:none;
     }
 
 }

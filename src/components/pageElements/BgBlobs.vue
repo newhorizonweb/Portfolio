@@ -31,21 +31,32 @@ export default defineComponent({
             speedFactor: 2, // from 0 (no movement) | 10+ is really fast
             blobSizeMin: 30,
             blobSizeMax: 150,
+            blobFPS: 4, // changed based on the screen width
 
             // Blob Code
-            blobFPS: 30, // changed based on the screen width
+            blobSpeed: 0,
             blobs: [] as BlobData[],
             blobNumber: this.calculateBlobNumber(),
+
+            // Elements
+            blobContainer: null as null | HTMLElement
         }
     },
 
     mounted(){
 
+        // Elements
+        this.blobContainer = this.$refs.bgBlobs as HTMLElement;
+
+        // Functions
         this.createBlob();
-        this.animationFrames();
         this.animateBlobs();
 
+        // Event Listeners
         window.addEventListener('resize', this.handleResize);
+
+        // Variables / Code
+        this.blobSpeed = (1000 / this.blobFPS) / 100 * this.speedFactor;
 
     },
 
@@ -56,9 +67,6 @@ export default defineComponent({
     methods:{
 
         createBlob(){
-
-            // Blob Container
-            const blobContainer: HTMLElement = this.$refs.bgBlobs as HTMLElement;
 
             for (let i = 0; i < this.blobNumber; i++){
 
@@ -75,9 +83,9 @@ export default defineComponent({
 
                 // Random Position & Speed
                 const posX = Math.floor(Math.random() * 
-                    (blobContainer.offsetWidth - size + 1));
+                    (this.blobContainer!.offsetWidth - size + 1));
                 const posY = Math.floor(Math.random() * 
-                    (blobContainer.offsetHeight - size + 1));
+                    (this.blobContainer!.offsetHeight - size + 1));
 
                 const blobData = {
                     element: blob,
@@ -94,7 +102,7 @@ export default defineComponent({
                 // Append the blob and set its position
                 this.blobs.push(blobData);
                 blob.style.transform = `translate3d(${posX}px, ${posY}px, 0px)`;
-                blobContainer.appendChild(blob);
+                this.blobContainer!.appendChild(blob);
 
             }
 
@@ -102,34 +110,43 @@ export default defineComponent({
 
         animateBlobs(){
 
-            // Blob Container
-            const blobContainer: HTMLElement = this.$refs.bgBlobs as HTMLElement;
+            const blobContW = this.blobContainer!.offsetWidth;
+            const blobContH = this.blobContainer!.offsetHeight;
 
             const updateBlobs = () => {
-
-                // Calculate the speed based on the frametime
-                const blobSpeed = (1000 / this.blobFPS) / 100 * this.speedFactor;
 
                 // Adjust the position
                 for (let blobData of this.blobs){
 
+                    const blob = blobData.element;
+
+                    // Blob Speed
+                    const blobSpeedX = blobData.speed.x;
+                    const blobSpeedY = blobData.speed.y;
+
                     // Update position based on velocity and delta-time
-                    blobData.position.x += blobData.speed.x * blobSpeed;
-                    blobData.position.y += blobData.speed.y * blobSpeed;
+                    blobData.position.x += blobSpeedX * this.blobSpeed;
+                    blobData.position.y += blobSpeedY * this.blobSpeed;
+
+                    // Blob Position
+                    const blobPosX = blobData.position.x;
+                    const blobPosY = blobData.position.y;
 
                     // Bounce the blob off the screen edge
-                    if (blobData.position.x < 0 || 
-                        blobData.position.x + blobData.element.offsetWidth > blobContainer.offsetWidth) {
-                        blobData.speed.x = -blobData.speed.x;
+                    if (blobPosX < 0 || 
+                        blobPosX + blob.offsetWidth > blobContW){
+
+                        blobData.speed.x = -blobSpeedX;
                     }
 
-                    if (blobData.position.y < 0 ||
-                        blobData.position.y + blobData.element.offsetHeight > blobContainer.offsetHeight) {
-                        blobData.speed.y = -blobData.speed.y;
+                    if (blobPosY < 0 ||
+                        blobPosY + blob.offsetHeight > blobContH){
+
+                        blobData.speed.y = -blobSpeedY;
                     }
 
                     // Set blob's new position
-                    blobData.element.style.transform = 
+                    blob.style.transform = 
                         `translate3d(${blobData.position.x}px, 
                         ${blobData.position.y}px, 
                         0px)`;
@@ -169,43 +186,37 @@ export default defineComponent({
             return newBlobNumber;
         },
 
-        animationFrames(){
-
-            const width = window.innerWidth;
-
-            switch (true){
-                case width <= 768:
-                    this.blobFPS = 8;
-                    break;
-
-                case width <= 1440:
-                    this.blobFPS = 30;
-                    break;
-
-                default:
-                    this.blobFPS = 60;
-            }
-
-        },
-
         adjustBlobsPosition(){
-            const blobContainer: HTMLElement = this.$refs.bgBlobs as HTMLElement;
-            
+
+            const blobContW = this.blobContainer!.offsetWidth;
+            const blobContH = this.blobContainer!.offsetHeight;
+
             this.blobs.forEach(blobData => {
+
+                const blob = blobData.element;
+
                 // Check if the blob's x position goes out of the right boundary
-                if (blobData.position.x + blobData.element.offsetWidth > blobContainer.offsetWidth) {
-                    blobData.position.x = blobContainer.offsetWidth - blobData.element.offsetWidth;
+                if (blobData.position.x + blob.offsetWidth > blobContW){
+
+                    blobData.position.x = 
+                        this.blobContainer!.offsetWidth - blob.offsetWidth;
                 }
 
                 // Check if the blob's y position goes out of the bottom boundary
-                if (blobData.position.y + blobData.element.offsetHeight > blobContainer.offsetHeight){
-                    blobData.position.y = blobContainer.offsetHeight - blobData.element.offsetHeight;
+                if (blobData.position.y + blob.offsetHeight > blobContH){
+                    
+                    blobData.position.y = 
+                        this.blobContainer!.offsetHeight - blob.offsetHeight;
                 }
 
                 // Update the blob's transform to reflect any position adjustments
-                blobData.element.style.transform = 
-                    `translate3D(${blobData.position.x}px, ${blobData.position.y}px, 0px)`;
+                blob.style.transform = 
+                    `translate3D(${blobData.position.x}px,
+                     ${blobData.position.y}px, 
+                     0px)`;
+
             });
+
         },
 
         handleResize(){
@@ -216,13 +227,8 @@ export default defineComponent({
             // New blob number (based on the screen width)
             const newBlobNumber = this.calculateBlobNumber();
 
-            // Set the FPS
-            this.animationFrames();
-
             // Return if the blob count is the same as before
             if (this.blobNumber === newBlobNumber) return;
-
-            const blobContainer: HTMLElement = this.$refs.bgBlobs as HTMLElement;
 
             if (newBlobNumber > this.blobNumber){
                 // Create the needed difference in blob count
@@ -237,7 +243,7 @@ export default defineComponent({
                     const blobData = this.blobs.pop();
                     
                     if (blobData){
-                        blobContainer.removeChild(blobData.element);
+                        this.blobContainer!.removeChild(blobData.element);
                     }
                 }
             }
@@ -269,7 +275,7 @@ export default defineComponent({
         position:absolute;
         border-radius:50%;
 
-        transition:0.1s;
+        transition:transform 0.4s linear;
         overflow:hidden;
         z-index:10;
         
@@ -341,31 +347,6 @@ export default defineComponent({
     100%{
         transform:scale(1) rotate(360deg);
     }
-}
-
-@media screen and (width <= 1440px){
-
-    .bg-blobs{
-
-        .bg-blob{
-            transition:0.2s;
-        }
-
-    }
-
-}
-
-@media screen and (width <= 440px){
-
-    .bg-blobs{
-
-        .bg-blob{
-            transition:0.5s;
-
-        }
-
-    }
-
 }
 
 </style>
