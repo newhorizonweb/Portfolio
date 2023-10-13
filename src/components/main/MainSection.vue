@@ -7,6 +7,8 @@
 
         <AboutSection />
 
+        <ProjectsSection />
+
     </main>
 
 </template>
@@ -16,12 +18,14 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import AboutSection from "./AboutSection.vue";
+import ProjectsSection from "./ProjectsSection.vue";
 
 export default defineComponent({
     name: "MainSection",
 
     components:{
-        AboutSection
+        AboutSection,
+        ProjectsSection
     },
 
     data(){
@@ -49,6 +53,7 @@ main{
 
     & .section-heading{
         width:100%;
+        font-size:min(34px, 6vw);
         text-align:center;
     }
 

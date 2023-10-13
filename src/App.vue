@@ -59,6 +59,8 @@ export default defineComponent({
 
 <style lang="scss">
 
-
+#app{
+    padding-bottom:var(--size7);
+}
 
 </style>

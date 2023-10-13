@@ -64,7 +64,7 @@ export default defineComponent({
         });
 
         // Nav collapse on page resize
-        window.addEventListener("resize", (e) => {
+        window.addEventListener("resize", () => {
             this.isNavExpand = false;
         });
 

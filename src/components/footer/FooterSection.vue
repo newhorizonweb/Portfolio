@@ -42,7 +42,7 @@ export default defineComponent({
 <style lang="scss">
 
 footer.wrapper{
-    margin-top:300px;
+    margin-top:calc(var(--size8) * 2.5);
     padding:var(--size6);
 }
 
