@@ -34,6 +34,9 @@
     --colorBg2c:rgba(29, 17, 94, 0.5);
     --colorBg2d:rgba(54, 47, 115, 0.75);
 
+    --colorBg2e:rgb(from var(--colorBg2c) r g b / 0.9);
+    --colorBg2f:rgb(from var(--colorBg2d) r g b / 0.95);
+
         /* Border Colors */
 
     --colorBorder1a:rgb(255, 255, 255, 0.1);

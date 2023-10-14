@@ -316,6 +316,10 @@ nav .nav-inner{
         align-items:flex-end;
         gap:0;
 
+        background:linear-gradient(to bottom right,
+            var(--colorBg2e), var(--colorBg2f)),
+            url("../../assets/img/noise-texture.svg");
+
         transition:all 0.25s, 
             margin 0s,
             right 0s, 
@@ -428,10 +432,8 @@ nav .nav-inner{
 
             & .navbar{
                 height:calc(
-                    var(--size5) +          /* Navbar Gap */
                     (var(--size7) * 6) +    /* Link */
-                    (var(--size5) * 4) -    /* Nav Links Gaps */
-                    (2px * 6)               /* <a> -2px margin */
+                    (var(--size5) * 5)      /* Nav Links Gaps */
                 );
                 right:0;
                 opacity:1;
