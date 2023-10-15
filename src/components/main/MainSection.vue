@@ -51,6 +51,10 @@ main{
         var(--size7) + var(--size8)
     );
 
+    display:flex;
+    flex-direction:column;
+    gap:calc(var(--size8) * 2.5);
+
     & .section-heading{
         width:100%;
         font-size:min(34px, 6vw);

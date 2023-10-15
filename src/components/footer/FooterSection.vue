@@ -44,6 +44,11 @@ export default defineComponent({
 footer.wrapper{
     margin-top:calc(var(--size8) * 2.5);
     padding:var(--size6);
+    transition:opacity var(--trans3);
+}
+
+.modal-mode footer{
+    opacity:0;
 }
 
 </style>

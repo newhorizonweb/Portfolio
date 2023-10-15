@@ -10,11 +10,12 @@
         </h2>
 
         <div class="project-tile glass-tile"
+            ref="projectTile"
+
             v-for="project in projects" 
-            :key="project.id" 
-            @click="openProjectModal(project)">
+            :key="project.title">
             
-            <div class="project-tile-inner">
+            <div class="pt-display">
                 <div class="project-img">
                     <img :src="project.logoSrc" :alt="project.title">
                 </div>
@@ -22,15 +23,15 @@
                 <h3 class="project-title" :data-text="project.title"></h3>
             </div>
 
+            <ProjectModal
+                :data="project"
+
+                @hideModals="hideModals"
+            />
+
         </div>
 
     </div>
-
-    <ProjectModal
-        v-if="showProjectModal" 
-        :data="activeData"
-        @closeModal="closeModal"
-    />
 
 </template>
 
@@ -41,26 +42,24 @@ import { defineComponent } from 'vue';
 import ProjectModal from "./ProjectModal.vue";
 
 interface Project{
-  id: number;
-  logo: string;
-  title: string;
-  data: string;
+    logo: string;
+    title: string;
+    data: string;
 }
 
 export default defineComponent({
     name: "ProjectsSection",
 
-    components: {
+    components:{
         ProjectModal
     },
 
     data(){
         return{
 
+            // Project Data
             projects:[
-                // Project Data
                 {
-                    id: 1,
                     title: "Cookbook",
                     logoSrc: this.path('uverit-logo.svg'),
                     
@@ -68,7 +67,6 @@ export default defineComponent({
                 },
 
                 {
-                    id: 2,
                     title: "Logo Test",
                     logoSrc: this.path('uverit-logo.svg'),
 
@@ -76,7 +74,6 @@ export default defineComponent({
                 },
 
                 {
-                    id: 3,
                     title: "SkillPeak",
                     logoSrc: this.path('uverit-logo.svg'),
 
@@ -84,7 +81,6 @@ export default defineComponent({
                 },
 
                 {
-                    id: 4,
                     title: "Color Palette",
                     logoSrc: this.path('uverit-logo.svg'),
 
@@ -92,35 +88,110 @@ export default defineComponent({
                 },
 
                 {
-                    id: 5,
                     title: "Rapid Core",
                     logoSrc: this.path('rapid-core-logo.svg'),
 
                     data: "bbb2",
                 },
-
             ],
 
             // Modal
-            showProjectModal: false,
-            activeData: null as Project | null,
+            currProjTile: null as null | HTMLElement
 
         } 
     },
 
+    mounted(){
+
+        // Add the tile click events
+        this.tileModal();
+
+        window.addEventListener("resize", () => {
+
+            if (this.currProjTile){
+                this.currTilePos(this.currProjTile);
+            }
+
+        });
+
+    },
+
     methods:{
+
+            /* Base Function Elements */
 
         path(logoName: string){
             return require("@/assets/img/" + logoName);
         },
 
-        openProjectModal(project: Project){
-            this.activeData = project;
-            this.showProjectModal = true;
+        hideModals(currTile?: HTMLElement){
+
+            // Disable the modal mode
+            document.documentElement.classList.remove("modal-mode");
+
+            const tiles = this.$refs.projectTile as HTMLElement[];
+
+            tiles.forEach((tile) => {
+
+                (tile.querySelector(".project-modal") as HTMLElement)!.style.transform = 
+                    "translate3d(0px, 0px, 0px)";
+                tile.classList.remove("tile-modal");
+
+                if (tile !== currTile){
+                    setTimeout(() => {
+                        tile.classList.remove("modal-opacity");
+                    }, 500);
+                }
+
+            });
+
         },
 
-        closeModal(){
-            this.showProjectModal = false;
+        currTilePos(tile: HTMLElement){
+
+            // Get the tile position
+            const rect = tile.getBoundingClientRect();
+            const transX = -rect.left;
+            const transY = -rect.top;
+
+            // Set the transform property (position modal in the center)
+            (tile.querySelector(".project-modal") as HTMLElement)!.style.transform = 
+                `translate3d(${transX}px, ${transY}px, 0px)`;
+
+        },
+
+            /* Doing Stuff */
+
+        tileModal(){
+
+            const tiles = this.$refs.projectTile as HTMLElement[];
+
+            tiles.forEach((tile) => {
+                tile.addEventListener("click", (e: Event) => {
+
+                    if (e.target === tile){
+
+                        // Hide the other modals
+                        this.hideModals(tile);
+
+                        // Set the page to the modal mode
+                        document.documentElement.classList.add("modal-mode");
+
+                        // Set the current modal tile
+                        this.currProjTile = tile;
+
+                        // Adjust the modal position
+                        this.currTilePos(tile);
+
+                        // Show modal
+                        tile.classList.add("tile-modal");
+                        tile.classList.add("modal-opacity");
+
+                    }
+
+                });
+            });
+
         }
 
     }
@@ -132,31 +203,47 @@ export default defineComponent({
 
 <style lang="scss">
 
+.modal-mode{
+    overflow:hidden;
+}
+
 .dev-projects{
-    padding-top:calc(var(--size8) * 2.5);
     display:flex;
+    position:relative;
     flex-wrap:wrap;
     gap:var(--size8);
 
-    & .project-tile{
-        flex:40%;
-        height:300px;
-        box-shadow:inset 0 0 0 0 transparent;
+    &:has(.tile-modal){
+        z-index:11000;
+    }
 
-        transition:0.25s cubic-bezier(.59,.09,.86,.66);
-        overflow:hidden;
+        /* Tile */
+
+    & .project-tile{
+        width:calc(50% - (var(--size8) / 2));
+        height:300px;
+        position:relative;
+
+        box-shadow:inset 0 0 0 0 transparent;
+        transition:var(--trans3);
         cursor:pointer;
 
+        &:nth-last-of-type(1){
+            width:100%; /* If the number of tiles is odd */
+        }
+
+        &.tile-modal{
+            z-index:11000;
+        }
+
         &:hover{
-            transform:scale(1.025);
             box-shadow:inset 0 0 max(5vw, 50px) 1px rgba(222, 183, 255, 0.25);
         }
 
-        & .project-tile-inner{
+        & .pt-display{
             width:100%;
             height:100%;
             position:relative;
-            perspective: 1500px;
 
             display:flex;
             flex-direction:column;
@@ -164,19 +251,19 @@ export default defineComponent({
             align-items:center;
             gap:var(--size6);
 
-            transition:0.25s cubic-bezier(.59,.09,.86,.66);
-            transition-delay:0.15s;
+            transition:var(--trans3);
+            pointer-events:none;
         }
 
-        &:not(:hover) .project-tile-inner{
-            animation:tileZoomRev 0.25s cubic-bezier(.59,.09,.86,.66);
-        }
-
-        &:hover .project-tile-inner{
-            transform:scale(0.85);
+        &:not(.tile-modal):hover .pt-display{
+            transform:scale(0.8);
             filter:brightness(110%);
-            animation:tileZoomInit 0.25s 0.15s cubic-bezier(.59,.09,.86,.66),
-                tileZoom 3s 1s ease-in-out infinite;
+        }
+
+        &.tile-modal .pt-display{
+            transform:scale(0.8);
+            filter:brightness(110%);
+            animation:tileZoom 3s ease-in-out infinite;
         }
 
         & .project-img{
@@ -206,33 +293,15 @@ export default defineComponent({
 
 }
 
-@keyframes tileZoomInit{
-    0%{
-        transform:scale(1);
-    }
-    100%{
-        transform:scale(0.85);
-    }
-}
-
-@keyframes tileZoomRev{
-    0%{
-        transform:scale(0.85);
-    }
-    100%{
-        transform:scale(1);
-    }
-}
-
 @keyframes tileZoom{
     0%{
-        transform:scale(0.85);
+        transform:scale(0.8);
     }
     50%{
-        transform:scale(0.9);
+        transform:scale(1);
     }
     100%{
-        transform:scale(0.85);
+        transform:scale(0.8);
     }
 }
 
@@ -257,7 +326,7 @@ export default defineComponent({
     .dev-projects{
 
         & .project-tile{
-            flex:100%;
+            width:100%;
             height:275px;
 
             & .project-img{

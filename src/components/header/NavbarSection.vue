@@ -123,7 +123,10 @@ export default defineComponent({
 
         /* Base */
 
-    & .nav-link svg *{
+    & .nav-link{
+        transition:var(--trans2);
+
+        & svg *{
             fill:none;
             stroke-linecap:round;
             stroke-miterlimit:10;
@@ -131,6 +134,8 @@ export default defineComponent({
             stroke:#FFF;
             stroke-width:10px;
         }
+        
+    }
 
     & .nav-link:hover svg{
         animation:navAnimElem 2s ease-in-out infinite;

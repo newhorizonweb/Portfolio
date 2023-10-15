@@ -191,6 +191,11 @@ export default defineComponent({
 nav{
     position:relative;
     z-index:9999;
+    transition:opacity var(--trans3);
+}
+
+.modal-mode nav{
+    opacity:0;
 }
 
 .nav-placeholder{

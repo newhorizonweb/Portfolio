@@ -184,7 +184,7 @@ export default defineComponent({
 
             // Scroll start/end position
             const startPosition = window.scrollY;
-            const endPosition = direction === "down" ? window.innerHeight + 1 : 0;
+            const endPosition = direction === "down" ? window.innerHeight : 0;
             const scrollRange = endPosition - startPosition;
             
             // Frames

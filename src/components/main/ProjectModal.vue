@@ -3,16 +3,15 @@
 
 <template>
 
-    <div class="project-modal">
+    <div class="project-modal glass-tile">
 
         <div class="close-modal"
-            @click="$emit('closeModal')">
+            @click="$emit('hideModals')">
 
-            <p>X</p>
+            X
         </div>
 
-
-        <p>{{ data }}</p>
+         <p>{{ data.title }}</p>
 
     </div>
 
@@ -31,7 +30,7 @@ export default defineComponent({
     ],
 
     emits:[
-        "closeModal"
+        "hideModals"
     ],
 
     data(){
@@ -55,21 +54,55 @@ export default defineComponent({
 
 <style lang="scss">
 
-.project-modal{
+    /* Modal */
+
+.dev-projects .project-modal{
     width:100%;
     height:100%;
 
-    position:fixed;
+    position:absolute;
     top:0;
     left:0;
 
-    background-color:rgb(200,200,255,0.2);
-    z-index:100;
+    opacity:0;
+    background:linear-gradient(to bottom right,
+        var(--colorBg2e), var(--colorBg2f)),
+        url("../../assets/img/noise-texture.svg");
+
+    transition:all 0.75s ease-in-out,
+        opacity var(--trans3);
+    pointer-events:none;
+
+        /* Modal Content */
+
+    & .close-modal{
+        padding:24px;
+        background-color:#AAA;
+    }
+
 }
 
-.close-modal{
-    padding:8px;
-    background-color:#999;
+    /* Modal Visibility */
+
+.dev-projects{
+
+    & .tile-modal .project-modal{
+        width:100vw;
+        height:100vh;
+
+        border-radius:0;
+        pointer-events:all;
+
+        &:before{
+            border-radius:0;
+        }
+
+    }
+
+    & .modal-opacity .project-modal{
+        opacity:1;
+    }
+
 }
 
 </style>
