@@ -255,11 +255,6 @@ h6{
     height:var(--scrollbar);
 }
 
-body::-webkit-scrollbar{
-    width:0;
-    height:0;
-}
-
 ::-webkit-scrollbar-track{
     background:var(--colorBg1b);
 }
@@ -279,6 +274,11 @@ body::-webkit-scrollbar{
 
 ::-webkit-scrollbar-corner{
     background:transparent;
+}
+
+.hide-scrollbar::-webkit-scrollbar{
+    width:0;
+    height:0;
 }
 
 

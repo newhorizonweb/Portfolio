@@ -4,15 +4,28 @@
 <template>
 
     <div class="project-modal glass-tile">
+        <div class="project-modal-inner hide-scrollbar">
 
-        <div class="close-modal"
-            @click="$emit('hideModals')">
+            <TileDisplay
+                :data="data"
+            />
 
-            X
+            <div class="close-modal glass-tile"
+                @click="$emit('hideModals')">
+
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="modal-content wrapper">
+
+                <ProjectMockup
+                    :data="data"
+                />
+
+            </div>
+
         </div>
-
-         <p>{{ data.title }}</p>
-
     </div>
 
 </template>
@@ -22,8 +35,16 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 
+import TileDisplay from "../main/TileDisplay.vue";
+import ProjectMockup from "../main/ProjectMockup.vue";
+
 export default defineComponent({
     name: "ProjectModal",
+
+    components:{
+        TileDisplay,
+        ProjectMockup
+    },
 
     props:[
         "data"
@@ -35,9 +56,7 @@ export default defineComponent({
 
     data(){
         return{
-
-
-            
+            desktopMockup: false
         } 
     },
 
@@ -59,30 +78,67 @@ export default defineComponent({
 .dev-projects .project-modal{
     width:100%;
     height:100%;
+    padding:0 var(--size6);
 
     position:absolute;
     top:0;
     left:0;
 
-    opacity:0;
     background:linear-gradient(to bottom right,
         var(--colorBg2e), var(--colorBg2f)),
         url("../../assets/img/noise-texture.svg");
 
     transition:all 0.75s ease-in-out,
         opacity var(--trans3);
+        
+    overflow:hidden;
     pointer-events:none;
+
+    & .project-modal-inner{
+        width:100%;
+        height:100%;
+        overflow-x:auto;
+    }
+
+    & .close-modal{
+        width:var(--size7);
+        aspect-ratio:1/1;
+
+        position:absolute;
+        top:var(--size6);
+        right:var(--size6);
+
+        opacity:0;
+        z-index:120;
+
+        & span{
+            width:var(--size5);
+            height:2px;
+
+            position:absolute;
+            top:50%;
+            left:50%;
+            transform:translate(-50%, -50%) rotate(45deg);
+
+            background-color:var(--color1a);
+            border-radius:200px;
+        }
+
+        & span:nth-of-type(2){
+            transform:translate(-50%, -50%) rotate(-45deg);
+        }
+
+    }
 
         /* Modal Content */
 
-    & .close-modal{
-        padding:24px;
-        background-color:#AAA;
+    & .modal-content{
+        padding-bottom:var(--size8);
     }
 
 }
 
-    /* Modal Visibility */
+    /* Modal Visibility Modes */
 
 .dev-projects{
 
@@ -97,10 +153,14 @@ export default defineComponent({
             border-radius:0;
         }
 
+        & .close-modal{
+            opacity:1;
+        }
+
     }
 
-    & .modal-opacity .project-modal{
-        opacity:1;
+    & .no-trans .project-modal{
+        transition:0s;
     }
 
 }

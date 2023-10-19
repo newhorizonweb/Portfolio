@@ -14,18 +14,9 @@
 
             v-for="project in projects" 
             :key="project.title">
-            
-            <div class="pt-display">
-                <div class="project-img">
-                    <img :src="project.logoSrc" :alt="project.title">
-                </div>
-
-                <h3 class="project-title" :data-text="project.title"></h3>
-            </div>
 
             <ProjectModal
                 :data="project"
-
                 @hideModals="hideModals"
             />
 
@@ -44,7 +35,7 @@ import ProjectModal from "./ProjectModal.vue";
 interface Project{
     logo: string;
     title: string;
-    data: string;
+    mockupImg: string;
 }
 
 export default defineComponent({
@@ -63,35 +54,40 @@ export default defineComponent({
                     title: "Cookbook",
                     logoSrc: this.path('uverit-logo.svg'),
                     
-                    data: "aaa1",
+                    mobileMockup: this.path('cookbook-mobile.png'),
+                    desktopMockup: this.path('cookbook-desktop.png'),
                 },
 
                 {
                     title: "Logo Test",
                     logoSrc: this.path('uverit-logo.svg'),
 
-                    data: "bbb2",
+                    mobileMockup: this.path('cookbook-mobile.png'),
+                    desktopMockup: this.path('cookbook-desktop.png'),
                 },
 
                 {
                     title: "SkillPeak",
                     logoSrc: this.path('uverit-logo.svg'),
 
-                    data: "bbb2",
+                    mobileMockup: this.path('cookbook-mobile.png'),
+                    desktopMockup: this.path('cookbook-desktop.png'),
                 },
 
                 {
                     title: "Color Palette",
                     logoSrc: this.path('uverit-logo.svg'),
 
-                    data: "bbb2",
+                    mobileMockup: this.path('cookbook-mobile.png'),
+                    desktopMockup: this.path('cookbook-desktop.png'),
                 },
 
                 {
                     title: "Rapid Core",
                     logoSrc: this.path('rapid-core-logo.svg'),
 
-                    data: "bbb2",
+                    mobileMockup: this.path('cookbook-mobile.png'),
+                    desktopMockup: this.path('cookbook-desktop.png'),
                 },
             ],
 
@@ -106,10 +102,24 @@ export default defineComponent({
         // Add the tile click events
         this.tileModal();
 
+        // Modal placement on resize
+        let resizeTimer: number;
+
         window.addEventListener("resize", () => {
 
-            if (this.currProjTile){
+            clearTimeout(resizeTimer);
+
+            if (this.currProjTile &&
+            this.currProjTile.classList.contains("tile-modal")){
+
                 this.currTilePos(this.currProjTile);
+
+                // Ensure the correct placement
+                // Sometimes the resize event dwould not be registered correctly
+                resizeTimer = setTimeout(() => {
+                    this.currTilePos(this.currProjTile!);
+                }, 400);
+
             }
 
         });
@@ -120,8 +130,8 @@ export default defineComponent({
 
             /* Base Function Elements */
 
-        path(logoName: string){
-            return require("@/assets/img/" + logoName);
+        path(imgName: string){
+            return require("@/assets/img/" + imgName);
         },
 
         hideModals(currTile?: HTMLElement){
@@ -133,9 +143,10 @@ export default defineComponent({
 
             tiles.forEach((tile) => {
 
-                (tile.querySelector(".project-modal") as HTMLElement)!.style.transform = 
-                    "translate3d(0px, 0px, 0px)";
+                (tile.querySelector(".project-modal") as HTMLElement)!.style.transform = "translate3d(0px, 0px, 0px)";
+                    
                 tile.classList.remove("tile-modal");
+                tile.classList.remove("no-trans");
 
                 if (tile !== currTile){
                     setTimeout(() => {
@@ -187,6 +198,11 @@ export default defineComponent({
                         tile.classList.add("tile-modal");
                         tile.classList.add("modal-opacity");
 
+                        // Remove the transition effect after the modal has covered the page
+                        setTimeout(() => {
+                            tile.classList.add("no-trans");
+                        }, 750);
+
                     }
 
                 });
@@ -225,7 +241,7 @@ export default defineComponent({
         position:relative;
 
         box-shadow:inset 0 0 0 0 transparent;
-        transition:var(--trans3);
+   
         cursor:pointer;
 
         &:nth-last-of-type(1){
@@ -236,85 +252,12 @@ export default defineComponent({
             z-index:11000;
         }
 
+        &.modal-opacity{
+            z-index:50;
+        }
+
         &:hover{
             box-shadow:inset 0 0 max(5vw, 50px) 1px rgba(222, 183, 255, 0.25);
-        }
-
-        & .pt-display{
-            width:100%;
-            height:100%;
-            position:relative;
-
-            display:flex;
-            flex-direction:column;
-            justify-content:center;
-            align-items:center;
-            gap:var(--size6);
-
-            transition:var(--trans3);
-            pointer-events:none;
-        }
-
-        &:not(.tile-modal):hover .pt-display{
-            transform:scale(0.8);
-            filter:brightness(110%);
-        }
-
-        &.tile-modal .pt-display{
-            transform:scale(0.8);
-            filter:brightness(110%);
-            animation:tileZoom 3s ease-in-out infinite;
-        }
-
-        & .project-img{
-            --imgSize:min(220px, 30vw);
-
-            width:var(--imgSize);
-            height:calc(var(--imgSize) / 2);
-
-            display:flex;
-            justify-content:center;
-            align-items:center;
-
-            & img{
-                object-fit:contain;
-                max-height:100%;
-                max-width:100%;
-            }
-
-        }
-
-        & .project-title{
-            font-size:min(32px, 4vw);
-            text-transform:capitalize;
-        }
-
-    }
-
-}
-
-@keyframes tileZoom{
-    0%{
-        transform:scale(0.8);
-    }
-    50%{
-        transform:scale(1);
-    }
-    100%{
-        transform:scale(0.8);
-    }
-}
-
-@media screen and (width <= 768px){
-
-    .dev-projects{
-
-        & .project-tile{
-
-            & .project-img{
-                height:120px;
-            }
-
         }
 
     }
@@ -328,31 +271,6 @@ export default defineComponent({
         & .project-tile{
             width:100%;
             height:275px;
-
-            & .project-img{
-                --imgSize:220px;
-            }
-
-            & .project-title{
-                font-size:min(32px, 8vw);
-            }
-
-        }
-
-    }
-
-}
-
-@media screen and (width <= 440px){
-
-    .dev-projects{
-
-        & .project-tile{
-
-            & .project-img{
-                --imgSize:50vw;
-            }
-
         }
 
     }
