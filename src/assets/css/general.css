@@ -175,7 +175,7 @@ h1, h2, h3, h4, h5, h6{
 }
 
 :is(h1, h2, h3):before{
-    -webkit-text-stroke:3px white;
+    -webkit-text-stroke:3px #FFF;
 }
 
 :is(h4, h5):before{

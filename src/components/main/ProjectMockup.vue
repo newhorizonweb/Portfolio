@@ -3,9 +3,15 @@
 
 <template>
 
-    <input class="mockup-toggle"
-        type="checkbox"
+    <div class="mockup-mode"
+        :class="{'toggle-disabled': mockupChange}"
         @click="desktopMockup = !desktopMockup">
+
+        <h3 class="toggle-txt toggle-txt-desktop" data-text="Desktop"></h3>
+        <h3 class="toggle-txt toggle-txt-slash" data-text="/"></h3>
+        <h3 class="toggle-txt toggle-txt-mobile" data-text="Mobile"></h3>
+
+    </div>
 
     <div class="mockup-outer">
         <div class="mockup"
@@ -93,7 +99,7 @@ export default defineComponent({
                 } else {
                     this.mockupImg = this.data.mobileMockup;
                 }
-            }, 500);
+            }, 275);
 
         }
 
@@ -114,11 +120,43 @@ export default defineComponent({
 
 <style lang="scss">
 
-    /* Modal */
+.mockup-mode{
+    margin-bottom:var(--size6);
 
-.mockup-toggle{
-    width:40px;
-    height:40px;
+    display:flex;
+    justify-content:center;
+    gap:var(--size4);
+
+    &.toggle-disabled{
+        pointer-events:none;
+
+        & .toggle-txt-slash:before{
+            -webkit-text-stroke-color:var(--color1a);
+        }
+
+    }
+
+    & .toggle-txt{
+        font-size:min(30px, 6vw);
+
+        &.toggle-txt-desktop:before{
+            -webkit-text-stroke-color:var(--color1a);
+        }
+
+    }
+
+}
+
+.modal-content:not(:has(.desktop-mockup)){
+
+    & .toggle-txt-desktop:before{
+        -webkit-text-stroke-color:#FFF;
+    }
+
+    & .toggle-txt-mobile:before{
+        -webkit-text-stroke-color:var(--color1a);
+    }
+
 }
 
 .mockup-outer{
@@ -153,6 +191,7 @@ export default defineComponent({
         margin:0;
 
         & .phone-elem{
+            width:0;
             left:calc(var(--mockupSize) * -1);
 
             &:nth-of-type(4){
@@ -220,20 +259,30 @@ export default defineComponent({
         z-index:100;
 
         &:nth-of-type(1){
-            height:20px;
-            top:16%;
+            height:calc(var(--mockupSize) * 2);
+            top:20%;
         }
         &:nth-of-type(2){
-            height:40px;
-            top:calc(16% + 5% + 20px);
+            height:calc(var(--mockupSize) * 3);
+            top:calc(
+                20% + 
+                (var(--mockupSize) * 2) +   /* btn 1 */
+                (var(--mockupSize) * 3)     /* gap 1 */
+            );
         }
         &:nth-of-type(3){
-            height:40px;
-            top:calc(16% + 5% + 3% + 60px);
+            height:calc(var(--mockupSize) * 3);
+            top:calc(
+                20% + 
+                (var(--mockupSize) * 2) +   /* btn 1 */
+                (var(--mockupSize) * 3) +   /* gap 1 */
+                (var(--mockupSize) * 3) +   /* btn 2 */
+                (var(--mockupSize) * 2)     /* gap 2 */
+        );
         }
 
         &:nth-of-type(4){
-            height:60px;
+            height:calc(var(--mockupSize) * 5);
             top:30%;
             left:auto;
             right:calc((var(--mockupSize) + var(--size1)) * -1);
