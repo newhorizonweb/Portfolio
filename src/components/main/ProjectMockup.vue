@@ -3,17 +3,18 @@
 
 <template>
 
-    <div class="mockup-mode"
-        :class="{'toggle-disabled': mockupChange}"
-        @click="desktopMockup = !desktopMockup">
-
-        <h3 class="toggle-txt toggle-txt-desktop" data-text="Desktop"></h3>
-        <h3 class="toggle-txt toggle-txt-slash" data-text="/"></h3>
-        <h3 class="toggle-txt toggle-txt-mobile" data-text="Mobile"></h3>
-
-    </div>
-
     <div class="mockup-outer">
+
+        <div class="mockup-mode"
+            :class="{'toggle-disabled': mockupChange}"
+            @click="desktopMockup = !desktopMockup">
+
+            <h4 class="toggle-txt toggle-txt-desktop" data-text="Desktop"></h4>
+            <h4 class="toggle-txt toggle-txt-slash" data-text="/"></h4>
+            <h4 class="toggle-txt toggle-txt-mobile" data-text="Mobile"></h4>
+
+        </div>
+
         <div class="mockup"
             :class="{
                 'desktop-mockup': desktopMockup,
@@ -120,26 +121,44 @@ export default defineComponent({
 
 <style lang="scss">
 
+    /* Outer Mockup */
+
+.mockup-outer{
+    --mockupSize:var(--size3);
+
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    transition:var(--trans3);
+    
+    &:has(.desktop-mockup){
+        padding-bottom:calc(var(--mockupSize) * 4)
+    }
+
+}
+
 .mockup-mode{
+    width:100%;
     margin-bottom:var(--size6);
 
     display:flex;
     justify-content:center;
     gap:var(--size4);
+    cursor:pointer;
+
+    & .toggle-txt{
+        font-size:min(26px, 5vw);
+
+        &.toggle-txt-desktop:before{
+            -webkit-text-stroke:3px var(--color1a);
+        }
+
+    }
 
     &.toggle-disabled{
         pointer-events:none;
 
         & .toggle-txt-slash:before{
-            -webkit-text-stroke-color:var(--color1a);
-        }
-
-    }
-
-    & .toggle-txt{
-        font-size:min(30px, 6vw);
-
-        &.toggle-txt-desktop:before{
             -webkit-text-stroke-color:var(--color1a);
         }
 
@@ -159,18 +178,7 @@ export default defineComponent({
 
 }
 
-.mockup-outer{
-    --mockupSize:var(--size3);
-
-    display:flex;
-    justify-content:center;
-    transition:var(--trans3);
-    
-    &:has(.desktop-mockup){
-        padding-bottom:calc(var(--mockupSize) * 4)
-    }
-
-}
+    /* Mockup */
 
 .mockup{
     width:min(380px, 100%);
@@ -182,7 +190,7 @@ export default defineComponent({
     border-radius:var(--size7);
     transition:all 0.75s ease-in-out,
         margin var(--trans3);
-
+    
         /* Desktop Mode */
 
     &.desktop-mockup{
@@ -207,14 +215,17 @@ export default defineComponent({
         & .stand-elem{
             
             &:nth-of-type(6){
-                height:calc(var(--mockupSize) * 2.5);
-                top:calc(100% + var(--mockupSize));
+                height:calc(var(--mockupSize) * 2.5 + 1px);
+                top:calc(
+                    100% - 1px +
+                    var(--mockupSize)
+                );
             }
 
             &:nth-of-type(7){
-                height:calc(var(--mockupSize) * 1.5);
+                height:calc(var(--mockupSize) * 1.5 + 1px);
                 top:calc(
-                    100% + 
+                    100% - 1px + 
                     var(--mockupSize) + 
                     (var(--mockupSize) * 2.5)
                 );
@@ -249,7 +260,7 @@ export default defineComponent({
         /* Mobile Mode */
 
     & .phone-elem{
-        width:var(--size1);
+        width:calc(var(--size1) + 1px);
         position:absolute;
         left:calc((var(--mockupSize) + var(--size1)) * -1);
 
@@ -278,7 +289,7 @@ export default defineComponent({
                 (var(--mockupSize) * 3) +   /* gap 1 */
                 (var(--mockupSize) * 3) +   /* btn 2 */
                 (var(--mockupSize) * 2)     /* gap 2 */
-        );
+            );
         }
 
         &:nth-of-type(4){
@@ -336,12 +347,14 @@ export default defineComponent({
         /* Mockup Inner */
 
     & .mockup-inner{
-        width:100%;
-        height:100%;
+        width:calc(100% + 2px);
+        height:calc(100% + 2px);
+        margin:-1px;
 
         display:flex;
         align-items:flex-start;
 
+        box-shadow:inset 0 0 0 11px white;
         border-radius:calc(var(--size7) - var(--mockupSize));
         overflow:auto;
 

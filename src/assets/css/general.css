@@ -28,6 +28,9 @@
     --colorBg1a:rgb(20, 1, 50);
     --colorBg1b:rgb(2, 0, 101);
 
+    --colorBg1c:rgb(from var(--colorBg1a) r g b / 0.8);
+    --colorBg1d:rgb(from var(--colorBg1b) r g b / 0.9);
+
     --colorBg2a:rgb(176, 139, 255, 0.08);
     --colorBg2b:rgb(200, 167, 255, 0.25);
 
@@ -109,11 +112,13 @@
 }
 
 p, a, label, button, th, td{
+    color:var(--txt-faded);
     font-size:18px;
     font-weight:400;
     line-height:1.2;
+
+    text-wrap:balance;
     text-decoration:none;
-    color:var(--txt-faded);
     transition:var(--trans2);
 }
 
@@ -149,9 +154,11 @@ h1, h2, h3, h4, h5, h6{
     font-family:mainFont, Calibri, sans-serif;
 
     font-weight:800;
-    text-transform:uppercase;
     line-height:1;
     letter-spacing:0.1em;
+
+    text-wrap:balance;
+    text-transform:uppercase;
 
     &:before, 
     &:after{
@@ -179,7 +186,7 @@ h1, h2, h3, h4, h5, h6{
 }
 
 :is(h4, h5):before{
-    -webkit-text-stroke:1.5px white;
+    -webkit-text-stroke:1.5px #FFF;
 }
 
 h1{

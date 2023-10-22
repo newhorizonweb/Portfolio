@@ -17,11 +17,11 @@
                 </h3>
 
                 <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+                    I'm a passionate Front-End Developer with a special flair for blending user-friendly web apps and evocative graphic design. Always on the hunt for the latest technologies and techniques to enhance my projects.
                 </p>
 
                 <p>
-                    Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+                    My commitment to lifelong learning drives me to constantly refine my skills and develop more innovative web experiences. The deep appreciation for graphic design adds a unique touch to everything I create.
                 </p>
 
             </div>
@@ -253,7 +253,6 @@ export default defineComponent({
     }
 
     & .about-txt{
-        text-wrap:balance;
         text-align:center;
     }
 
