@@ -314,20 +314,19 @@ export default defineComponent({
         /* Mockup Transition Screen */
 
     & .mockup-trans{
-        width:100%;
-        height:100%;
+        width:calc(100% + 2px);
+        height:calc(100% + 2px);
 
         position:absolute;
-        top:0;
-        left:0;
+        top:-1px;
+        top:-1px;
 
         display:flex;
         justify-content:center;
         align-items:center;
 
         opacity:0;
-        background:linear-gradient(to bottom right,
-            var(--colorBg1a), var(--colorBg1b));
+        background:var(--colorGrad1);
         border-radius:calc(var(--size7) - var(--mockupSize));
 
         transition:0.25s ease-in-out;
@@ -354,7 +353,7 @@ export default defineComponent({
         display:flex;
         align-items:flex-start;
 
-        box-shadow:inset 0 0 0 11px white;
+        box-shadow:inset 0 0 0 3px white;
         border-radius:calc(var(--size7) - var(--mockupSize));
         overflow:auto;
 

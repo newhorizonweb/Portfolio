@@ -27,18 +27,17 @@
 
     --colorBg1a:rgb(20, 1, 50);
     --colorBg1b:rgb(2, 0, 101);
+    --colorBg1c:rgb(14, 1, 61);
 
-    --colorBg1c:rgb(from var(--colorBg1a) r g b / 0.8);
-    --colorBg1d:rgb(from var(--colorBg1b) r g b / 0.9);
+    --colorBg1d:rgb(from var(--colorBg1a) r g b / 0.8);
+    --colorBg1e:rgb(from var(--colorBg1b) r g b / 0.9);
+    --colorBg1f:rgb(from var(--colorBg1c) r g b / 0.85);
 
     --colorBg2a:rgb(176, 139, 255, 0.08);
     --colorBg2b:rgb(200, 167, 255, 0.25);
+    --colorBg2c:rgba(38, 28, 103, 0.7);
 
-    --colorBg2c:rgba(29, 17, 94, 0.5);
-    --colorBg2d:rgba(54, 47, 115, 0.75);
-
-    --colorBg2e:rgb(from var(--colorBg2c) r g b / 0.9);
-    --colorBg2f:rgb(from var(--colorBg2d) r g b / 0.95);
+    --colorBg2d:rgb(from var(--colorBg2c) r g b / 0.9);
 
         /* Border Colors */
 
@@ -80,6 +79,44 @@
     --trans2:0.15s ease-in-out;
     --trans3:0.25s ease-in-out;
     --trans4:0.35s ease-in-out;
+
+}
+
+body{
+
+        /* Gradients */
+
+    --colorGrad1:linear-gradient(to bottom right,
+        var(--colorBg1a), var(--colorBg1b));
+
+    --colorGrad1b:linear-gradient(to bottom right,
+        var(--colorBg1d), var(--colorBg1e)),
+        url("../img/noise-texture.svg");
+
+    --colorGrad2:linear-gradient(to bottom right,
+        var(--colorBg2a), var(--colorBg2b)),
+        url("../img/noise-texture.svg");
+
+    --borderGrad1:linear-gradient(to bottom right,
+        var(--colorBorder1a), var(--colorBorder1b));
+
+}
+
+@media screen and (width <= 768px){
+
+    body{
+        --colorGrad1:var(--colorBg1c);
+
+        --colorGrad1b:var(--colorBg1f);
+
+        --colorGrad2:var(--colorBg2c);
+
+        --borderGrad1:var(--colorBorder1a);
+    }
+
+    *{
+        backdrop-filter:none !important;
+    }
 
 }
 

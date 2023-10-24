@@ -18,8 +18,7 @@ body{
     min-height:275vh;
     padding:0 var(--size6);
 
-    background:linear-gradient(to bottom right,
-        var(--colorBg1a), var(--colorBg1b));
+    background:var(--colorGrad1);
     background-position:center;
     background-repeat:no-repeat;
     background-size:cover;
@@ -41,10 +40,7 @@ body{
     --border:2px;
     position:relative;
 
-    background:linear-gradient(to bottom right,
-        var(--colorBg2a), var(--colorBg2b)),
-        url("../img/noise-texture.svg");
-
+    background:var(--colorGrad2);
     background-position:center;
     background-repeat:repeat;
     background-size:cover;
@@ -67,22 +63,9 @@ body{
         -webkit-mask-composite:xor;
         mask-composite:exclude;
 
+        background:var(--borderGrad1);
         border-radius:var(--size6);
-        background:linear-gradient(to bottom right,
-            var(--colorBorder1a), var(--colorBorder1b));
-
         pointer-events:none;
-    }
-
-}
-
-@media screen and (width <= 768px){
-
-    .glass-tile{
-        background:linear-gradient(to bottom right,
-            var(--colorBg2c), var(--colorBg2d)),
-            url("../img/noise-texture.svg");
-        backdrop-filter:none;
     }
 
 }

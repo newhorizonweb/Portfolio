@@ -321,10 +321,7 @@ nav .nav-inner{
         align-items:flex-end;
         gap:0;
 
-        background:linear-gradient(to bottom right,
-            var(--colorBg2e), var(--colorBg2f)),
-            url("../../assets/img/noise-texture.svg");
-
+        background:var(--colorBg2d);
         transition:all 0.25s, 
             margin 0s,
             right 0s, 

@@ -146,9 +146,7 @@ export default defineComponent({
         left:0;
 
         opacity:0;
-        background:linear-gradient(to bottom right,
-            var(--colorBg1c), var(--colorBg1d)),
-            url("../../assets/img/noise-texture.svg");
+        background:var(--colorGrad1b);
         
         transition:0.25s ease-in-out;
         z-index:-1;
