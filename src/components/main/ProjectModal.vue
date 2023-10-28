@@ -3,8 +3,8 @@
 
 <template>
 
-    <div class="project-modal">
-        <div class="project-modal-inner hide-scrollbar"
+    <div class="tile-modal">
+        <div class="tile-modal-inner hide-scrollbar"
             ref="innerModal">
 
             <TileDisplay
@@ -121,10 +121,9 @@ export default defineComponent({
 
     /* Modal */
 
-.dev-projects .project-modal{
+.tile-section .tile-modal{
     width:100%;
     height:100%;
-    padding:0 var(--size6);
 
     position:absolute;
     top:0;
@@ -152,10 +151,11 @@ export default defineComponent({
         z-index:-1;
     }
 
-    & .project-modal-inner{
+    & .tile-modal-inner{
         width:100%;
         height:100%;
-        overflow-x:auto;
+        padding:0 var(--size6);
+        overflow:auto;
     }
 
     & .close-modal{
@@ -167,16 +167,13 @@ export default defineComponent({
         right:var(--size6);
 
         opacity:0;
+        backdrop-filter:none;
+
         z-index:120;
         cursor:pointer;
 
-        &:hover{
-            filter:brightness(110%);
-
-            & span{
-                background-color:#FFF;
-            }
-
+        &:before{
+            background-color:#FFF;
         }
 
         & span{
@@ -190,11 +187,15 @@ export default defineComponent({
 
             background-color:var(--color1a);
             border-radius:200px;
-            transition:var(--trans2);
+            transition:var(--trans1);
         }
 
         & span:nth-of-type(2){
             transform:translate(-50%, -50%) rotate(-45deg);
+        }
+
+        &:hover span{
+            background-color:#FFF;
         }
 
     }
@@ -202,11 +203,13 @@ export default defineComponent({
         /* Modal Content */
 
     & .modal-content{
+        width:100vw;
         padding-bottom:var(--size8);
         
         display:flex;
         flex-direction:column;
         gap:var(--size8);
+        transition:1s;
     }
 
     & .project-heading{
@@ -229,7 +232,6 @@ export default defineComponent({
 
     }
 
-    
     & .desc-elem-inner{
         display:flex;
         flex-direction:column;
@@ -266,9 +268,9 @@ export default defineComponent({
 
     /* Modal Visibility Modes */
 
-.dev-projects{
+.tile-section{
 
-    & .tile-modal .project-modal{
+    & .tile-modal-open .tile-modal{
         width:100vw;
         height:100vh;
 
@@ -283,9 +285,13 @@ export default defineComponent({
             opacity:1;
         }
 
+        & .modal-content{
+            width:min(1024px, 100%);
+        }
+
     }
 
-    & .modal-opacity .project-modal{
+    & .modal-opacity .tile-modal{
 
         &:after{
             opacity:1;
@@ -293,7 +299,7 @@ export default defineComponent({
 
     }
 
-    & .no-trans .project-modal{
+    & .no-trans .tile-modal{
         transition:0s;
     }
 
@@ -301,7 +307,7 @@ export default defineComponent({
 
 @media screen and (width <= 1024px){
 
-    .dev-projects .project-modal{
+    .tile-section .tile-modal{
 
         & .project-desc{
             display:flex;

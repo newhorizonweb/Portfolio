@@ -173,7 +173,7 @@ export default defineComponent({
 
     .about-intro{
         width:100%;
-        padding:var(--size8) var(--size6);
+        padding:var(--size8);
 
         display:flex;
         align-items:center;
@@ -502,6 +502,11 @@ export default defineComponent({
 
             & .ai-content{
                 order:1;
+
+                p{
+                    text-align:center;
+                }
+
             }
 
             & .ai-icon{

@@ -346,7 +346,7 @@ nav .nav-inner{
             background:linear-gradient(to top right,
                 transparent 0%,
                 transparent var(--navDistBorder),
-                rgb(255, 255, 255, var(--navDistColor) ) 100%);
+                rgb(255, 255, 255, var(--navDistColor)) 100%);
 
             opacity:0;
             transition:var(--trans2);
