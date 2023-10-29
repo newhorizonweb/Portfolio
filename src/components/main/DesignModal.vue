@@ -18,7 +18,6 @@
                     scrollTopModal(),
                     $emit('hideModals')
                 ">
-
                 <span></span>
                 <span></span>
             </div>
@@ -27,15 +26,29 @@
 
                 <div class="design-project glass-tile"
                     ref="designTile"
+                    @click="currSrc = design"
 
                     v-for="(design, index) in data.designs"
                     :key="index">
 
-                    <div class="design-proj-inner">
+                    <div class="design-proj-inner"
+                        :class="{'dark-modal': bgModalDark}">
 
-                        <div class="close-modal glass-tile"
+                        <div class="toggle-modal-bg"
+                            @click="bgModalDark = !bgModalDark">
+
+                            <img :src="require('@/assets/img/sun.svg')" 
+                                alt="Toggle Modal Background" class="toggle-modal-img"
+                                v-if="!bgModalDark">
+
+                            <img :src="require('@/assets/img/moon.svg')" 
+                                alt="Toggle Modal Background" class="toggle-modal-img"
+                                v-else>
+
+                        </div>
+
+                        <div class="close-modal"
                             @click="hideDesignModals">
-
                             <span></span>
                             <span></span>
                         </div>
@@ -77,8 +90,17 @@ export default defineComponent({
 
     data(){
         return{
+
+                /* Modal */
+
             currTile: null as null | HTMLElement,
-            tiles: null as null | HTMLElement[]
+            tiles: null as null | HTMLElement[],
+
+                /* BG Color */
+
+            imgScaledWidth: 200,
+            currSrc: null as null | string,
+            bgModalDark: false
         } 
     },
 
@@ -143,7 +165,7 @@ export default defineComponent({
                 if (tile !== currTile){
                     setTimeout(() => {
                         tile.classList.remove("design-opacity");
-                    }, 500);
+                    }, 600);
                 }
 
             });
@@ -162,7 +184,7 @@ export default defineComponent({
                 if (tile !== currTile){
                     setTimeout(() => {
                         tile.classList.remove("design-opacity");
-                    }, 750);
+                    }, 600);
                 }
 
             });
@@ -182,6 +204,75 @@ export default defineComponent({
 
         },
 
+            /* Modal Background Color */
+
+        autoBgMode(){
+
+            if (this.currSrc){
+
+                // Create a new image element
+                const img:HTMLImageElement = document.createElement("img");
+                img.src = this.currSrc;
+
+                img.addEventListener('load', () => {
+
+                    // Image ratio
+                    const imgRatio = img.width / img.height;
+
+                    // Image new height
+                    const imgScaledHeight = 
+                        Math.round(this.imgScaledWidth / imgRatio);
+                    
+                    // Create a canvas element
+                    const canvas:HTMLCanvasElement = document.createElement('canvas');
+                    canvas.width = this.imgScaledWidth;
+                    canvas.height = imgScaledHeight;
+
+                    // Draw the image on the canvas
+                    const ctx:CanvasRenderingContext2D | null = canvas.getContext('2d');
+                    ctx!.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+                    // Get the image data
+                    const imageData:ImageData = ctx!.getImageData(0, 0, canvas.width, canvas.height);
+                    const data:Uint8ClampedArray = imageData.data;
+
+                    // Max and min color values
+                    let maxVal = 0;
+                    let minVal = 0;
+
+                    // The total number of non-transparent pixels
+                    let totAlpha = 0;
+
+                    for (let i = 0; i < data.length; i += 4){
+                        const r = data[i];
+                        const g = data[i + 1];
+                        const b = data[i + 2];
+                        const a = data[i + 3];
+
+                        if (a > 0){
+                            maxVal += Math.max(r, g, b);
+                            minVal += Math.min(r, g, b);
+                            totAlpha++
+                        }
+                    }
+
+                    // Calculate lightness
+                    const lightnessSum = (maxVal + minVal) / 2;
+                    const lightness = Math.round(lightnessSum / totAlpha / 255 * 100);
+
+                    // Change the bg color
+                    if (lightness >= 80){
+                        this.bgModalDark = true;
+                    } else {
+                        this.bgModalDark = false;
+                    }
+
+                });
+
+            }
+
+        },
+
             /* Doing Stuff */
 
         tileModal(){
@@ -190,6 +281,10 @@ export default defineComponent({
                 tile.addEventListener("click", (e: Event) => {
 
                     if (e.target === tile){
+
+                        // Change the modal bg color automatically 
+                        // Based on the average image color
+                        setTimeout(this.autoBgMode, 0);
 
                         // Hide the other modals
                         this.hideModals(tile);
@@ -328,7 +423,8 @@ export default defineComponent({
         }
 
         &:not(.design-open):hover img{
-            transform:scale(1.1);
+            width:calc(100% + var(--size6));
+            height:calc(100% + var(--size6));
         }
 
         & .close-modal{
@@ -363,6 +459,71 @@ export default defineComponent({
         pointer-events:none;
         overflow:hidden;
 
+        & .close-modal{
+            background-color:rgb(255,255,255,0.75);
+            border:solid 2px #000;
+            border-radius:50%;
+
+            &:before,
+            & span{
+                background-color:#000;
+            }
+
+        }
+
+        & .toggle-modal-bg{
+            width:calc(var(--size7) + 4px);
+            aspect-ratio:1/1;
+
+            position:absolute;
+            top:var(--size6);
+            right:calc(
+                var(--size7) +
+                var(--size6) +
+                var(--size4)
+            );
+
+            display:flex;
+            justify-content:center;
+            align-items:center;
+
+            opacity:0;
+            background-color:rgb(255,255,255,0.75);
+            border:solid 2px #000;
+            border-radius:50%;
+
+            transition:var(--trans2);
+            cursor:pointer;
+            z-index:120;
+
+            &:before{
+                background-color:#000;
+            }
+
+            &:hover{
+                transform:scale(1.2);
+            }
+
+            & .toggle-modal-img{
+                width:var(--size6);
+            }
+
+        }
+
+        &.dark-modal{
+
+            & .toggle-modal-bg,
+            & .close-modal{
+                background-color:rgb(0,0,0,0.75);
+                border-color:#FFF;
+            } 
+
+            & .close-modal span{
+                background-color:#FFF;
+            }
+
+        }
+
         & img{
             width:min(1024px, 100%);
             height:100%;
@@ -384,6 +545,7 @@ export default defineComponent({
             pointer-events:all;
         }
 
+        & .toggle-modal-bg,
         & .close-modal{
             opacity:1;
         }
@@ -394,13 +556,18 @@ export default defineComponent({
         z-index:50;
 
         & .design-proj-inner{
+            background-color:#FFF;
+        }
+
+        & .design-proj-inner.dark-modal{
             background-color:#111;
         }
 
     }
     
     & .no-trans .design-proj-inner{
-        transition:0s;
+        transition:all 0s,
+            background var(--trans2);
     }
 
 }

@@ -16,7 +16,6 @@
                     scrollTopModal(),
                     $emit('hideModals')
                 ">
-
                 <span></span>
                 <span></span>
             </div>
@@ -159,7 +158,7 @@ export default defineComponent({
     }
 
     & .close-modal{
-        width:var(--size7);
+        width:calc(var(--size7) + 4px);
         aspect-ratio:1/1;
 
         position:absolute;
@@ -169,8 +168,9 @@ export default defineComponent({
         opacity:0;
         backdrop-filter:none;
 
-        z-index:120;
+        transition:var(--trans2);
         cursor:pointer;
+        z-index:120;
 
         &:before{
             background-color:#FFF;
@@ -185,17 +185,17 @@ export default defineComponent({
             left:50%;
             transform:translate(-50%, -50%) rotate(45deg);
 
-            background-color:var(--color1a);
+            background-color:#FFF;
             border-radius:200px;
-            transition:var(--trans1);
+            transition:var(--trans2);
         }
 
         & span:nth-of-type(2){
             transform:translate(-50%, -50%) rotate(-45deg);
         }
 
-        &:hover span{
-            background-color:#FFF;
+        &:hover{
+            transform:rotate(90deg) scale(1.2);
         }
 
     }

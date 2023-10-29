@@ -109,7 +109,7 @@ export default defineComponent({
                 if (tile !== currTile){
                     setTimeout(() => {
                         tile.classList.remove("modal-opacity");
-                    }, 750);
+                    }, 600);
                 }
 
             });
