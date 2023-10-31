@@ -24,28 +24,16 @@
 
             <div class="modal-content wrapper">
 
-                <div class="design-project glass-tile"
+                <div class="design-project"
                     ref="designTile"
-                    @click="currSrc = design"
+                    @click.self="tileModal"
 
                     v-for="(design, index) in data.designs"
                     :key="index">
 
-                    <div class="design-proj-inner"
-                        :class="{'dark-modal': bgModalDark}">
+                    <div class="design-proj-inner">
 
-                        <div class="toggle-modal-bg"
-                            @click="bgModalDark = !bgModalDark">
-
-                            <img :src="require('@/assets/img/sun.svg')" 
-                                alt="Toggle Modal Background" class="toggle-modal-img"
-                                v-if="!bgModalDark">
-
-                            <img :src="require('@/assets/img/moon.svg')" 
-                                alt="Toggle Modal Background" class="toggle-modal-img"
-                                v-else>
-
-                        </div>
+                        <div class="toggle-modal-bg" @click="toggleModalBg"></div>
 
                         <div class="close-modal"
                             @click="hideDesignModals">
@@ -53,7 +41,9 @@
                             <span></span>
                         </div>
 
-                        <img :src="design" alt="Graphic Design Project">
+                        <img class="design-proj-img"
+                            :src="design" alt="Project"
+                            loading="lazy">
 
                     </div>
                     
@@ -98,19 +88,28 @@ export default defineComponent({
 
                 /* BG Color */
 
-            imgScaledWidth: 200,
-            currSrc: null as null | string,
-            bgModalDark: false
+            // Settings
+            imgScaledWidth: 100,
+            chunkSize: 8,
+            chunkDelay: 34,     // in ms
+
+            // Elements
+            canvas: null as HTMLCanvasElement | null,
+            ctx: null as CanvasRenderingContext2D | null
         } 
     },
 
     mounted(){
 
+        // Modal project image canvas
+        this.canvas = document.createElement('canvas');
+        this.ctx = this.canvas.getContext('2d', { willReadFrequently: true });
+
         // Get the tiles
         this.tiles = this.$refs.designTile as HTMLElement[];
 
-        // Add the tile click events
-        this.tileModal();
+        // Set the modal auto background color
+        this.loadAutoBg();
 
         // Modal placement on resize
         let resizeTimer: number;
@@ -138,38 +137,15 @@ export default defineComponent({
 
     methods:{
 
+            /* Base Function Elements */
+
         scrollTopModal(){
 
             const innerModal = this.$refs.innerModal as HTMLElement;
             innerModal.scrollTo({
-                top:0,
-                behavior:"smooth"
+                top:0
             });
             
-        },
-
-            /* Base Function Elements */
-
-        hideModals(currTile?: HTMLElement){
-
-            // Disable the modal mode
-            document.documentElement.classList.remove("modal-mode");
-
-            this.tiles?.forEach((tile) => {
-
-                (tile.querySelector(".design-proj-inner") as HTMLElement)!.style.transform = "translate3d(0px, 0px, 0px)";
-                    
-                tile.classList.remove("design-open");
-                tile.classList.remove("no-trans");
-
-                if (tile !== currTile){
-                    setTimeout(() => {
-                        tile.classList.remove("design-opacity");
-                    }, 600);
-                }
-
-            });
-
         },
 
         hideDesignModals(currTile?: HTMLElement){
@@ -178,8 +154,7 @@ export default defineComponent({
 
                 (tile.querySelector(".design-proj-inner") as HTMLElement)!.style.transform = "translate3d(0px, 0px, 0px)";
                     
-                tile.classList.remove("design-open");
-                tile.classList.remove("no-trans");
+                tile.classList.remove("design-open", "no-trans");
 
                 if (tile !== currTile){
                     setTimeout(() => {
@@ -188,6 +163,16 @@ export default defineComponent({
                 }
 
             });
+
+        },
+
+        hideModals(currTile: HTMLElement){
+
+            // Disable the modal mode
+            document.documentElement.classList.remove("modal-mode");
+
+            // Hide the tile modals
+            this.hideDesignModals(currTile);
 
         },
 
@@ -204,17 +189,47 @@ export default defineComponent({
 
         },
 
+        tileModal(e: Event){
+
+            const tile = 
+                (e.target as HTMLElement).closest('.design-project') as HTMLElement;
+
+            // Hide the other modals
+            this.hideModals(tile);
+
+            // Set the page to the modal mode
+            document.documentElement.classList.add("modal-mode");
+
+            // Set the current modal tile
+            this.currTile = tile;
+
+            // Adjust the modal position
+            this.currTilePos(tile);
+
+            // Show modal
+            tile.classList.add("design-open", "design-opacity");
+
+            // Remove the transition effect after the modal has covered the page
+            setTimeout(() => {
+                tile.classList.add("no-trans");
+            }, 750);
+
+        },
+
             /* Modal Background Color */
 
-        autoBgMode(){
+        autoBgMode(tile: HTMLElement){
 
-            if (this.currSrc){
+            const tileImg = tile.querySelector(".design-proj-img") as HTMLImageElement;
+            const canvas = this.canvas;
+            const ctx = this.ctx;
 
-                // Create a new image element
-                const img:HTMLImageElement = document.createElement("img");
-                img.src = this.currSrc;
+            // Create a new image element
+            const img:HTMLImageElement = new Image();
+            img.src = tileImg.src;
 
-                img.addEventListener('load', () => {
+            img.addEventListener('load', () => {
+                if (canvas && ctx){
 
                     // Image ratio
                     const imgRatio = img.width / img.height;
@@ -224,35 +239,31 @@ export default defineComponent({
                         Math.round(this.imgScaledWidth / imgRatio);
                     
                     // Create a canvas element
-                    const canvas:HTMLCanvasElement = document.createElement('canvas');
                     canvas.width = this.imgScaledWidth;
                     canvas.height = imgScaledHeight;
 
                     // Draw the image on the canvas
-                    const ctx:CanvasRenderingContext2D | null = canvas.getContext('2d');
-                    ctx!.drawImage(img, 0, 0, canvas.width, canvas.height);
+                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
                     // Get the image data
-                    const imageData:ImageData = ctx!.getImageData(0, 0, canvas.width, canvas.height);
+                    const imageData:ImageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
                     const data:Uint8ClampedArray = imageData.data;
 
                     // Max and min color values
-                    let maxVal = 0;
-                    let minVal = 0;
-
-                    // The total number of non-transparent pixels
-                    let totAlpha = 0;
+                    let maxVal = 0, minVal = 0, totAlpha = 0;
 
                     for (let i = 0; i < data.length; i += 4){
-                        const r = data[i];
-                        const g = data[i + 1];
-                        const b = data[i + 2];
                         const a = data[i + 3];
 
                         if (a > 0){
+                            const   r = data[i], 
+                                    g = data[i + 1], 
+                                    b = data[i + 2];
+
                             maxVal += Math.max(r, g, b);
                             minVal += Math.min(r, g, b);
-                            totAlpha++
+                            
+                            totAlpha++;
                         }
                     }
 
@@ -261,57 +272,31 @@ export default defineComponent({
                     const lightness = Math.round(lightnessSum / totAlpha / 255 * 100);
 
                     // Change the bg color
-                    if (lightness >= 80){
-                        this.bgModalDark = true;
+                    if (lightness >= 65){
+                        tile.classList.add("dark-modal");
                     } else {
-                        this.bgModalDark = false;
+                        tile.classList.remove("dark-modal");
                     }
 
-                });
+                }
+            });
 
+        },
+
+        loadAutoBg(){
+
+            for (let i = 0; i < this.tiles!.length; i += this.chunkSize) {
+                setTimeout(() => {
+                    for (let j = 0; j < this.chunkSize && i + j < this.tiles!.length; j++) {
+                        this.autoBgMode(this.tiles![i + j]);
+                    }
+                }, this.chunkDelay * i);
             }
 
         },
 
-            /* Doing Stuff */
-
-        tileModal(){
-
-            this.tiles?.forEach((tile) => {
-                tile.addEventListener("click", (e: Event) => {
-
-                    if (e.target === tile){
-
-                        // Change the modal bg color automatically 
-                        // Based on the average image color
-                        setTimeout(this.autoBgMode, 0);
-
-                        // Hide the other modals
-                        this.hideModals(tile);
-
-                        // Set the page to the modal mode
-                        document.documentElement.classList.add("modal-mode");
-
-                        // Set the current modal tile
-                        this.currTile = tile;
-
-                        // Adjust the modal position
-                        this.currTilePos(tile);
-
-                        // Show modal
-                        tile.classList.add("design-open");
-                        tile.classList.add("design-opacity");
-
-                        // Remove the transition effect after the modal has covered the page
-                        setTimeout(() => {
-                            tile.classList.add("no-trans");
-                        }, 750);
-
-                    }
-
-                });
-            });
-
+        toggleModalBg(e: Event){
+            (e.target as HTMLElement)!.closest(".design-project")!.classList.toggle("dark-modal");
         }
 
     }
@@ -452,6 +437,7 @@ export default defineComponent({
         justify-content:center;
         align-items:center;
 
+        background-color:#FFF;
         border-radius:inherit;
         transition:all 0.75s ease-in-out,
             background-color var(--trans3);
@@ -492,6 +478,11 @@ export default defineComponent({
             border:solid 2px #000;
             border-radius:50%;
 
+            background-image:url("~@/assets/img/sun.svg");
+            background-size:var(--size6);
+            background-position:center;
+            background-repeat:no-repeat;
+
             transition:var(--trans2);
             cursor:pointer;
             z-index:120;
@@ -510,25 +501,31 @@ export default defineComponent({
 
         }
 
-        &.dark-modal{
-
-            & .toggle-modal-bg,
-            & .close-modal{
-                background-color:rgb(0,0,0,0.75);
-                border-color:#FFF;
-            } 
-
-            & .close-modal span{
-                background-color:#FFF;
-            }
-
-        }
-
         & img{
             width:min(1024px, 100%);
             height:100%;
             object-fit:contain;
             transition:var(--trans3);
+        }
+
+
+    }
+
+    & .dark-modal .design-proj-inner{
+        background-color:#111 !important;
+
+        & .toggle-modal-bg,
+        & .close-modal{
+            background-color:rgb(0,0,0,0.75);
+            border-color:#FFF;
+        }
+
+        & .toggle-modal-bg{
+            background-image:url("~@/assets/img/moon.svg");
+        } 
+
+        & .close-modal span{
+            background-color:#FFF;
         }
 
     }
@@ -554,15 +551,6 @@ export default defineComponent({
     
     & .design-opacity{
         z-index:50;
-
-        & .design-proj-inner{
-            background-color:#FFF;
-        }
-
-        & .design-proj-inner.dark-modal{
-            background-color:#111;
-        }
-
     }
     
     & .no-trans .design-proj-inner{

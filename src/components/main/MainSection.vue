@@ -54,7 +54,12 @@ export default defineComponent({
             ProjectModal: markRaw(ProjectModal),
             DesignModal: markRaw(DesignModal),
 
-            // Dev Projects
+
+
+                /* Web Developer Projects */
+            
+
+
             devProjects:[
 
                 {
@@ -195,6 +200,12 @@ export default defineComponent({
 
             ],
 
+
+
+                /* Graphic Design */
+
+
+
             graphicDesign:[
                 {
                     title: "Logos",
@@ -202,45 +213,103 @@ export default defineComponent({
                     imgSrc: "<svg class='tile-svg1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 692 692'><defs><style></style></defs><path class='cls-2' d='M85,746a30.2,30.2,0,0,1-12.8-2.8A30.9,30.9,0,0,1,54,715V85a31,31,0,0,1,58.1-15L219,263.4a31,31,0,1,1-54.2,30L116,205.2V646.9L379.7,417.1a30.9,30.9,0,0,1,40.7,0L684,646.9V205.2l-48.7,88.2a31,31,0,0,1-54.3-30L687.9,70A31,31,0,0,1,746,85V715a31.1,31.1,0,0,1-51.4,23.4L400,481.6,105.4,738.4A31.3,31.3,0,0,1,85,746Z' transform='translate(-54 -54)'/><path class='cls-2' d='M400,686a31,31,0,0,1-27.1-16L254.3,455.4a31,31,0,1,1,54.3-29.9L400,590.9l91.4-165.4a31,31,0,1,1,54.3,29.9L427.1,670A31,31,0,0,1,400,686Z' transform='translate(-54 -54)'/><g class='anim-elem1'><path class='cls-1' d='M400,376.2a131.1,131.1,0,0,1-131-131c0-72.2,58.8-131,131-131s131,58.8,131,131A131.1,131.1,0,0,1,400,376.2Zm0-200a69,69,0,1,0,69,69A69.1,69.1,0,0,0,400,176.2Z' transform='translate(-54 -54)'/></g></svg>",
 
                     designs:[
-                        this.path("logos/test1.png"),
-                        this.path("logos/test2.png"),
-                        this.path("logos/test3.png"),
-                        this.path("logos/test4.png"),
+                        this.path("logos/baby born.svg"),
+                        this.path("logos/diamond hotel white.svg"),
+                        this.path("logos/fox logo white.svg"),
+                        this.path("logos/happy vet white.svg"),
                         this.path("logos/logo-wb.svg"),
-                        this.path("icons/github-icon.svg"),
+                        this.path("logos/Luigi's Mansion logo excluded reverse.png"),
+                        this.path("logos/New Horizon Full white.svg"),
+                        this.path("logos/rapid-core-logo.svg"),
+                        this.path("logos/Superior Star Logo excluded reverse v2.png"),
+                        this.path("logos/symphony.svg"),
+                        this.path("logos/timeless.svg"),
+                        this.path("logos/uverit-w.svg"),
                     ]
                 },
 
                 {
+                    
                     title: "Icons",
                     designClass: "design-row5 design-row-s",
                     imgSrc: "<svg class='tile-svg2' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><g class='anim-elem1'><path class='cls-1' d='M106.5,27H120c17.4,0,31.5,14.6,31.5,30.3h0'/><path class='cls-1' d='M170.2,55.8,155.6,70.4a5.7,5.7,0,0,1-8.2,0L132.8,55.8'/></g><g class='anim-elem1'><path class='cls-1' d='M93.5,173H80c-17.4,0-31.4-14.7-31.4-30.3h0'/><path class='cls-1' d='M29.9,144.1l14.6-14.6a5.9,5.9,0,0,1,8.2,0l14.5,14.6'/></g><g class='anim-elem2 anim-elem2a'><circle class='cls-1' cx='151.5' cy='112.7' r='23'/><path class='cls-1' d='M126.3,196a22,22,0,0,1-12.2-3.6l-.7-.5c-4.2-3.1-6.4-8.3-6.8-13.3a61.4,61.4,0,0,1,.3-10.5,46.6,46.6,0,0,1,3.7-13.1,26,26,0,0,1,7.2-10.5,14.7,14.7,0,0,1,10.2-3.7c4.6.1,7.3,2.7,11.5,4.2a42.2,42.2,0,0,0,11.6,2h.3a40.9,40.9,0,0,0,11.6-2c4.2-1.5,6.9-4.1,11.5-4.2a16.6,16.6,0,0,1,10.2,3.7c3,2.3,5.6,6.6,7.3,10.5a50,50,0,0,1,3.6,13.1,61.4,61.4,0,0,1,.3,10.5c-.4,5-2.6,10.2-6.8,13.3a1.8,1.8,0,0,1-.7.5,22,22,0,0,1-12.2,3.6Z'/></g><g class='anim-elem2 anim-elem2b'><circle class='cls-1' cx='49' cy='27' r='23'/><path class='cls-1' d='M23.8,110.2a21.9,21.9,0,0,1-12.2-3.5l-.7-.6C6.7,103,4.5,97.9,4.2,92.8a52.7,52.7,0,0,1,.2-10.5,45,45,0,0,1,3.7-13c1.6-3.9,3.8-7.8,7.2-10.5A14.8,14.8,0,0,1,25.5,55c4.6.2,7.3,2.7,11.5,4.2a35.8,35.8,0,0,0,11.6,2h.3a34.9,34.9,0,0,0,11.6-2c4.2-1.5,6.9-4,11.6-4.2s7.2,1.5,10.2,3.8,5.5,6.6,7.2,10.5a48.3,48.3,0,0,1,3.6,13,61.4,61.4,0,0,1,.3,10.5,18,18,0,0,1-6.7,13.3l-.8.6a21.7,21.7,0,0,1-12.2,3.5Z'/></g></svg>",
 
                     designs:[
-                        this.path("icons/github-icon.svg"),
+                        this.path("icons/camera-icon.svg"),
+                        this.path("icons/chat-icon.svg"),
+                        this.path("icons/mail-icon.svg"),
+                        this.path("icons/contact-icon.svg"),
+
+                        this.path("icons/clock-icon.svg"),
+                        this.path("icons/time-icon.svg"),
+                        this.path("icons/time-active-new.svg"),
+                        this.path("icons/time-passive-new.svg"),
+                        this.path("icons/time-total-new.svg"),
+
+                        this.path("icons/checkmark new.svg"),
+                        this.path("icons/checkmark-icon.svg"),
+                        this.path("icons/do-icon.svg"),
+                        this.path("icons/dont-icon.svg"),
+
+                        this.path("icons/pin-icon.svg"),
+                        this.path("icons/pin-icon2.svg"),
+                        this.path("icons/upload-icon.svg"),
+                        this.path("icons/settings-icon.svg"),
+
+                        this.path("icons/phone-icon.svg"),
+                        this.path("icons/mute-icon.svg"),
+                        this.path("icons/list-icon.svg"),
+                        this.path("icons/list-icon2.svg"),
+                        this.path("icons/note-icon.svg"),
+                        this.path("icons/stats-icon.svg"),
                         this.path("icons/seo-icon.svg"),
+
+                        this.path("icons/baked-goods-icon.svg"),
+                        this.path("icons/dessert-icon.svg"),
+                        this.path("icons/fruits-vegetables-icon.svg"),
+                        this.path("icons/dish-icon.svg"),
+                        this.path("icons/drink-icon.svg"),
+                        this.path("icons/meat-dairy-icon.svg"),
+                        this.path("icons/pastry-bag-icon.svg"),
+                        this.path("icons/ready-meal-icon.svg"),
+                        this.path("icons/semi-finished-products-icon.svg"),
+                        this.path("icons/sweets-snacks-icon.svg"),
+                        this.path("icons/snack-icon.svg"),
+                        this.path("icons/spice-icon.svg"),
+                        this.path("icons/grains-icon.svg"),
+                        this.path("icons/other-icon.svg"),
+                        this.path("icons/vegan-icon.svg"),
+
+                        this.path("icons/recipe-icon.svg"),
+                        this.path("icons/portion-number-icon.svg"),
+                        this.path("icons/product-icon.svg"),
+                        this.path("icons/weight-icon.svg"),
+                        this.path("icons/delete-icon.svg"),
+
+                        this.path("icons/briefcase.svg"),
+                        this.path("icons/course-icon.svg"),
+                        this.path("icons/color-palette-icon.svg"),
+                        this.path("icons/user-icon.svg"),
+                        this.path("icons/graduation-hat-icon.svg"),
+                        this.path("icons/references-icon.svg"),
+                        this.path("icons/dev-hero-icon.svg"),
+                        this.path("icons/light-bulb.svg"),
+
+                        this.path("icons/battery-icon.svg"),
+                        this.path("icons/brush-icon.svg"),
+                        this.path("icons/crosshair.svg"),
+                        this.path("icons/score-icon.svg"),
+                        this.path("icons/magnifying-glass-icon.svg"),
                         this.path("icons/flyer-icon.svg"),
-                        this.path("icons/linkedin-icon.svg"),
-                        this.path("icons/seo-icon.svg"),
-                        this.path("icons/linkedin-icon.svg"),
-                        this.path("icons/flyer-icon.svg"),
-                        this.path("icons/github-icon.svg"),
-                        this.path("icons/seo-icon.svg"),
-                        this.path("icons/flyer-icon.svg"),
-                        this.path("icons/flyer-icon.svg"),
-                        this.path("icons/github-icon.svg"),
-                        this.path("icons/seo-icon.svg"),
-                        this.path("icons/flyer-icon.svg"),
-                        this.path("icons/linkedin-icon.svg"),
-                        this.path("icons/seo-icon.svg"),
-                        this.path("icons/github-icon.svg"),
-                        this.path("icons/github-icon.svg"),
-                        this.path("icons/linkedin-icon.svg"),
-                        this.path("icons/linkedin-icon.svg"),
-                        this.path("icons/seo-icon.svg"),
-                        this.path("icons/github-icon.svg"),
-                        this.path("icons/linkedin-icon.svg"),
-                        this.path("icons/flyer-icon.svg"),
+                        this.path("icons/star.svg"),
+                        this.path("icons/link new.svg"),
+
+                        this.path("icons/calculator-icon.svg"),
+                        this.path("icons/main-icon.svg"),
+                        this.path("icons/pdf-btn.svg"),
+
+                        this.path("icons/calendar.svg"),
+                        this.path("icons/mod_calendar.svg"),
                     ]
                 },
 
@@ -250,11 +319,11 @@ export default defineComponent({
                     imgSrc: "<svg class='tile-svg3' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><path class='cls-1' d='M52,13.3V168.4'/><path class='cls-1' d='M100,186.7V31.6'/><path class='cls-1' d='M100,31.6V186.7'/><path class='cls-1' d='M52,168.4V13.3'/><path class='cls-1' d='M148,168.4V13.3'/><path class='cls-1' d='M152.5,173.1l37.4,17.1a4.3,4.3,0,0,0,6.1-3.9V31.8a4.5,4.5,0,0,0-2.5-4L159,12a27.5,27.5,0,0,0-11-2.4h0A27.5,27.5,0,0,0,137,12L104.5,26.9a9.9,9.9,0,0,1-4.5,1h0a9.9,9.9,0,0,1-4.5-1L63,12A27.5,27.5,0,0,0,52,9.6h0A27.5,27.5,0,0,0,41,12L6.5,27.8a4.5,4.5,0,0,0-2.5,4V186.3a4.3,4.3,0,0,0,6.1,3.9l37.4-17.1a9.9,9.9,0,0,1,4.5-1h0a9.9,9.9,0,0,1,4.5,1L89,188a27.5,27.5,0,0,0,11,2.4h0a27.5,27.5,0,0,0,11-2.4l32.5-14.9a9.9,9.9,0,0,1,4.5-1h0A9.9,9.9,0,0,1,152.5,173.1Z'/><path class='cls-1' d='M148,13.3V168.4'/></svg>",
 
                     designs:[
-                        this.path("color-palettes/tripod.png"),
-                        this.path("color-palettes/sewing-kit.jpg"),
-                        this.path("color-palettes/sewing-kit.jpg"),
-                        this.path("color-palettes/tripod.png"),
-                        this.path("color-palettes/tripod.png"),
+                        this.path("flyers/DJ.png"),
+                        this.path("flyers/uverit-flyer.png"),
+                        this.path("flyers/aktywna-tablica.png"),
+                        this.path("flyers/finanzexpert.png"),
+                        this.path("flyers/m3lomoore flyer.png"),
                     ]
                 },
 
@@ -264,21 +333,23 @@ export default defineComponent({
                     imgSrc: "<svg class='tile-svg4' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><path class='cls-1' d='M144.4,125.4a33.4,33.4,0,0,0,5.2,1.4c7,1.4,19.6,2.7,30.4-3.5a28.7,28.7,0,0,0,7-5.5c5.4-5.6,8-13,8.8-20.7,1.1-10.5-2-21.1-6.5-30.7C175.5,37.1,146.2,14.9,114,11.2a109.5,109.5,0,0,0-46.2,4.6A101,101,0,0,0,43.4,27.9a92.4,92.4,0,0,0-26.2,27c-19.1,30-17.1,68,3.9,96.4a93.2,93.2,0,0,0,16.3,16.9c14.2,11.4,31.9,18.1,49.9,20.4a116.9,116.9,0,0,0,19.6.8c4.5-.3,9.8-.8,13.2-4.3s3.7-8.5.4-12-4.9-3.6-7.5-5.2c-9-5.5-16.2-15.7-13.2-26.6a23.3,23.3,0,0,1,10.4-12.7c3.2-1.9,9.8-4.5,19.3-4.9A45.3,45.3,0,0,1,144.4,125.4Z'/><circle class='cls-1' cx='48.6' cy='78.4' r='15.7'/><circle class='cls-1' cx='99.9' cy='49' r='15.7'/><circle class='cls-1' cx='151.6' cy='77' r='15.7'/><circle class='cls-1' cx='56.1' cy='136.9' r='15.7'/><g class='anim-elem1'><path class='cls-2' d='M138.4,119.4l53.3,53.3c4.1,4.1,4.4,10.4.7,14.1h0c-3.6,3.7-10,3.3-14.1-.7l-53.2-53.3'/><path class='cls-3' d='M120.1,92.9c6.6,3.1,10.4,5.9,13.7,11.1s7.1,17.1,0,24.1-18.6,3.4-24.1,0-8.1-7-11.2-13.7c-2.2-4.6-7.9-23.6-9.8-29.9a1.1,1.1,0,0,1,.7-1.4h.7C96.4,84.9,115.4,90.7,120.1,92.9Z'/></g></svg>",
 
                     designs:[
-                        this.path("color-palettes/tripod.png"),
-                        this.path("color-palettes/sewing-kit.jpg"),
-                        this.path("color-palettes/tripod.png"),
-                        this.path("color-palettes/tripod.png"),
-                        this.path("color-palettes/sewing-kit.jpg"),
-                        this.path("color-palettes/sewing-kit.jpg"),
-                        this.path("color-palettes/tripod.png"),
-                        this.path("color-palettes/sewing-kit.jpg"),
-                        this.path("color-palettes/sewing-kit.jpg"),
-                        this.path("color-palettes/tripod.png"),
-                        this.path("color-palettes/tripod.png"),
-                        this.path("color-palettes/tripod.png"),
-                        this.path("color-palettes/sewing-kit.jpg"),
+                        this.path("color-palettes/lumifilms.png"),
+                        this.path("color-palettes/Uverit Color Palette.png"),
+                        this.path("color-palettes/13-month-calendar.png"),
+                        this.path("color-palettes/akashic-resonance.png"),
+                        this.path("color-palettes/b-med.png"),
+                        this.path("color-palettes/chanan.png"),
+                        this.path("color-palettes/fireflyloop.png"),
+                        this.path("color-palettes/key-places.png"),
+                        this.path("color-palettes/mr-seo-tech.png"),
+                        this.path("color-palettes/Nursify Color Palette.png"),
+                        this.path("color-palettes/sayiastar.png"),
+                        this.path("color-palettes/sistair.png"),
+                        this.path("color-palettes/THAI GATE.png"),
+                        this.path("color-palettes/wanda-cox.png"),
                     ]
-                },
+                }
+
             ]
 
         }
