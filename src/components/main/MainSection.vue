@@ -49,17 +49,9 @@ export default defineComponent({
 
     data(){
         return{
-            
-            // Prop Components (raw = no reactivity)
-            ProjectModal: markRaw(ProjectModal),
-            DesignModal: markRaw(DesignModal),
-
-
 
                 /* Web Developer Projects */
             
-
-
             devProjects:[
 
                 {
@@ -350,12 +342,62 @@ export default defineComponent({
                     ]
                 }
 
-            ]
+            ],
+
+
+
+                /* Code */
+                    
+                    
+
+            // Prop Components (raw = no reactivity)
+            ProjectModal: markRaw(ProjectModal),
+            DesignModal: markRaw(DesignModal),
+
+            // Other Variables
+            mainSections: document.querySelectorAll(".main-section"),
+            options: {
+                root: null, // Use the viewport as the root
+                rootMargin: '50px', // No margin
+                threshold: 0, // Element is considered visible when 50% is in the viewport
+            }
 
         }
     },
 
+    mounted(){
+
+            /* Section Visibility Observation */
+
+        this.mainSections = document.querySelectorAll(".main-section");
+        const observer = new IntersectionObserver(this.handleIntersection, this.options);
+        
+        this.$nextTick(() => {
+            this.mainSections.forEach((section) => {
+
+                section.classList.add("section-out");
+                observer.observe(section);
+
+            });
+        });
+
+    },
+
     methods:{
+
+        handleIntersection(entries: IntersectionObserverEntry[]){
+
+            const entry = entries[0];
+            const section = entry.target;
+            const isAbove = entry.boundingClientRect.top >= 0;
+
+            if (entry.isIntersecting){
+                section.classList.remove("section-out");
+            } else if(isAbove) {
+                section.classList.add("section-out");
+            }
+
+        },
 
         path(imgName: string){
             return require("@/assets/img/" + imgName);
@@ -390,8 +432,22 @@ main{
         text-transform:capitalize;
     }
 
-}
+        /* Main Section */
 
+    .main-section{
+        position:relative;
+        top:0;
+        transition:1s ease-out;
+
+        &.section-out{
+            top:150px;
+            opacity:0;
+            filter:brightness(75%);
+        }
+
+    }
+
+}
 
 @media screen and (width <= 768px){
 

@@ -3,7 +3,7 @@
 
 <template>
 
-    <div id="about-section" class="about-section wrapper">
+    <div id="about-section" class="about-section wrapper main-section">
 
         <h2 class="section-heading"
             data-text="About me">
