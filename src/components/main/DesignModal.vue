@@ -41,9 +41,10 @@
                             <span></span>
                         </div>
 
-                        <img class="design-proj-img"
-                            :src="design" alt="Project"
-                            loading="lazy">
+                        <img class="design-proj-img" 
+                        ref="designProjImg"
+                        :src="placeholderImg"
+                        :data-src="design" alt="Design Project">
 
                     </div>
                     
@@ -89,13 +90,13 @@ export default defineComponent({
                 /* BG Color */
 
             // Settings
+            imgLoadInterval: 12, // Load this number images each second
             imgScaledWidth: 100,
-            chunkSize: 8,
-            chunkDelay: 34,     // in ms
 
             // Elements
             canvas: null as HTMLCanvasElement | null,
-            ctx: null as CanvasRenderingContext2D | null
+            ctx: null as CanvasRenderingContext2D | null,
+            placeholderImg:require("@/assets/img/placeholder-img.svg")
         } 
     },
 
@@ -108,8 +109,10 @@ export default defineComponent({
         // Get the tiles
         this.tiles = this.$refs.designTile as HTMLElement[];
 
+        // Load the project design images &&
         // Set the modal auto background color
-        this.loadAutoBg();
+        const images = this.$refs.designProjImg;
+        this.throttleImageLoading(images as HTMLImageElement[]);
 
         // Modal placement on resize
         let resizeTimer: number;
@@ -137,7 +140,7 @@ export default defineComponent({
 
     methods:{
 
-            /* Base Function Elements */
+            /* Modal Behavior */
 
         scrollTopModal(){
 
@@ -216,11 +219,11 @@ export default defineComponent({
 
         },
 
-            /* Modal Background Color */
+            /* Modal Background Color & Images */
 
-        autoBgMode(tile: HTMLElement){
+        autoBgMode(tileImg: HTMLImageElement){
 
-            const tileImg = tile.querySelector(".design-proj-img") as HTMLImageElement;
+            const tile = tileImg.closest(".design-project") as HTMLImageElement;
             const canvas = this.canvas;
             const ctx = this.ctx;
 
@@ -283,15 +286,41 @@ export default defineComponent({
 
         },
 
-        loadAutoBg(){
+        throttleImageLoading(images: HTMLImageElement[]){
 
-            for (let i = 0; i < this.tiles!.length; i += this.chunkSize) {
-                setTimeout(() => {
-                    for (let j = 0; j < this.chunkSize && i + j < this.tiles!.length; j++) {
-                        this.autoBgMode(this.tiles![i + j]);
+            let currentIndex = 0;
+
+            const loadNextImage = () => {
+                if (currentIndex < images.length){
+
+                    const image = images[currentIndex];
+                    const imgTile = image.closest(".design-project");
+                    const dataSrc = image.getAttribute('data-src');
+                    
+                    if (imgTile && dataSrc !== null){
+
+                        // Remove the placeholder animation
+                        imgTile.classList.add("no-ph-anim");
+
+                        // Replace the placeholder image
+                        image.src = dataSrc;
+
+                        image.addEventListener('load', () => {
+
+                            // Set the tile auto bg color
+                            this.autoBgMode(image);
+
+                            // Next image
+                            currentIndex++;
+                            setTimeout(loadNextImage, 1000 / this.imgLoadInterval);
+
+                        });
                     }
-                }, this.chunkDelay * i);
-            }
+
+                }
+            };
+
+            setTimeout(loadNextImage, 500);
 
         },
 
@@ -407,6 +436,33 @@ export default defineComponent({
             border-radius:inherit;
         }
 
+        &:after{
+            --silverColor:rgb(240,245,255,0.8);
+
+            content:"";
+            width:100%;
+            height:100%;
+
+            position:absolute;
+            top:0;
+            left:0;
+
+            background:linear-gradient(105deg, 
+                transparent 30%,
+                var(--silverColor) 60%,
+                transparent 75%,
+            );
+            background-size:200% 100%;
+            background-position:200% 0;
+
+            border-radius:var(--size4);
+            animation:shinePlaceholder 4s linear infinite;
+        }
+
+        &.no-ph-anim:after{
+            display:none;
+        }
+
         &:not(.design-open):hover img{
             width:calc(100% + var(--size6));
             height:calc(100% + var(--size6));
@@ -414,6 +470,16 @@ export default defineComponent({
 
         & .close-modal{
             opacity:0;
+        }
+
+        
+        @keyframes shinePlaceholder{
+            0%{
+                background-position:200% 0;
+            }
+            100%{
+                background-position:-200% 0;
+            }
         }
 
     }
@@ -504,6 +570,8 @@ export default defineComponent({
         & img{
             width:min(1024px, 100%);
             height:100%;
+            position:relative;
+
             object-fit:contain;
             transition:var(--trans3);
         }

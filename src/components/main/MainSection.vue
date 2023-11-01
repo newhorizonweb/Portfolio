@@ -385,18 +385,19 @@ export default defineComponent({
 
     methods:{
 
-        handleIntersection(entries: IntersectionObserverEntry[]){
+        handleIntersection(entries: IntersectionObserverEntry[]) {
+            entries.forEach((entry) => {
 
-            const entry = entries[0];
-            const section = entry.target;
-            const isAbove = entry.boundingClientRect.top >= 0;
+                const section = entry.target;
+                const isAbove = entry.boundingClientRect.top >= 0;
 
-            if (entry.isIntersecting){
-                section.classList.remove("section-out");
-            } else if(isAbove) {
-                section.classList.add("section-out");
-            }
+                if (entry.isIntersecting){
+                    section.classList.remove("section-out");
+                } else if (isAbove) {
+                    section.classList.add("section-out");
+                }
 
+            });
         },
 
         path(imgName: string){
