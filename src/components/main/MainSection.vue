@@ -5,6 +5,8 @@
 
     <main>
 
+        <!-- About -->
+
         <AboutSection />
 
         <!-- Dev Projects -->
@@ -13,6 +15,7 @@
             :modalComp="ProjectModal"
             :contents="devProjects"
 
+            sectionId="dev-projects"
             sectionTitle="Web-Dev Projects"
         />
 
@@ -22,8 +25,13 @@
             :modalComp="DesignModal"
             :contents="graphicDesign"
 
+            sectionId="design-projects"
             sectionTitle="Graphic Design"
         />
+
+        <!-- Contact Form -->
+
+        <MailForm />
 
     </main>
 
@@ -38,13 +46,15 @@ import TilesSection from "./TilesSection.vue";
 
 import ProjectModal from "./ProjectModal.vue";
 import DesignModal from "./DesignModal.vue";
+import MailForm from "./MailForm.vue";
 
 export default defineComponent({
     name: "MainSection",
 
     components:{
         AboutSection,
-        TilesSection
+        TilesSection,
+        MailForm
     },
 
     data(){
@@ -359,7 +369,7 @@ export default defineComponent({
             options: {
                 root: null, // Use the viewport as the root
                 rootMargin: '50px', // No margin
-                threshold: 0, // Element is considered visible when 50% is in the viewport
+                threshold: 0.1, // Element is considered visible when 50% is in the viewport
             }
 
         }
@@ -418,10 +428,12 @@ main{
         (var(--size6) + var(--size5) * 2) + 
         var(--size7) + var(--size8)
     );
+    position:relative;
 
     display:flex;
     flex-direction:column;
     gap:calc(var(--size8) * 2.5);
+    z-index:110;
 
     & .section-heading{
         width:100%;

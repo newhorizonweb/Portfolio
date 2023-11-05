@@ -3,7 +3,7 @@
 
 <template>
 
-    <div id="dev-projects" class="tile-section wrapper main-section"
+    <div :id="sectionId" class="tile-section wrapper main-section"
         :class="{'odd-tiles': !isTileNumberEven}">
 
         <h2 class="section-heading"
@@ -40,6 +40,7 @@ export default defineComponent({
     props:[
         "modalComp",
         "contents",
+        "sectionId",
         "sectionTitle"
     ],
 

@@ -148,7 +148,7 @@ body{
     font-family:mainFont, Calibri, sans-serif;
 }
 
-p, a, label, button, th, td{
+p, a, label, input, textarea, button, th, td{
     color:var(--txt-faded);
     font-size:18px;
     font-weight:400;

@@ -11,14 +11,13 @@
                 :data="data"
             />
 
-            <div class="close-modal glass-tile"
+            <CloseBtn
+                :glassTile="true"
                 @click="
                     scrollTopModal(),
                     $emit('hideModals')
-                ">
-                <span></span>
-                <span></span>
-            </div>
+                "
+            />
 
             <div class="modal-content wrapper">
 
@@ -71,14 +70,16 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import CloseBtn from "../pageElements/CloseBtn.vue";
 
-import TileDisplay from "../main/TileDisplay.vue";
-import ProjectMockup from "../main/ProjectMockup.vue";
+import TileDisplay from "./TileDisplay.vue";
+import ProjectMockup from "./ProjectMockup.vue";
 
 export default defineComponent({
     name: "ProjectModal",
 
     components:{
+        CloseBtn,
         TileDisplay,
         ProjectMockup
     },
@@ -157,47 +158,11 @@ export default defineComponent({
         overflow:auto;
     }
 
-    & .close-modal{
-        width:calc(var(--size7) + 4px);
-        aspect-ratio:1/1;
-
+    & .close-btn{
         position:absolute;
         top:var(--size6);
         right:var(--size6);
-
         opacity:0;
-        backdrop-filter:none;
-
-        transition:var(--trans2);
-        cursor:pointer;
-        z-index:120;
-
-        &:before{
-            background-color:#FFF;
-        }
-
-        & span{
-            width:var(--size5);
-            height:2px;
-
-            position:absolute;
-            top:50%;
-            left:50%;
-            transform:translate(-50%, -50%) rotate(45deg);
-
-            background-color:#FFF;
-            border-radius:200px;
-            transition:var(--trans2);
-        }
-
-        & span:nth-of-type(2){
-            transform:translate(-50%, -50%) rotate(-45deg);
-        }
-
-        &:hover{
-            transform:rotate(90deg) scale(1.2);
-        }
-
     }
 
         /* Modal Content */
@@ -281,7 +246,7 @@ export default defineComponent({
             border-radius:0;
         }
 
-        & .close-modal{
+        & .close-btn{
             opacity:1;
         }
 

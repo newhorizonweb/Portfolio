@@ -64,6 +64,11 @@ footer.wrapper{
         flex-direction:column;
         align-items:flex-end;
         gap:var(--size1);
+
+        & p{
+            font-size:16px;
+        }
+
     }
 
 }

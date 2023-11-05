@@ -13,14 +13,13 @@
                 :data="data"
             />
 
-            <div class="close-modal glass-tile"
+            <CloseBtn
+                :glassTile="true"
                 @click="
                     scrollTopModal(),
                     $emit('hideModals')
-                ">
-                <span></span>
-                <span></span>
-            </div>
+                "
+            />
 
             <div class="modal-content wrapper">
 
@@ -35,16 +34,15 @@
 
                         <div class="toggle-modal-bg" @click="toggleModalBg"></div>
 
-                        <div class="close-modal"
-                            @click="hideDesignModals">
-                            <span></span>
-                            <span></span>
-                        </div>
+                        <CloseBtn
+                            :glassTile="false"
+                            @click="hideDesignModals"
+                        />
 
                         <img class="design-proj-img" 
-                        ref="designProjImg"
-                        :src="placeholderImg"
-                        :data-src="design" alt="Design Project">
+                            ref="designProjImg"
+                            :src="placeholderImg"
+                            :data-src="design" alt="Design Project">
 
                     </div>
                     
@@ -62,12 +60,14 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import CloseBtn from "../pageElements/CloseBtn.vue";
 import TileDisplay from "../main/TileDisplay.vue";
 
 export default defineComponent({
     name: "ProjectModal",
 
     components:{
+        CloseBtn,
         TileDisplay
     },
 
@@ -97,6 +97,7 @@ export default defineComponent({
             canvas: null as HTMLCanvasElement | null,
             ctx: null as CanvasRenderingContext2D | null,
             placeholderImg:require("@/assets/img/placeholder-img.svg")
+            
         } 
     },
 
@@ -468,7 +469,7 @@ export default defineComponent({
             height:calc(100% + var(--size6));
         }
 
-        & .close-modal{
+        & .close-btn{
             opacity:0;
         }
 
@@ -511,10 +512,9 @@ export default defineComponent({
         pointer-events:none;
         overflow:hidden;
 
-        & .close-modal{
+        & .close-btn{
             background-color:rgb(255,255,255,0.75);
             border:solid 2px #000;
-            border-radius:50%;
 
             &:before,
             & span{
@@ -576,14 +576,13 @@ export default defineComponent({
             transition:var(--trans3);
         }
 
-
     }
 
     & .dark-modal .design-proj-inner{
         background-color:#111 !important;
 
         & .toggle-modal-bg,
-        & .close-modal{
+        & .close-btn{
             background-color:rgb(0,0,0,0.75);
             border-color:#FFF;
         }
@@ -592,7 +591,7 @@ export default defineComponent({
             background-image:url("~@/assets/img/moon.svg");
         } 
 
-        & .close-modal span{
+        & .close-btn span{
             background-color:#FFF;
         }
 
@@ -611,7 +610,7 @@ export default defineComponent({
         }
 
         & .toggle-modal-bg,
-        & .close-modal{
+        & .close-btn{
             opacity:1;
         }
 
@@ -629,7 +628,7 @@ export default defineComponent({
 }
 
 // Hide the Close Button (from the modal with all designs)
-.tile-modal-inner:has(.design-open) > .close-modal{
+.tile-modal-inner:has(.design-open) > .close-btn{
     opacity:0 !important;
     pointer-events:none;
 }

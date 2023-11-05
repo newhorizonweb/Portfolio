@@ -65,6 +65,8 @@ body{
 
         background:var(--borderGrad1);
         border-radius:var(--size6);
+
+        transition:var(--trans3);
         pointer-events:none;
     }
 
