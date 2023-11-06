@@ -43,25 +43,27 @@
 
             <div class="form-footer">
 
-                <button class="send-form-btn glass-tile" 
-                    ref="sendFormBtn" @click="sendForm">
+                <button class="send-form-btn glass-tile" ref="sendFormBtn"
+                    @click="sendForm" aria-label="Submit the contact form">
 
-                    <h4 class="send-btn-txt"
+                    <h3 class="send-btn-txt"
                         data-text="Submit">
-                    </h4>
+                    </h3>
 
                 </button>
 
                 <div class="form-socials">
 
-                    <a href="https://github.com/newhorizonweb" 
-                        target="_blank" class="form-link form-link1">
+                    <a href="https://github.com/newhorizonweb"
+                        class="form-link form-link1" aria-label="GitHub Link"
+                        target="_blank">
 
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><path class="anim-elem1 cls-1" d="M82.6,144.3c-21.1-2.4-43.2-10.5-43.2-46.9a36,36,0,0,1,9.8-25.5,33.5,33.5,0,0,1,.9-25.1s7.9-2.6,26.1,9.7a89.1,89.1,0,0,1,47.5,0c18.1-12.3,26.1-9.7,26.1-9.7a34,34,0,0,1,.9,25.1,36.8,36.8,0,0,1,9.8,25.5c0,36.4-22.1,44.4-43.3,46.8"/><path class="cls-1" d="M117.2,144.2a22.7,22.7,0,0,1,6.4,17.7v26c0,3.2,1.7,5.5,6.5,4.5a95.1,95.1,0,1,0-60.1,0c4.7.9,6.5-2,6.5-4.4V171.9c-26.5,5.7-32-12.8-32-12.8a25.4,25.4,0,0,0-10.7-14c-8.7-5.9.6-5.8.6-5.8a19.4,19.4,0,0,1,14.5,9.8c8.5,14.5,22.1,10.3,27.7,7.9a20.5,20.5,0,0,1,6-12.7"/></svg>
                     </a>
 
-                    <a href="https://www.linkedin.com/in/wojciech-bocho/" 
-                        target="_blank" class="form-link form-link2">
+                    <a href="https://www.linkedin.com/in/wojciech-bocho/"
+                        aria-label="LinkedIn Link" class="form-link form-link2"
+                        target="_blank">
 
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle class="anim-elem1 cls-1" cx="27.8" cy="27.8" r="22.7"/><rect class="anim-elem2 cls-1" x="7.7" y="68.6" width="40.6" height="126.25" rx="2"/><path class="cls-1" d="M195,116.1c0-7.9,0-14.2-3.2-23.6A42.5,42.5,0,0,0,171,68.6c-2-1-20.7-10.5-39.9-1-12.7,6.4-18.5,16.8-19.9,24.6h0V70.6a2,2,0,0,0-2-2H74.6a2,2,0,0,0-2,2V192.9a2,2,0,0,0,2,2h34.6c2-1.2,2-1.9,2-2V127.8s-.5-18.2,10.4-25.1a24.2,24.2,0,0,1,24.8-.3c8.5,5.2,9.9,13.7,9.9,27.8v62.6a2,2,0,0,0,2,2H193c2-1.1,2-1.9,2-2V116.1"/></svg>
                     </a>
@@ -303,7 +305,7 @@ export default defineComponent({
             this.tooManyAttempts = true;
             const time = 1000 * 60 * 1; // 1 min
             
-            const attemptCooldown = Date.now() + time; // 30,000 milliseconds (30 seconds)
+            const attemptCooldown = Date.now() + time;
             localStorage.setItem("attemptCooldown", attemptCooldown.toString());
 
         },
@@ -474,16 +476,20 @@ export default defineComponent({
         height:var(--size8);
         display:flex;
 
-        &:has(.invalid-input):before{
-            background:var(--color1b)
+        &:hover:before{
+            background:var(--borderGrad2);
         }
 
         &:has(:focus):before{
-            background:#FFFFFF88;
+            background:var(--borderGrad2);
         }
 
         &:has(:-webkit-autofill):before{
-            background:cyan;
+            background:var(--borderGrad3);
+        }
+
+        &:has(.invalid-input):before{
+            background:var(--borderGrad2b);
         }
 
         & > *{
@@ -494,10 +500,12 @@ export default defineComponent({
             background-color:transparent;
             border:none;
             border-radius:inherit;
+            transition:all var(--trans1), box-shadow var(--trans3);
 
             &:-webkit-autofill{
-                -webkit-box-shadow:0 0 0 100px var(--colorBg1b) inset;
+                -webkit-box-shadow:0 0 0 100px var(--colorBg1c) inset;
                 -webkit-text-fill-color:#FFF;
+                transition:all var(--trans3), box-shadow var(--trans1);
             }
 
         }
@@ -519,7 +527,7 @@ export default defineComponent({
             pointer-events:none;
         }
 
-        &::placeholder{
+        & *::placeholder{
             color:var(--txt-faded3);
         }
 
@@ -537,6 +545,19 @@ export default defineComponent({
             flex:1;
             height:var(--size8);
             cursor:pointer;
+
+            &:hover:before{
+                background:var(--borderGrad2);
+            }
+
+            & .send-btn-txt{
+                font-size:20px;
+
+                &:before{
+                    -webkit-text-stroke:1.5px #FFF;
+                }
+
+            }
 
             &:hover .send-btn-txt:before{
                 -webkit-text-stroke-color:var(--color1a);
@@ -563,7 +584,7 @@ export default defineComponent({
                     stroke-width:10px;
                 }
 
-                // Animations are in the NavbarSection component
+                // Animations are inside the NavbarSection component
 
                 &:hover svg{
                     animation:navAnimElem 2s ease-in-out infinite;
@@ -649,6 +670,14 @@ main .form-popup{
     .contact-form{
 
         & .form-footer{
+
+            & .send-form-btn{
+
+                & .send-btn-txt{
+                    font-size:18px;
+                }
+
+            }
             
             & .form-socials{
                 height:var(--size7);

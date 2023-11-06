@@ -424,13 +424,19 @@ export default defineComponent({
         gap:var(--size6);
     }
 
+    & .close-btn{
+        position:absolute;
+        top:var(--size6);
+        right:var(--size6);
+        opacity:0;
+    }
+
     & .design-project{
         width:100%;
         position:relative;
         display:flex;   // Removes jittering on hover
 
         border-radius:var(--size4);
-        backdrop-filter:none;
         cursor:pointer;
 
         &:before{
@@ -473,7 +479,6 @@ export default defineComponent({
             opacity:0;
         }
 
-        
         @keyframes shinePlaceholder{
             0%{
                 background-position:200% 0;
@@ -604,8 +609,8 @@ export default defineComponent({
         cursor:auto;
 
         & .design-proj-inner{
-            width:100vw;
-            height:100vh;
+            width:100dvw;
+            height:100dvh;
             pointer-events:all;
         }
 

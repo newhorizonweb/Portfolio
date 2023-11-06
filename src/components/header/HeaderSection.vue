@@ -46,8 +46,7 @@ export default defineComponent({
     data(){
         return{
             // Auto Scroll Animation Settings
-           // scrollDuration: 1500, // in ms
-            scrollDuration: 150, // in ms - DEVELOPMENT
+            scrollDuration: 1500, // in ms
             framerate: 60, // FPS, max 100 - JS can't handle more (timing issue)
 
             // Auto Scroll Variables

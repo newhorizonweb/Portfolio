@@ -1,5 +1,5 @@
 /* 
-    Personal Portfolio - created by Uverit
+    Portfolio - created by Wojciech Bocho
     Do not copy or distribute
 */
 
@@ -11,7 +11,7 @@
     /* Body & Wrapper */
 
 html{
-    background-color:var(--colorBg1b);
+    background-color:var(--colorBg1c);
 }
 
 body{
@@ -49,7 +49,6 @@ body{
     box-shadow:inset 0 0 20px 0 rgb(125, 125, 125, 0.3),
         0 0 20px 0 rgb(0, 0, 0, 0.2);
     border-radius:var(--size6);
-    backdrop-filter:blur(20px);
     transition:var(--trans2);
 
     &:before{

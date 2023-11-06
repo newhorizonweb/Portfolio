@@ -38,13 +38,15 @@ export default defineComponent({
     width:calc(var(--size7) + 4px);
     aspect-ratio:1/1;
     position:relative;
-
-    backdrop-filter:none;
     border-radius:50%;
 
-    transition:all var(--trans2), var(--trans3) !important;
+    transition:all var(--trans2), opacity var(--trans3) !important;
     cursor:pointer;
     z-index:120;
+
+    &.glass-tile:hover:before{
+        background:var(--borderGrad2);
+    }
 
     &.standard-btn{
         border:solid 2px #FFF;

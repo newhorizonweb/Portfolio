@@ -151,14 +151,20 @@ export default defineComponent({
                         // Adjust the modal position
                         this.currTilePos(tile);
 
+                        setTimeout(() => {
+                            this.currTilePos(tile);
+                        }, 1000);
+
                         // Show modal
                         tile.classList.add("tile-modal-open");
                         tile.classList.add("modal-opacity");
 
-                        // Remove the transition effect after the modal has covered the page
+                        // Remove the transition effect:
+                        // After the modal has covered the page (750ms)
+                        // The modal position was adjusted due to section fade-in (1000 ms)
                         setTimeout(() => {
                             tile.classList.add("no-trans");
-                        }, 750);
+                        }, 1750);
 
                     }
 

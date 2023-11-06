@@ -87,7 +87,7 @@ export default defineComponent({
         & .tile-svg1{
 
             .cls-1{
-                fill:#ebdfff;
+                fill:var(--color1a);
             }
 
             .cls-2{

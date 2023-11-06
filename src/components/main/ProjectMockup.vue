@@ -132,7 +132,7 @@ export default defineComponent({
     transition:var(--trans3);
     
     &:has(.desktop-mockup){
-        padding-bottom:calc(var(--mockupSize) * 4)
+        padding-bottom:calc(var(--mockupSize) * 4);
     }
 
 }
@@ -149,10 +149,24 @@ export default defineComponent({
     & .toggle-txt{
         font-size:min(26px, 5vw);
 
-        &.toggle-txt-desktop:before{
-            -webkit-text-stroke:3px var(--color1a);
+        &:before{
+            -webkit-text-stroke-width:3px;
         }
 
+        &.toggle-txt-desktop:before{
+            -webkit-text-stroke-color:var(--color1a);
+        }
+
+    }
+
+    &:hover .toggle-txt{
+        
+
+        &.toggle-txt-slash:before,
+        &.toggle-txt-mobile:before{
+            -webkit-text-stroke-color:var(--color1b);
+        }
+        
     }
 
     &.toggle-disabled{
@@ -174,6 +188,18 @@ export default defineComponent({
 
     & .toggle-txt-mobile:before{
         -webkit-text-stroke-color:var(--color1a);
+    }
+
+    & .mockup-mode:hover .toggle-txt{
+
+        &.toggle-txt-desktop:before{
+            -webkit-text-stroke-color:var(--color1b);
+        }
+
+        &.toggle-txt-mobile:before{
+            -webkit-text-stroke-color:var(--color1a);
+        }
+        
     }
 
 }

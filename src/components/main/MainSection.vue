@@ -67,9 +67,12 @@ export default defineComponent({
                 {
                     title: "Cookbook",
                     imgSrc: this.path('projects/uverit-logo.svg'),
+
+                    gitHubLink: "https://github.com/newhorizonweb/Uverit-Cookbook",
+                    pageLink: "",
                     
-                    mobileMockup: this.path('projects/cookbook-mobile.png'),
-                    desktopMockup: this.path('projects/cookbook-desktop.png'),
+                    mobileMockup: this.path('projects/cookbook-mobile.webp'),
+                    desktopMockup: this.path('projects/cookbook-desktop.webp'),
 
                     overview:[
                         "Uverit Cookbook is a digital platform offering a vast collection of recipes and products.",
@@ -96,8 +99,11 @@ export default defineComponent({
                     title: "Logo Test",
                     imgSrc: this.path('projects/uverit-logo.svg'),
 
-                    mobileMockup: this.path('projects/logo-test-mobile.png'),
-                    desktopMockup: this.path('projects/logo-test-desktop.png'),
+                    gitHubLink: "https://github.com/newhorizonweb/Uverit-Logo-Test",
+                    pageLink: "https://newhorizonweb.github.io/Uverit-Logo-Test/",
+
+                    mobileMockup: this.path('projects/logo-test-mobile.webp'),
+                    desktopMockup: this.path('projects/logo-test-desktop.webp'),
 
                     overview:[
                         "Uverit Logo Test is a program designed to deconstruct logos into simple, easily understandable elements.",
@@ -122,8 +128,11 @@ export default defineComponent({
                     title: "SkillPeak",
                     imgSrc: this.path('projects/uverit-logo.svg'),
 
-                    mobileMockup: this.path('projects/skillpeak-mobile.png'),
-                    desktopMockup: this.path('projects/skillpeak-desktop.png'),
+                    gitHubLink: "https://github.com/newhorizonweb/Uverit-SkillPeak",
+                    pageLink: "https://newhorizonweb.github.io/Uverit-SkillPeak/",
+
+                    mobileMockup: this.path('projects/skillpeak-mobile.webp'),
+                    desktopMockup: this.path('projects/skillpeak-desktop.webp'),
 
                     overview:[
                         "Uverit SkillPeak is a user-friendly program that provides a swift and hassle-free experience for creating resumes.",
@@ -149,8 +158,11 @@ export default defineComponent({
                     title: "Color Palette",
                     imgSrc: this.path('projects/uverit-logo.svg'),
 
-                    mobileMockup: this.path('projects/color-palette-mobile.png'),
-                    desktopMockup: this.path('projects/color-palette-desktop.png'),
+                    gitHubLink: "https://github.com/newhorizonweb/Uverit-Color-Palette",
+                    pageLink: "https://newhorizonweb.github.io/Uverit-Color-Palette/index.html",
+
+                    mobileMockup: this.path('projects/color-palette-mobile.webp'),
+                    desktopMockup: this.path('projects/color-palette-desktop.webp'),
 
                     overview:[
                         "Uverit Color Palette showcases the brand's identity and provides basic guidelines for color and typeface implementation.",
@@ -175,8 +187,11 @@ export default defineComponent({
                     title: "Rapid Core",
                     imgSrc: this.path('projects/rapid-core-logo.svg'),
 
-                    mobileMockup: this.path('projects/rapid-core-mobile.png'),
-                    desktopMockup: this.path('projects/rapid-core-desktop.png'),
+                    gitHubLink: "https://github.com/newhorizonweb/Rapid-Core",
+                    pageLink: "https://github.com/newhorizonweb/Rapid-Core",
+
+                    mobileMockup: this.path('projects/rapid-core-mobile.webp'),
+                    desktopMockup: this.path('projects/rapid-core-desktop.webp'),
 
                     overview:[
                         "Your Personal Aim Trainer",
@@ -260,6 +275,7 @@ export default defineComponent({
 
                         this.path("icons/phone-icon.svg"),
                         this.path("icons/mute-icon.svg"),
+                        this.path("icons/website-icon.svg"),
                         this.path("icons/list-icon.svg"),
                         this.path("icons/list-icon2.svg"),
                         this.path("icons/note-icon.svg"),
@@ -321,11 +337,11 @@ export default defineComponent({
                     imgSrc: "<svg class='tile-svg3' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><path class='cls-1' d='M52,13.3V168.4'/><path class='cls-1' d='M100,186.7V31.6'/><path class='cls-1' d='M100,31.6V186.7'/><path class='cls-1' d='M52,168.4V13.3'/><path class='cls-1' d='M148,168.4V13.3'/><path class='cls-1' d='M152.5,173.1l37.4,17.1a4.3,4.3,0,0,0,6.1-3.9V31.8a4.5,4.5,0,0,0-2.5-4L159,12a27.5,27.5,0,0,0-11-2.4h0A27.5,27.5,0,0,0,137,12L104.5,26.9a9.9,9.9,0,0,1-4.5,1h0a9.9,9.9,0,0,1-4.5-1L63,12A27.5,27.5,0,0,0,52,9.6h0A27.5,27.5,0,0,0,41,12L6.5,27.8a4.5,4.5,0,0,0-2.5,4V186.3a4.3,4.3,0,0,0,6.1,3.9l37.4-17.1a9.9,9.9,0,0,1,4.5-1h0a9.9,9.9,0,0,1,4.5,1L89,188a27.5,27.5,0,0,0,11,2.4h0a27.5,27.5,0,0,0,11-2.4l32.5-14.9a9.9,9.9,0,0,1,4.5-1h0A9.9,9.9,0,0,1,152.5,173.1Z'/><path class='cls-1' d='M148,13.3V168.4'/></svg>",
 
                     designs:[
-                        this.path("flyers/DJ.png"),
-                        this.path("flyers/uverit-flyer.png"),
-                        this.path("flyers/aktywna-tablica.png"),
-                        this.path("flyers/finanzexpert.png"),
-                        this.path("flyers/m3lomoore flyer.png"),
+                        this.path("flyers/DJ.webp"),
+                        this.path("flyers/uverit-flyer.webp"),
+                        this.path("flyers/aktywna-tablica.webp"),
+                        this.path("flyers/finanzexpert.webp"),
+                        this.path("flyers/m3lomoore flyer.webp"),
                     ]
                 },
 
@@ -335,20 +351,20 @@ export default defineComponent({
                     imgSrc: "<svg class='tile-svg4' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><path class='cls-1' d='M144.4,125.4a33.4,33.4,0,0,0,5.2,1.4c7,1.4,19.6,2.7,30.4-3.5a28.7,28.7,0,0,0,7-5.5c5.4-5.6,8-13,8.8-20.7,1.1-10.5-2-21.1-6.5-30.7C175.5,37.1,146.2,14.9,114,11.2a109.5,109.5,0,0,0-46.2,4.6A101,101,0,0,0,43.4,27.9a92.4,92.4,0,0,0-26.2,27c-19.1,30-17.1,68,3.9,96.4a93.2,93.2,0,0,0,16.3,16.9c14.2,11.4,31.9,18.1,49.9,20.4a116.9,116.9,0,0,0,19.6.8c4.5-.3,9.8-.8,13.2-4.3s3.7-8.5.4-12-4.9-3.6-7.5-5.2c-9-5.5-16.2-15.7-13.2-26.6a23.3,23.3,0,0,1,10.4-12.7c3.2-1.9,9.8-4.5,19.3-4.9A45.3,45.3,0,0,1,144.4,125.4Z'/><circle class='cls-1' cx='48.6' cy='78.4' r='15.7'/><circle class='cls-1' cx='99.9' cy='49' r='15.7'/><circle class='cls-1' cx='151.6' cy='77' r='15.7'/><circle class='cls-1' cx='56.1' cy='136.9' r='15.7'/><g class='anim-elem1'><path class='cls-2' d='M138.4,119.4l53.3,53.3c4.1,4.1,4.4,10.4.7,14.1h0c-3.6,3.7-10,3.3-14.1-.7l-53.2-53.3'/><path class='cls-3' d='M120.1,92.9c6.6,3.1,10.4,5.9,13.7,11.1s7.1,17.1,0,24.1-18.6,3.4-24.1,0-8.1-7-11.2-13.7c-2.2-4.6-7.9-23.6-9.8-29.9a1.1,1.1,0,0,1,.7-1.4h.7C96.4,84.9,115.4,90.7,120.1,92.9Z'/></g></svg>",
 
                     designs:[
-                        this.path("color-palettes/lumifilms.png"),
-                        this.path("color-palettes/Uverit Color Palette.png"),
-                        this.path("color-palettes/13-month-calendar.png"),
-                        this.path("color-palettes/akashic-resonance.png"),
-                        this.path("color-palettes/b-med.png"),
-                        this.path("color-palettes/chanan.png"),
-                        this.path("color-palettes/fireflyloop.png"),
-                        this.path("color-palettes/key-places.png"),
-                        this.path("color-palettes/mr-seo-tech.png"),
-                        this.path("color-palettes/Nursify Color Palette.png"),
-                        this.path("color-palettes/sayiastar.png"),
-                        this.path("color-palettes/sistair.png"),
-                        this.path("color-palettes/THAI GATE.png"),
-                        this.path("color-palettes/wanda-cox.png"),
+                        this.path("color-palettes/lumifilms.webp"),
+                        this.path("color-palettes/Uverit Color Palette.webp"),
+                        this.path("color-palettes/13-month-calendar.webp"),
+                        this.path("color-palettes/akashic-resonance.webp"),
+                        this.path("color-palettes/b-med.webp"),
+                        this.path("color-palettes/chanan.webp"),
+                        this.path("color-palettes/fireflyloop.webp"),
+                        this.path("color-palettes/key-places.webp"),
+                        this.path("color-palettes/mr-seo-tech.webp"),
+                        this.path("color-palettes/Nursify Color Palette.webp"),
+                        this.path("color-palettes/sayiastar.webp"),
+                        this.path("color-palettes/sistair.webp"),
+                        this.path("color-palettes/THAI GATE.webp"),
+                        this.path("color-palettes/wanda-cox.webp"),
                     ]
                 }
 
@@ -368,8 +384,8 @@ export default defineComponent({
             mainSections: document.querySelectorAll(".main-section"),
             options: {
                 root: null, // Use the viewport as the root
-                rootMargin: '50px', // No margin
-                threshold: 0.1, // Element is considered visible when 50% is in the viewport
+                rootMargin: '50px', // Margin
+                threshold: 0, // How much of the element should be visible (0.5 = 50%)
             }
 
         }
@@ -403,7 +419,7 @@ export default defineComponent({
 
                 if (entry.isIntersecting){
                     section.classList.remove("section-out");
-                } else if (isAbove) {
+                } else if (isAbove){
                     section.classList.add("section-out");
                 }
 
@@ -452,7 +468,7 @@ main{
         top:0;
         transition:1s ease-out;
 
-        &.section-out{
+        &:not(:has(.tile-modal-open)).section-out{
             top:150px;
             opacity:0;
             filter:brightness(75%);

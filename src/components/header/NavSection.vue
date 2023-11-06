@@ -196,6 +196,7 @@ nav{
 
 .modal-mode nav{
     opacity:0;
+    pointer-events:none;
 }
 
 .nav-placeholder{
@@ -328,6 +329,10 @@ nav .nav-inner{
             top 0s,
             transform 0s;
         overflow:hidden;
+
+        &:hover:before{
+            background:var(--borderGrad2);
+        }
 
         &:after{
             content:"";
