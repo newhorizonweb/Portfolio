@@ -161,7 +161,7 @@ export default defineComponent({
             if (this.isAutoScrolling ||
                 !this.topPage && direction === "down" ||
                 this.topPage && direction === "up" || 
-                window.scrollY >= window.innerHeight - 20 && direction === "up"){
+                window.scrollY >= window.innerHeight - 50 && direction === "up"){
                 return;
             }
 

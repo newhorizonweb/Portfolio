@@ -5,7 +5,7 @@
 
     <div class="navbar">
         <div class="nav-links nav-links-page">
-            
+
             <div linkTo="#about-section" class="nav-link nav-link-section nav-link1">
                 <h4 class="nav-link-txt" data-text="About"></h4>
                 <svg id='Layer_2' data-name='Layer 2' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><circle class='anim-elem1 cls-1' cx='100.4' cy='46.3' r='42.3'/><path class='cls-1' d='M54,196a39.7,39.7,0,0,1-22.4-6.6,7.1,7.1,0,0,1-1.4-1c-7.7-5.7-11.8-15.2-12.4-24.5a103.8,103.8,0,0,1,.5-19.3A87.2,87.2,0,0,1,25,120.5c3.1-7.2,7.1-14.3,13.3-19.3s12-7.1,18.8-6.9c8.5.2,13.5,4.9,21.3,7.7a70.4,70.4,0,0,0,21.3,3.7h.6a70.4,70.4,0,0,0,21.3-3.7c7.8-2.8,12.8-7.5,21.3-7.7,6.8-.2,13.4,2.7,18.8,6.9s10.2,12.1,13.3,19.3a87.2,87.2,0,0,1,6.7,24.1,103.8,103.8,0,0,1,.5,19.3c-.6,9.3-4.7,18.8-12.4,24.5a7.1,7.1,0,0,1-1.4,1A39.7,39.7,0,0,1,146,196Z'/></svg>
@@ -66,10 +66,24 @@ export default defineComponent({
     },
 
     mounted(){
+
         this.linkToSection();
+        
+        this.adjustTargetPosition();
+        window.addEventListener("resize", this.adjustTargetPosition);
+
     },
 
     methods:{
+
+        adjustTargetPosition(){
+
+            if (window.innerWidth <= 768){
+                this.standardOffset = 48;
+                this.sectionOutOffset = 150 + 48;
+            }
+
+        },
 
         linkToSection(){
 
@@ -210,6 +224,23 @@ export default defineComponent({
     }
 
 }
+
+    /* Media */
+
+@media screen and (width <= 768px){
+
+    // Do not allow link click when the nav is collapsed
+    .nav-inner:not(.nav-expand){
+
+        & .nav-link{
+            pointer-events:none;
+        }
+
+    }
+
+}
+
+    /* Animations */
 
 @keyframes navAnimElem{
     0%{

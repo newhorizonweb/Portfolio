@@ -283,6 +283,16 @@ export default defineComponent({
 
     }
 
+    .tile-modal-open .project-display{
+        height:calc(
+            170px +
+            var(--size8) +
+            (var(--size8) + var(--size7))
+        ); // border box, so add paddings
+
+        padding-top:calc(var(--size8) + var(--size7));
+    }
+
 }
 
 @media screen and (width <= 540px){

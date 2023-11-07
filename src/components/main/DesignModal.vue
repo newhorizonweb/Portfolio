@@ -13,13 +13,25 @@
                 :data="data"
             />
 
-            <CloseBtn
-                :glassTile="true"
-                @click="
-                    scrollTopModal(),
-                    $emit('hideModals')
-                "
-            />
+            <div class="modal-hub">
+
+                <div class="modal-scroll-top glass-tile"
+                    :class="{'show-scroll-btn': showModalScrollbtn}"
+                    ref="modalScrollTop"
+                    @click="modalToTop">
+
+                    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><path class='cls-1' d='M33.6,155.6a14.7,14.7,0,0,1-20.7,0l-.5-.6a14.7,14.7,0,0,1,0-20.7L89.6,57.1a14.7,14.7,0,0,1,20.7,0h.1l77.2,77.2a14.7,14.7,0,0,1,0,20.7l-.5.6a14.7,14.7,0,0,1-20.7,0l-66-66a.5.5,0,0,0-.8,0Z'/></svg>
+                </div>
+
+                <CloseBtn
+                    :glassTile="true"
+                    @click="
+                        scrollTopModal(),
+                        $emit('hideModals')
+                    "
+                />
+
+            </div>
 
             <div class="modal-content wrapper">
 
@@ -32,12 +44,14 @@
 
                     <div class="design-proj-inner">
 
-                        <div class="toggle-modal-bg" @click="toggleModalBg"></div>
+                        <div class="modal-hub">
+                            <div class="toggle-modal-bg" @click="toggleModalBg"></div>
 
-                        <CloseBtn
-                            :glassTile="false"
-                            @click="hideDesignModals"
-                        />
+                            <CloseBtn
+                                :glassTile="false"
+                                @click="hideDesignModals"
+                            />
+                        </div>
 
                         <img class="design-proj-img" 
                             ref="designProjImg"
@@ -84,8 +98,14 @@ export default defineComponent({
 
                 /* Modal */
 
+            // Elements
+            innerModal: null as null | HTMLElement,
             currTile: null as null | HTMLElement,
             tiles: null as null | HTMLElement[],
+            
+            // Scroll
+            scrollOffset: window.innerHeight / 2, // Show the btn if scrolled this amount
+            showModalScrollbtn: false,
 
                 /* BG Color */
 
@@ -102,6 +122,9 @@ export default defineComponent({
     },
 
     mounted(){
+
+        // Elements
+        this.innerModal = this.$refs.innerModal as HTMLElement;
 
         // Modal project image canvas
         this.canvas = document.createElement('canvas');
@@ -120,6 +143,11 @@ export default defineComponent({
 
         window.addEventListener("resize", () => {
 
+            // Set a new scroll offset
+            this.scrollOffset = window.innerHeight / 2;
+
+                /* Modal */
+
             clearTimeout(resizeTimer);
 
             if (this.currTile &&
@@ -137,20 +165,39 @@ export default defineComponent({
 
         });
 
+        // Hide / show the modal scroll btn (if the modal was scrolled or not)
+        this.innerModal.addEventListener("scroll", this.modalScrollBtnVisibility);
+
     },
 
     methods:{
 
-            /* Modal Behavior */
+            /* Modal Scroll */
+
+        modalScrollBtnVisibility(){
+
+            if (this.innerModal!.scrollTop > this.scrollOffset){
+                this.showModalScrollbtn = true;
+            } else {
+                this.showModalScrollbtn = false;
+            }
+
+        },
 
         scrollTopModal(){
-
-            const innerModal = this.$refs.innerModal as HTMLElement;
-            innerModal.scrollTo({
+            this.innerModal!.scrollTo({
                 top:0
             });
-            
         },
+
+        modalToTop(){
+            this.innerModal!.scrollTo({
+                top:0,
+                behavior:"smooth"
+            });
+        },
+
+            /* Modal Behavior */
 
         hideDesignModals(currTile?: HTMLElement){
 
@@ -189,7 +236,7 @@ export default defineComponent({
 
             // Set the transform property (position modal in the center)
             (tile.querySelector(".design-proj-inner") as HTMLElement)!.style.transform = 
-                `translate3d(${transX}px, ${transY}px, 0px)`;
+                `translate3d(${transX - 1}px, ${transY}px, 0px)`;
 
         },
 
@@ -414,6 +461,81 @@ export default defineComponent({
 
 .tile-section .design-modal{
 
+    & .modal-scroll-top{
+        width:calc(var(--size7) + 4px);
+        aspect-ratio:1/1;
+        position:relative;
+
+        display:flex;
+        justify-content:center;
+        align-items:center;
+
+        opacity:0;
+        border-radius:50%;
+        transition:all var(--trans2), opacity var(--trans3) !important;
+
+        overflow:hidden;
+        cursor:pointer;
+        z-index:120;
+
+        &.show-scroll-btn{
+            opacity:1;
+        }
+
+        & svg{
+            width:60%;
+            aspect-ratio:1/1;
+
+            position:relative;
+            top:-1px;
+
+            & *{
+                stroke-linecap:round;
+                stroke-miterlimit:10;
+
+                fill:none;
+                stroke:#FFF;
+                stroke-width:14px;
+            }
+
+        }
+
+        &:hover{
+            transform:scale(1.2);
+
+            &:before{
+                background:var(--borderGrad2);
+            }
+
+            & svg{
+                animation:modalScrollTop 4s ease-in-out infinite;
+            }
+
+        }
+
+        @keyframes modalScrollTop{
+                0%{
+                    transform:translate(0, -1px);
+                }
+                10%{
+                    transform:translate(0, 10px);
+                }
+                17%{
+                    transform:translate(0, -100px);
+                }
+                20%{
+                    transform:translate(0, -100px);
+                }
+                21%{
+                    transform:translate(0, 100px);
+                }
+                50%{
+                    transform:translate(0, -1px);
+                }
+        }
+
+    }
+
     & .tile-modal-inner:has(.design-open){
         overflow:hidden;
     }
@@ -422,13 +544,6 @@ export default defineComponent({
         display:grid;
         grid-template-columns:repeat(var(--rowDesignNum), 1fr);
         gap:var(--size6);
-    }
-
-    & .close-btn{
-        position:absolute;
-        top:var(--size6);
-        right:var(--size6);
-        opacity:0;
     }
 
     & .design-project{
@@ -475,10 +590,6 @@ export default defineComponent({
             height:calc(100% + var(--size6));
         }
 
-        & .close-btn{
-            opacity:0;
-        }
-
         @keyframes shinePlaceholder{
             0%{
                 background-position:200% 0;
@@ -517,6 +628,10 @@ export default defineComponent({
         pointer-events:none;
         overflow:hidden;
 
+        & .modal-hub{
+            opacity:0;
+        }
+
         & .close-btn{
             background-color:rgb(255,255,255,0.75);
             border:solid 2px #000;
@@ -532,19 +647,10 @@ export default defineComponent({
             width:calc(var(--size7) + 4px);
             aspect-ratio:1/1;
 
-            position:absolute;
-            top:var(--size6);
-            right:calc(
-                var(--size7) +
-                var(--size6) +
-                var(--size4)
-            );
-
             display:flex;
             justify-content:center;
             align-items:center;
 
-            opacity:0;
             background-color:rgb(255,255,255,0.75);
             border:solid 2px #000;
             border-radius:50%;
@@ -556,7 +662,6 @@ export default defineComponent({
 
             transition:var(--trans2);
             cursor:pointer;
-            z-index:120;
 
             &:before{
                 background-color:#000;
@@ -614,8 +719,7 @@ export default defineComponent({
             pointer-events:all;
         }
 
-        & .toggle-modal-bg,
-        & .close-btn{
+        & .modal-hub{
             opacity:1;
         }
 
@@ -633,7 +737,7 @@ export default defineComponent({
 }
 
 // Hide the Close Button (from the modal with all designs)
-.tile-modal-inner:has(.design-open) > .close-btn{
+.tile-modal-inner:has(.design-open) > .modal-hub{
     opacity:0 !important;
     pointer-events:none;
 }

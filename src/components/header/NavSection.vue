@@ -16,7 +16,8 @@
             @mousemove="navHoverBorder">
 
             <div class="nav-logo"
-                ref="navCloseBtn">
+                ref="navCloseBtn"
+                @click="navLogoScroll">
 
                 <LogoElem />
             </div>
@@ -95,6 +96,17 @@ export default defineComponent({
     },
 
     methods:{
+
+        navLogoScroll(){
+
+            if (window.innerWidth > 768){
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+            }
+
+        },
 
         toggleNav(e: MouseEvent){
             if (window.innerWidth <= 768){
@@ -229,6 +241,7 @@ nav .nav-inner{
 
     & .nav-logo{
         display:flex;
+        cursor:pointer;
     }
 
     & .logo{
@@ -330,6 +343,10 @@ nav .nav-inner{
             transform 0s;
         overflow:hidden;
 
+        &:not(.nav-expand){
+            cursor:pointer;
+        }
+
         &:hover:before{
             background:var(--borderGrad2);
         }
@@ -356,10 +373,6 @@ nav .nav-inner{
             opacity:0;
             transition:var(--trans2);
             pointer-events:none;
-        }
-
-        & .nav-logo{
-            cursor:pointer;
         }
 
         & .logo{

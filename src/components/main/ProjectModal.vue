@@ -195,6 +195,10 @@ export default defineComponent({
             
             display:flex;
             cursor:pointer;
+
+            &:hover{
+                transform:scale(1.2);
+            }
    
             &:before{
                 content:"";
