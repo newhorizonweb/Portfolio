@@ -188,7 +188,7 @@ export default defineComponent({
                     imgSrc: this.path('projects/rapid-core-logo.svg'),
 
                     gitHubLink: "https://github.com/newhorizonweb/Rapid-Core",
-                    pageLink: "https://github.com/newhorizonweb/Rapid-Core",
+                    pageLink: "https://newhorizonweb.github.io/Rapid-Core/",
 
                     mobileMockup: this.path('projects/rapid-core-mobile.webp'),
                     desktopMockup: this.path('projects/rapid-core-desktop.webp'),
