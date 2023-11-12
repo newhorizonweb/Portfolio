@@ -209,7 +209,7 @@ export default defineComponent({
         position:relative;
 
         box-shadow:inset 0 0 0 0 transparent;
-        cursor:pointer;
+        cursor:var(--cursorHover);
 
         &.tile-modal-open{
             z-index:11000;

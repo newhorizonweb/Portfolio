@@ -15,6 +15,8 @@
 
     <BgBlobs />
 
+    <CursorBlob />
+
 </template>
 
 
@@ -27,6 +29,7 @@ import MainSection from "./components/main/MainSection.vue";
 import FooterSection from "./components/footer/FooterSection.vue";
 
 import BgBlobs from "./components/pageElements/BgBlobs.vue";
+import CursorBlob from "./components/pageElements/CursorBlob.vue";
 
 export default defineComponent({
     name: "App",
@@ -35,7 +38,9 @@ export default defineComponent({
         HeaderSection,
         MainSection,
         FooterSection,
-        BgBlobs
+
+        BgBlobs,
+        CursorBlob
     },
 
     data(){

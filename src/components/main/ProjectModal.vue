@@ -151,6 +151,7 @@ export default defineComponent({
         opacity var(--trans3);
         
     overflow:hidden;
+    cursor:var(--cursorDefault);
     pointer-events:none;
 
     &:after{
@@ -194,7 +195,7 @@ export default defineComponent({
             position:relative;
             
             display:flex;
-            cursor:pointer;
+            cursor:var(--cursorHover);
 
             &:hover{
                 transform:scale(1.2);

@@ -116,7 +116,7 @@ export default defineComponent({
             msgReallyLongResponse: "It seems like there are some technical difficulties :/",
 
             msgAttempts: "Too many attempts! Try again in a few minutes.",
-            msgEmptyFields: "Didn't you forget about something? :)",
+            msgEmptyFields: "Didn't you forget something? :)",
             msgInvalidMail: "Please provide a valid email address!",
 
             // Popup Time (in seconds)
@@ -500,6 +500,8 @@ export default defineComponent({
             background-color:transparent;
             border:none;
             border-radius:inherit;
+
+            cursor:var(--cursorText);
             transition:all var(--trans1), box-shadow var(--trans3);
 
             &:-webkit-autofill{
@@ -544,7 +546,7 @@ export default defineComponent({
         & .send-form-btn{
             flex:1;
             height:var(--size8);
-            cursor:pointer;
+            cursor:var(--cursorHover);
 
             &:hover:before{
                 background:var(--borderGrad2);
@@ -573,7 +575,7 @@ export default defineComponent({
             & .form-link{
                 height:100%;
                 aspect-ratio:1/1;
-                cursor:pointer;
+                cursor:var(--cursorHover);
 
                 & *{
                     fill:none;

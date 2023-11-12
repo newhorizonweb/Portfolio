@@ -475,11 +475,13 @@ export default defineComponent({
         transition:all var(--trans2), opacity var(--trans3) !important;
 
         overflow:hidden;
-        cursor:pointer;
+        cursor:var(--cursorHover);
+        pointer-events:none;
         z-index:120;
 
         &.show-scroll-btn{
             opacity:1;
+            pointer-events:all;
         }
 
         & svg{
@@ -552,7 +554,7 @@ export default defineComponent({
         display:flex;   // Removes jittering on hover
 
         border-radius:var(--size4);
-        cursor:pointer;
+        cursor:var(--cursorHover);
 
         &:before{
             border-radius:inherit;
@@ -626,6 +628,7 @@ export default defineComponent({
             background-color var(--trans3);
 
         pointer-events:none;
+        cursor:var(--cursorDefault);
         overflow:hidden;
 
         & .modal-hub{
@@ -661,7 +664,7 @@ export default defineComponent({
             background-repeat:no-repeat;
 
             transition:var(--trans2);
-            cursor:pointer;
+            cursor:var(--cursorHover);
 
             &:before{
                 background-color:#000;

@@ -50,6 +50,7 @@ export default defineComponent({
         return{
             isWindowScrolled: false,
             isNavExpand: false,
+            mobilePage: false,
 
             navCloseDistance: 0,
             navCloseCalcDist: 0,
@@ -64,13 +65,19 @@ export default defineComponent({
             this.isWindowScrolled = window.scrollY > 0 ? true : false;
         });
 
-        // Nav collapse on page resize
+        // Nav collapse on page resize &&
+        // Check if the page is mobile (<= 768px)
+        this.checkIfMobile();
         window.addEventListener("resize", () => {
+
             this.isNavExpand = false;
+            this.checkIfMobile();
+
         });
 
         // Nav collapse when clicking outside the nav
         window.addEventListener("click", (e) =>{
+
             const innerNavElement = this.$refs.innerNav as HTMLElement;
 
             if (!innerNavElement || 
@@ -79,100 +86,112 @@ export default defineComponent({
 
                 this.isNavExpand = false;
             }
+
         });
 
         // Throttle the mousemove border gradient animation
         document.addEventListener("mousemove", (e) => {
-            if (!this.throtNavCloseDist){
 
+            if (!this.mobilePage) return;
+
+            if (!this.throtNavCloseDist){
                 this.throtNavCloseDist = setTimeout(() => {
                     this.navCloseDistCalc(e);
                     this.throtNavCloseDist = 0;
                 }, 16); // 60+ FPS
-
             }
+
         });
 
     },
 
     methods:{
 
+        checkIfMobile(){
+
+            if (window.innerWidth <= 768){
+                this.mobilePage = true;
+            } else {
+                this.mobilePage = false;
+            }
+
+        },
+
         navLogoScroll(){
 
-            if (window.innerWidth > 768){
-                window.scrollTo({
-                    top: 0,
-                    behavior: "smooth"
-                });
-            }
+            if (this.mobilePage) return;
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
 
         },
 
         toggleNav(e: MouseEvent){
-            if (window.innerWidth <= 768){
 
-                // Check if the clicked element is the navCloseBtn
-                const isCloseButton = 
-                    (this.$refs.navCloseBtn as HTMLElement).contains(e.target as Node);
+            if (!this.mobilePage) return;
 
-                // Check if the clicked element is a nav-link
-                const navLinks = document.querySelectorAll(".nav-link");
-                let isNavLink = false;
-                                
-                navLinks.forEach((navLink) => {
-                    if (navLink.contains(e.target as Node)){
-                        isNavLink = true;
-                    }
-                });
+            // Check if the clicked element is the navCloseBtn
+            const isCloseButton = 
+                (this.$refs.navCloseBtn as HTMLElement).contains(e.target as Node);
 
-                // Toggle Nav
-                if (this.isNavExpand && (isCloseButton || isNavLink)){
-                    this.isNavExpand = false;
-                } else if (!this.isNavExpand){
-                    this.isNavExpand = true;
+            // Check if the clicked element is a nav-link
+            const navLinks = document.querySelectorAll(".nav-link");
+            let isNavLink = false;
+                            
+            navLinks.forEach((navLink) => {
+                if (navLink.contains(e.target as Node)){
+                    isNavLink = true;
                 }
+            });
 
+            // Toggle Nav
+            if (this.isNavExpand && (isCloseButton || isNavLink)){
+                this.isNavExpand = false;
+            } else if (!this.isNavExpand){
+                this.isNavExpand = true;
             }
+
         },
 
         navCloseDistCalc(e: MouseEvent){
             
-            if (window.innerWidth <= 768){
-                const innerNav = this.$refs.innerNav as HTMLElement;
-                if (!innerNav || !e.target) return;
+            if (!this.mobilePage) return;
+            
+            const innerNav = this.$refs.innerNav as HTMLElement;
+            if (!innerNav || !e.target) return;
 
-                if (e.target === innerNav ||
-                    innerNav.contains(e.target as Node)){
-                           
-                    // Get the close button position data
-                    const closeBtnRect = (this.$refs.navCloseBtn as HTMLElement).getBoundingClientRect();
-                    const innerNavRect = innerNav.getBoundingClientRect();
-
-                    // Distance
-                    const dx = Math.max(0, e.clientX < closeBtnRect.left 
-                        ? closeBtnRect.left - e.clientX 
-                        : e.clientX - closeBtnRect.right);
-                    const dy = Math.max(0, e.clientY < closeBtnRect.top 
-                        ? closeBtnRect.top - e.clientY 
-                        : e.clientY - closeBtnRect.bottom);
-
-                    // Calculate the distance
-                    const distToCloseBtn = Math.sqrt(dx * dx + dy * dy);
-                    const maxDist = Math.hypot(innerNavRect.width, innerNavRect.height);
-
-                    // Ensure the distance is within bounds
-                    this.navCloseDistance = Math.max(0, 
-                        Math.min((100 * (1 - (distToCloseBtn / maxDist))), 100)
-                    );
+            if (e.target === innerNav ||
+                innerNav.contains(e.target as Node)){
                         
-                    this.navCloseCalcDist = 
-                        50 - (5/9) * (this.navCloseDistance - 100);
+                // Get the close button position data
+                const closeBtnRect = (this.$refs.navCloseBtn as HTMLElement).getBoundingClientRect();
+                const innerNavRect = innerNav.getBoundingClientRect();
 
-                } else {
-                    this.navCloseDistance = 0;
-                    this.navCloseCalcDist = 0;
-                }
+                // Distance
+                const dx = Math.max(0, e.clientX < closeBtnRect.left 
+                    ? closeBtnRect.left - e.clientX 
+                    : e.clientX - closeBtnRect.right);
+                const dy = Math.max(0, e.clientY < closeBtnRect.top 
+                    ? closeBtnRect.top - e.clientY 
+                    : e.clientY - closeBtnRect.bottom);
 
+                // Calculate the distance
+                const distToCloseBtn = Math.sqrt(dx * dx + dy * dy);
+                const maxDist = Math.hypot(innerNavRect.width, innerNavRect.height);
+
+                // Ensure the distance is within bounds
+                this.navCloseDistance = Math.max(0, 
+                    Math.min((100 * (1 - (distToCloseBtn / maxDist))), 100)
+                );
+                    
+                this.navCloseCalcDist = 
+                    50 - (5/9) * (this.navCloseDistance - 100);
+
+            } else {
+                this.navCloseDistance = 0;
+                this.navCloseCalcDist = 0;
             }
             
         }
@@ -241,7 +260,12 @@ nav .nav-inner{
 
     & .nav-logo{
         display:flex;
-        cursor:pointer;
+        cursor:var(--cursorHover);
+
+        &:hover .logo-shape3{
+            animation:logoHeadAnim 2s ease-in-out infinite;
+        }
+
     }
 
     & .logo{
@@ -270,7 +294,7 @@ nav .nav-inner{
         display:flex;
         align-items:center;
         gap:var(--size3);
-        cursor:pointer;
+        cursor:var(--cursorHover);
 
         &:hover .nav-link-txt:before{
             -webkit-text-stroke-color:var(--color1a);
@@ -315,6 +339,24 @@ nav .nav-inner{
 
 }
 
+@keyframes logoHeadAnim{
+    0%{
+        transform:translate(0, 0);
+    }
+    6%{
+        transform:translate(0, -70px);
+    }
+    14%{
+        transform:translate(0, 35px);
+    }
+    22%{
+        transform:translate(0, -20px);
+    }
+    30%{
+        transform:translate(0, 0px);
+    }
+}
+
 @media screen and (width <= 768px){
 
     .nav-placeholder{
@@ -344,7 +386,7 @@ nav .nav-inner{
         overflow:hidden;
 
         &:not(.nav-expand){
-            cursor:pointer;
+            cursor:var(--cursorHover);
         }
 
         &:hover:before{
@@ -373,6 +415,10 @@ nav .nav-inner{
             opacity:0;
             transition:var(--trans2);
             pointer-events:none;
+        }
+
+        & .nav-logo:hover .logo-shape3{
+            animation:none;
         }
 
         & .logo{

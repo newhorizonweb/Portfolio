@@ -41,7 +41,7 @@ export default defineComponent({
     border-radius:50%;
 
     transition:all var(--trans2), opacity var(--trans3) !important;
-    cursor:pointer;
+    cursor:var(--cursorHover);
     z-index:120;
 
     &.glass-tile:hover:before{

@@ -144,7 +144,7 @@ export default defineComponent({
     display:flex;
     justify-content:center;
     gap:var(--size4);
-    cursor:pointer;
+    cursor:var(--cursorHover);
 
     & .toggle-txt{
         font-size:min(26px, 5vw);

@@ -111,6 +111,18 @@
     --trans3:0.25s ease-in-out;
     --trans4:0.35s ease-in-out;
 
+
+
+        /* Cursors */
+
+    --cursorDefault:url('../img/cursor.svg') 12 12, auto;
+
+    /* Color 1a */
+    --cursorHover:url('../img/cursor-hover.svg') 12 12, pointer;
+
+    /* Color 1b */
+    --cursorText:url('../img/cursor-text.svg') 12 12, text;
+
 }
 
 body{

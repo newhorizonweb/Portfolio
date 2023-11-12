@@ -4,7 +4,13 @@
 <template>
 
     <footer class="wrapper glass-tile">
-        <LogoElem />
+
+        <div class="footer-logo"
+            @click="logoScroll">
+
+            <LogoElem />
+
+        </div>
 
         <div class="footer-version">
             <p>Portfolio v{{ appVersion }}</p>
@@ -35,6 +41,17 @@ export default defineComponent({
     },
 
     methods:{
+
+        logoScroll(){
+
+            if (window.innerWidth > 768){
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+            }
+
+        }
         
     }
 
@@ -55,8 +72,19 @@ footer.wrapper{
 
     transition:opacity var(--trans3);
 
-    & .logo{
+    & .footer-logo{
         height:var(--size8);
+        display:flex;
+        cursor:var(--cursorHover);
+
+        & .logo{
+            height:100%;
+        }
+
+        &:hover .logo-shape3{
+            animation:logoHeadAnim 2s ease-in-out infinite; // NavSection animation
+        }
+
     }
 
     & .footer-version{
