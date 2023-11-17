@@ -540,6 +540,11 @@ export default defineComponent({
 
     & .tile-modal-inner:has(.design-open){
         overflow:hidden;
+
+        & .modal-scroll-top{
+            pointer-events:none;
+        }
+
     }
 
     & .modal-content{
