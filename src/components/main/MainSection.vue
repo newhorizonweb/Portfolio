@@ -246,7 +246,6 @@ export default defineComponent({
                 },
 
                 {
-                    
                     title: "Icons",
                     designClass: "design-row5 design-row-s",
                     imgSrc: "<svg class='tile-svg2' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><g class='anim-elem1'><path class='cls-1' d='M106.5,27H120c17.4,0,31.5,14.6,31.5,30.3h0'/><path class='cls-1' d='M170.2,55.8,155.6,70.4a5.7,5.7,0,0,1-8.2,0L132.8,55.8'/></g><g class='anim-elem1'><path class='cls-1' d='M93.5,173H80c-17.4,0-31.4-14.7-31.4-30.3h0'/><path class='cls-1' d='M29.9,144.1l14.6-14.6a5.9,5.9,0,0,1,8.2,0l14.5,14.6'/></g><g class='anim-elem2 anim-elem2a'><circle class='cls-1' cx='151.5' cy='112.7' r='23'/><path class='cls-1' d='M126.3,196a22,22,0,0,1-12.2-3.6l-.7-.5c-4.2-3.1-6.4-8.3-6.8-13.3a61.4,61.4,0,0,1,.3-10.5,46.6,46.6,0,0,1,3.7-13.1,26,26,0,0,1,7.2-10.5,14.7,14.7,0,0,1,10.2-3.7c4.6.1,7.3,2.7,11.5,4.2a42.2,42.2,0,0,0,11.6,2h.3a40.9,40.9,0,0,0,11.6-2c4.2-1.5,6.9-4.1,11.5-4.2a16.6,16.6,0,0,1,10.2,3.7c3,2.3,5.6,6.6,7.3,10.5a50,50,0,0,1,3.6,13.1,61.4,61.4,0,0,1,.3,10.5c-.4,5-2.6,10.2-6.8,13.3a1.8,1.8,0,0,1-.7.5,22,22,0,0,1-12.2,3.6Z'/></g><g class='anim-elem2 anim-elem2b'><circle class='cls-1' cx='49' cy='27' r='23'/><path class='cls-1' d='M23.8,110.2a21.9,21.9,0,0,1-12.2-3.5l-.7-.6C6.7,103,4.5,97.9,4.2,92.8a52.7,52.7,0,0,1,.2-10.5,45,45,0,0,1,3.7-13c1.6-3.9,3.8-7.8,7.2-10.5A14.8,14.8,0,0,1,25.5,55c4.6.2,7.3,2.7,11.5,4.2a35.8,35.8,0,0,0,11.6,2h.3a34.9,34.9,0,0,0,11.6-2c4.2-1.5,6.9-4,11.6-4.2s7.2,1.5,10.2,3.8,5.5,6.6,7.2,10.5a48.3,48.3,0,0,1,3.6,13,61.4,61.4,0,0,1,.3,10.5,18,18,0,0,1-6.7,13.3l-.8.6a21.7,21.7,0,0,1-12.2,3.5Z'/></g></svg>",
@@ -313,6 +312,7 @@ export default defineComponent({
                         this.path("icons/dev-hero-icon.svg"),
                         this.path("icons/light-bulb.svg"),
 
+                        this.path("icons/pixel-art-icon.svg"),
                         this.path("icons/battery-icon.svg"),
                         this.path("icons/brush-icon.svg"),
                         this.path("icons/crosshair.svg"),
@@ -321,6 +321,7 @@ export default defineComponent({
                         this.path("icons/flyer-icon.svg"),
                         this.path("icons/star.svg"),
                         this.path("icons/link new.svg"),
+                        this.path("icons/turn-page-icon.svg"),
 
                         this.path("icons/calculator-icon.svg"),
                         this.path("icons/main-icon.svg"),
@@ -365,6 +366,59 @@ export default defineComponent({
                         this.path("color-palettes/sistair.webp"),
                         this.path("color-palettes/THAI GATE.webp"),
                         this.path("color-palettes/wanda-cox.webp"),
+                    ]
+                },
+
+                {
+                    title: "Pixel Art",
+                    designClass: "design-row5 design-row-s",
+                    imgSrc: "<svg class='tile-svg5' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><rect class='anim-elem1 cls-1' x='134.4' y='96.9' width='18.8' height='18.75'/><rect class='anim-elem1 cls-1' x='146.9' y='84.4' width='18.8' height='18.75'/><rect class='anim-elem1 cls-1' x='46.9' y='96.9' width='18.8' height='18.75'/><rect class='anim-elem1 cls-1' x='59.4' y='84.4' width='18.8' height='18.75'/><rect class='cls-1' x='37.5' y='25' width='12.5' height='12.5'/><rect class='cls-1' x='25' y='37.5' width='12.5' height='12.5'/><polygon class='cls-1' points='25 125 12.5 125 12.5 137.5 12.5 150 25 150 25 137.5 25 125'/><rect class='cls-1' x='25' y='150' width='12.5' height='12.5'/><rect class='cls-1' x='37.5' y='162.5' width='12.5' height='12.5'/><polygon class='cls-1' points='62.5 175 50 175 50 187.5 62.5 187.5 75 187.5 75 175 62.5 175'/><polygon class='cls-1' points='100 150 87.5 150 75 150 75 162.5 87.5 162.5 100 162.5 112.5 162.5 125 162.5 125 150 112.5 150 100 150'/><rect class='cls-1' x='125' y='137.5' width='12.5' height='12.5'/><rect class='cls-1' x='62.5' y='137.5' width='12.5' height='12.5'/><polygon class='cls-1' points='100 187.5 87.5 187.5 75 187.5 75 200 87.5 200 100 200 112.5 200 125 200 125 187.5 112.5 187.5 100 187.5'/><polygon class='cls-1' points='125 175 125 187.5 137.5 187.5 150 187.5 150 175 137.5 175 125 175'/><rect class='cls-1' x='150' y='162.5' width='12.5' height='12.5'/><rect class='cls-1' x='162.5' y='150' width='12.5' height='12.5'/><polygon class='cls-1' points='175 137.5 175 150 187.5 150 187.5 137.5 187.5 125 175 125 175 137.5'/><path class='cls-1' d='M187.5,75V50H175V75H25V50H12.5V75H0v50H12.5V87.5H25v25H37.5V125H75V112.5H87.5v-25h25v25H125V125h37.5V112.5H175v-25h12.5V125H200V75ZM75,100H62.5v12.5H50V100H62.5V87.5H75Zm87.5,0H150v12.5H137.5V100H150V87.5h12.5Z'/><rect class='cls-1' x='162.5' y='37.5' width='12.5' height='12.5'/><rect class='cls-1' x='150' y='25' width='12.5' height='12.5'/><polygon class='cls-1' points='137.5 25 150 25 150 12.5 137.5 12.5 125 12.5 125 25 137.5 25'/><polygon class='cls-1' points='100 12.5 112.5 12.5 125 12.5 125 0 112.5 0 100 0 87.5 0 75 0 75 12.5 87.5 12.5 100 12.5'/><polygon class='cls-1' points='75 25 75 12.5 62.5 12.5 50 12.5 50 25 62.5 25 75 25'/></svg>",
+
+                    designs:[
+                        this.path("pixel-art/rabbit.png"),
+                        this.path("pixel-art/fish1.png"),
+                        this.path("pixel-art/fish2.png"),
+                        this.path("pixel-art/fish3.png"),
+
+                        this.path("pixel-art/average-guy.png"),
+                        this.path("pixel-art/alien.png"),
+                        
+                        this.path("pixel-art/ice-cream.png"),
+                        this.path("pixel-art/apple.png"),
+                        this.path("pixel-art/apple-golden.png"),
+                        this.path("pixel-art/beef.png"),
+                        this.path("pixel-art/beef-cooked.png"),
+                        this.path("pixel-art/bread.png"),
+                        this.path("pixel-art/carrot.png"),
+                        this.path("pixel-art/cookie.png"),
+                        this.path("pixel-art/pie.png"),
+                        this.path("pixel-art/watermelon.png"),
+                        this.path("pixel-art/toadstool.png"),
+                        this.path("pixel-art/mushroom.png"),
+
+                        this.path("pixel-art/pickaxe.png"),
+                        this.path("pixel-art/axe.png"),
+                        this.path("pixel-art/shovel.png"),
+                        this.path("pixel-art/sword.png"),
+                        this.path("pixel-art/hoe.png"),
+
+                        this.path("pixel-art/iron helmet.png"),
+                        this.path("pixel-art/iron chestplate.png"),
+                        this.path("pixel-art/iron trousers.png"),
+                        this.path("pixel-art/iron boots.png"),
+
+                        this.path("pixel-art/golden helmet.png"),
+                        this.path("pixel-art/golden chestplate.png"),
+                        this.path("pixel-art/golden trousers.png"),
+                        this.path("pixel-art/golden boots.png"),
+
+                        this.path("pixel-art/iron ingot.png"),
+                        this.path("pixel-art/gold ingot.png"),
+                        this.path("pixel-art/coin.png"),
+
+                        this.path("pixel-art/bomb.png"),
+                        this.path("pixel-art/bone.png"),
+                        this.path("pixel-art/egg.png"),
                     ]
                 }
 

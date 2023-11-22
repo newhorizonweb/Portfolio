@@ -66,7 +66,7 @@ export default defineComponent({
             max-width:100%;
         }
 
-        & svg:not(.tile-svg1){
+        & svg:not(.tile-svg1, .tile-svg5){
             fill:none;
             stroke:#FFF;
             stroke-width:8px;
@@ -91,6 +91,14 @@ export default defineComponent({
             }
 
             .cls-2{
+                fill:#FFF;
+            }
+
+        }
+
+        & .tile-svg5{
+
+            & *{
                 fill:#FFF;
             }
 
@@ -145,12 +153,17 @@ export default defineComponent({
 
     & .tile-svg3 *{
         animation:tileSvgAnim3 2s ease-in-out infinite;
-        transform-origin:center
+        transform-origin:center;
     }
 
     & .tile-svg4 .anim-elem1{
         animation:tileSvgAnim4 2s ease-in-out infinite;
         transform-origin:bottom right;
+    }
+
+    & .tile-svg5 .anim-elem1{
+        animation:tileSvgAnim5 2s ease-in-out infinite;
+
     }
 
 }
@@ -266,6 +279,26 @@ export default defineComponent({
     }
     30%{
         transform:rotate(0deg);
+    }
+}
+
+        /* Tile 5 */
+
+@keyframes tileSvgAnim5{
+    0%{
+        opacity:1;
+    }
+    8%{
+        opacity:0;
+    }
+    15%{
+        opacity:1;
+    }
+    22%{
+        opacity:0;
+    }
+    30%{
+        opacity:1;
     }
 }
 
