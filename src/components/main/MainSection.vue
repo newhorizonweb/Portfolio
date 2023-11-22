@@ -242,6 +242,8 @@ export default defineComponent({
                         this.path("logos/symphony.svg"),
                         this.path("logos/timeless.svg"),
                         this.path("logos/uverit-w.svg"),
+                        this.path("logos/royal-casino.svg"),
+                        this.path("logos/sweet-stuff.svg"),
                     ]
                 },
 
@@ -338,11 +340,14 @@ export default defineComponent({
                     imgSrc: "<svg class='tile-svg3' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><path class='cls-1' d='M132,185.4V39.9'/><path class='cls-1' d='M132,36.4V190'/><path class='cls-1' d='M68,160.1V15.1'/><path class='cls-1' d='M68,163.6a11.2,11.2,0,0,1,4.4.9l53.9,24.3h0a14.1,14.1,0,0,0,11.4,0h0l56-25.2a3.8,3.8,0,0,0,2.3-3.5V14.6a4,4,0,0,0-5.7-3.5L136.4,35.5a11.2,11.2,0,0,1-4.4.9h0a11.2,11.2,0,0,1-4.4-.9L73.7,11.1h0a15,15,0,0,0-11.4,0h0L6.3,36.4A3.8,3.8,0,0,0,4,39.9V185.4a3.9,3.9,0,0,0,5.7,3.4l53.9-24.3a11.2,11.2,0,0,1,4.4-.9Z'/><path class='cls-1' d='M68,10V163.6'/></svg>",
 
                     designs:[
-                        this.path("flyers/DJ.webp"),
-                        this.path("flyers/uverit-flyer.webp"),
-                        this.path("flyers/aktywna-tablica.webp"),
-                        this.path("flyers/finanzexpert.webp"),
-                        this.path("flyers/m3lomoore flyer.webp"),
+                        this.path("collaterals/DJ.webp"),
+                        this.path("collaterals/uverit-flyer.webp"),
+                        this.path("collaterals/aktywna-tablica.webp"),
+                        this.path("collaterals/finanzexpert.webp"),
+                        this.path("collaterals/m3lomoore flyer.webp"),
+                        this.path("collaterals/sweet-stuff-flyer.webp"),
+                        this.path("collaterals/BrianRiot.webp"),
+                        this.path("collaterals/diamond hotel insert.webp"),
                     ]
                 },
 
@@ -366,6 +371,7 @@ export default defineComponent({
                         this.path("color-palettes/sistair.webp"),
                         this.path("color-palettes/THAI GATE.webp"),
                         this.path("color-palettes/wanda-cox.webp"),
+                        this.path("color-palettes/kew-central.webp"),
                     ]
                 },
 
