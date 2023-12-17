@@ -348,6 +348,9 @@ export default defineComponent({
                         this.path("collaterals/sweet-stuff-flyer.webp"),
                         this.path("collaterals/BrianRiot.webp"),
                         this.path("collaterals/diamond hotel insert.webp"),
+                        this.path("collaterals/amazon-insert1.webp"),
+                        this.path("collaterals/amazon-insert2.webp"),
+                        this.path("collaterals/symphony-insert.webp"),
                     ]
                 },
 
@@ -372,6 +375,7 @@ export default defineComponent({
                         this.path("color-palettes/THAI GATE.webp"),
                         this.path("color-palettes/wanda-cox.webp"),
                         this.path("color-palettes/kew-central.webp"),
+                        this.path("color-palettes/Amazeam.webp"),
                     ]
                 },
 
