@@ -5,33 +5,56 @@
 
     <main>
 
-        <!-- About -->
+    <!-- About -->
 
-        <AboutSection />
+        <div ref="aboutSection" id="about-section"
+            class="about-section wrapper main-section">
 
-        <!-- Dev Projects -->
+            <AboutSection
+                v-if="wasSectionLoaded['about-section']"
+            />
 
-        <TilesSection
-            :modalComp="ProjectModal"
-            :contents="devProjects"
+        </div>
 
-            sectionId="dev-projects"
-            sectionTitle="Web-Dev Projects"
-        />
+    <!-- Dev Projects -->
 
-        <!-- Graphic Design -->
+        <div ref="devTilesSection" id="dev-projects"
+            class="tile-section wrapper main-section">
+        
+            <TilesSection
+                v-if="wasSectionLoaded['dev-projects']"
+                sectionTitle="Web-Dev Projects"
 
-        <TilesSection
-            :modalComp="DesignModal"
-            :contents="graphicDesign"
+                :modalComp="ProjectModal"
+                :contents="devProjects"
+            />
 
-            sectionId="design-projects"
-            sectionTitle="Graphic Design"
-        />
+        </div>
 
-        <!-- Contact Form -->
+    <!-- Graphic Design -->
 
-        <MailForm />
+        <div ref="designTilesSection" id="design-projects"
+            class="tile-section wrapper main-section">
+
+            <TilesSection
+                v-if="wasSectionLoaded['design-projects']"
+                sectionTitle="Graphic Design"
+
+                :modalComp="DesignModal"
+                :contents="graphicDesign"
+            />
+
+        </div>
+
+    <!-- Contact Form -->
+
+        <div id="contact-form" class="contact-section wrapper main-section">
+
+            <MailForm
+                v-if="wasSectionLoaded['contact-form']"
+            />
+
+        </div>
 
     </main>
 
@@ -41,11 +64,13 @@
 
 <script lang="ts">
 import { defineComponent, markRaw } from 'vue';
+
 import AboutSection from "./AboutSection.vue";
 import TilesSection from "./TilesSection.vue";
 
 import ProjectModal from "./ProjectModal.vue";
 import DesignModal from "./DesignModal.vue";
+
 import MailForm from "./MailForm.vue";
 
 export default defineComponent({
@@ -66,13 +91,13 @@ export default defineComponent({
 
                 {
                     title: "Cookbook",
-                    imgSrc: this.path('projects/uverit-logo.svg'),
+                    imgSrc: this.path('dev-projects/uverit-logo.svg'),
 
                     gitHubLink: "https://github.com/newhorizonweb/Uverit-Cookbook",
                     pageLink: "",
                     
-                    mobileMockup: this.path('projects/cookbook-mobile.webp'),
-                    desktopMockup: this.path('projects/cookbook-desktop.webp'),
+                    mobileMockup: this.path('dev-projects/cookbook-mobile.webp'),
+                    desktopMockup: this.path('dev-projects/cookbook-desktop.webp'),
 
                     overview:[
                         "Uverit Cookbook is a digital platform offering a vast collection of recipes and products.",
@@ -97,13 +122,13 @@ export default defineComponent({
 
                 {
                     title: "Logo Test",
-                    imgSrc: this.path('projects/uverit-logo.svg'),
+                    imgSrc: this.path('dev-projects/uverit-logo.svg'),
 
                     gitHubLink: "https://github.com/newhorizonweb/Uverit-Logo-Test",
                     pageLink: "https://newhorizonweb.github.io/Uverit-Logo-Test/",
 
-                    mobileMockup: this.path('projects/logo-test-mobile.webp'),
-                    desktopMockup: this.path('projects/logo-test-desktop.webp'),
+                    mobileMockup: this.path('dev-projects/logo-test-mobile.webp'),
+                    desktopMockup: this.path('dev-projects/logo-test-desktop.webp'),
 
                     overview:[
                         "Uverit Logo Test is a program designed to deconstruct logos into simple, easily understandable elements.",
@@ -126,13 +151,13 @@ export default defineComponent({
 
                 {
                     title: "SkillPeak",
-                    imgSrc: this.path('projects/uverit-logo.svg'),
+                    imgSrc: this.path('dev-projects/uverit-logo.svg'),
 
                     gitHubLink: "https://github.com/newhorizonweb/Uverit-SkillPeak",
                     pageLink: "https://newhorizonweb.github.io/Uverit-SkillPeak/",
 
-                    mobileMockup: this.path('projects/skillpeak-mobile.webp'),
-                    desktopMockup: this.path('projects/skillpeak-desktop.webp'),
+                    mobileMockup: this.path('dev-projects/skillpeak-mobile.webp'),
+                    desktopMockup: this.path('dev-projects/skillpeak-desktop.webp'),
 
                     overview:[
                         "Uverit SkillPeak is a user-friendly program that provides a swift and hassle-free experience for creating resumes.",
@@ -156,13 +181,13 @@ export default defineComponent({
 
                 {
                     title: "Color Palette",
-                    imgSrc: this.path('projects/uverit-logo.svg'),
+                    imgSrc: this.path('dev-projects/uverit-logo.svg'),
 
                     gitHubLink: "https://github.com/newhorizonweb/Uverit-Color-Palette",
                     pageLink: "https://newhorizonweb.github.io/Uverit-Color-Palette/index.html",
 
-                    mobileMockup: this.path('projects/color-palette-mobile.webp'),
-                    desktopMockup: this.path('projects/color-palette-desktop.webp'),
+                    mobileMockup: this.path('dev-projects/color-palette-mobile.webp'),
+                    desktopMockup: this.path('dev-projects/color-palette-desktop.webp'),
 
                     overview:[
                         "Uverit Color Palette showcases the brand's identity and provides basic guidelines for color and typeface implementation.",
@@ -185,13 +210,13 @@ export default defineComponent({
 
                 {
                     title: "Rapid Core",
-                    imgSrc: this.path('projects/rapid-core-logo.svg'),
+                    imgSrc: this.path('dev-projects/rapid-core-logo.svg'),
 
                     gitHubLink: "https://github.com/newhorizonweb/Rapid-Core",
                     pageLink: "https://newhorizonweb.github.io/Rapid-Core/",
 
-                    mobileMockup: this.path('projects/rapid-core-mobile.webp'),
-                    desktopMockup: this.path('projects/rapid-core-desktop.webp'),
+                    mobileMockup: this.path('dev-projects/rapid-core-mobile.webp'),
+                    desktopMockup: this.path('dev-projects/rapid-core-desktop.webp'),
 
                     overview:[
                         "Your Personal Aim Trainer",
@@ -227,6 +252,7 @@ export default defineComponent({
                 {
                     title: "Logos",
                     designClass: "design-row3 design-row-h",
+                    scrollContent: false,
                     imgSrc: "<svg class='tile-svg1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 692 692'><defs><style></style></defs><path class='cls-2' d='M85,746a30.2,30.2,0,0,1-12.8-2.8A30.9,30.9,0,0,1,54,715V85a31,31,0,0,1,58.1-15L219,263.4a31,31,0,1,1-54.2,30L116,205.2V646.9L379.7,417.1a30.9,30.9,0,0,1,40.7,0L684,646.9V205.2l-48.7,88.2a31,31,0,0,1-54.3-30L687.9,70A31,31,0,0,1,746,85V715a31.1,31.1,0,0,1-51.4,23.4L400,481.6,105.4,738.4A31.3,31.3,0,0,1,85,746Z' transform='translate(-54 -54)'/><path class='cls-2' d='M400,686a31,31,0,0,1-27.1-16L254.3,455.4a31,31,0,1,1,54.3-29.9L400,590.9l91.4-165.4a31,31,0,1,1,54.3,29.9L427.1,670A31,31,0,0,1,400,686Z' transform='translate(-54 -54)'/><g class='anim-elem1'><path class='cls-1' d='M400,376.2a131.1,131.1,0,0,1-131-131c0-72.2,58.8-131,131-131s131,58.8,131,131A131.1,131.1,0,0,1,400,376.2Zm0-200a69,69,0,1,0,69,69A69.1,69.1,0,0,0,400,176.2Z' transform='translate(-54 -54)'/></g></svg>",
 
                     designs:[
@@ -235,21 +261,26 @@ export default defineComponent({
                         this.path("logos/fox logo white.svg"),
                         this.path("logos/happy vet white.svg"),
                         this.path("logos/logo-wb.svg"),
-                        this.path("logos/Luigi's Mansion logo excluded reverse.png"),
+                        this.path("logos/Luigi's Mansion logo excluded reverse.webp"),
                         this.path("logos/New Horizon Full white.svg"),
                         this.path("logos/rapid-core-logo.svg"),
-                        this.path("logos/Superior Star Logo excluded reverse v2.png"),
+                        this.path("logos/Superior Star Logo excluded reverse v2.webp"),
                         this.path("logos/symphony.svg"),
                         this.path("logos/timeless.svg"),
                         this.path("logos/uverit-w.svg"),
                         this.path("logos/royal-casino.svg"),
                         this.path("logos/sweet-stuff.svg"),
+                        this.path("logos/My Ally.svg"),
+                        this.path("logos/Cozy Fluff Logo.svg"),
+                        this.path("logos/Atombits.svg"),
+                        this.path("logos/jangflix.svg"),
                     ]
                 },
 
                 {
                     title: "Icons",
                     designClass: "design-row5 design-row-s",
+                    scrollContent: false,
                     imgSrc: "<svg class='tile-svg2' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><g class='anim-elem1'><path class='cls-1' d='M106.5,27H120c17.4,0,31.5,14.6,31.5,30.3h0'/><path class='cls-1' d='M170.2,55.8,155.6,70.4a5.7,5.7,0,0,1-8.2,0L132.8,55.8'/></g><g class='anim-elem1'><path class='cls-1' d='M93.5,173H80c-17.4,0-31.4-14.7-31.4-30.3h0'/><path class='cls-1' d='M29.9,144.1l14.6-14.6a5.9,5.9,0,0,1,8.2,0l14.5,14.6'/></g><g class='anim-elem2 anim-elem2a'><circle class='cls-1' cx='151.5' cy='112.7' r='23'/><path class='cls-1' d='M126.3,196a22,22,0,0,1-12.2-3.6l-.7-.5c-4.2-3.1-6.4-8.3-6.8-13.3a61.4,61.4,0,0,1,.3-10.5,46.6,46.6,0,0,1,3.7-13.1,26,26,0,0,1,7.2-10.5,14.7,14.7,0,0,1,10.2-3.7c4.6.1,7.3,2.7,11.5,4.2a42.2,42.2,0,0,0,11.6,2h.3a40.9,40.9,0,0,0,11.6-2c4.2-1.5,6.9-4.1,11.5-4.2a16.6,16.6,0,0,1,10.2,3.7c3,2.3,5.6,6.6,7.3,10.5a50,50,0,0,1,3.6,13.1,61.4,61.4,0,0,1,.3,10.5c-.4,5-2.6,10.2-6.8,13.3a1.8,1.8,0,0,1-.7.5,22,22,0,0,1-12.2,3.6Z'/></g><g class='anim-elem2 anim-elem2b'><circle class='cls-1' cx='49' cy='27' r='23'/><path class='cls-1' d='M23.8,110.2a21.9,21.9,0,0,1-12.2-3.5l-.7-.6C6.7,103,4.5,97.9,4.2,92.8a52.7,52.7,0,0,1,.2-10.5,45,45,0,0,1,3.7-13c1.6-3.9,3.8-7.8,7.2-10.5A14.8,14.8,0,0,1,25.5,55c4.6.2,7.3,2.7,11.5,4.2a35.8,35.8,0,0,0,11.6,2h.3a34.9,34.9,0,0,0,11.6-2c4.2-1.5,6.9-4,11.6-4.2s7.2,1.5,10.2,3.8,5.5,6.6,7.2,10.5a48.3,48.3,0,0,1,3.6,13,61.4,61.4,0,0,1,.3,10.5,18,18,0,0,1-6.7,13.3l-.8.6a21.7,21.7,0,0,1-12.2,3.5Z'/></g></svg>",
 
                     designs:[
@@ -312,6 +343,7 @@ export default defineComponent({
                         this.path("icons/graduation-hat-icon.svg"),
                         this.path("icons/references-icon.svg"),
                         this.path("icons/dev-hero-icon.svg"),
+                        this.path("icons/web-design-icon.svg"),
                         this.path("icons/light-bulb.svg"),
 
                         this.path("icons/pixel-art-icon.svg"),
@@ -335,9 +367,45 @@ export default defineComponent({
                 },
 
                 {
+                    title: "Web Design",
+                    designClass: "design-row3 design-row-s",
+                    scrollContent: true,
+                    imgSrc: "<svg class='tile-svg3' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><rect class='cls-1' x='5.1' y='18' width='189.9' height='142.55' rx='15.7'/><line class='cls-1' x1='67.8' y1='182' x2='132.2' y2='182'/><line class='cls-1' x1='138.7' y1='138.6' x2='170.2' y2='138.6'/><line class='anim-elem4 cls-1' x1='51.6' y1='138.6' x2='116.1' y2='138.6'/><line class='cls-1' x1='29.8' y1='138.6' x2='29.9' y2='138.6'/><path class='anim-elem1 cls-2' d='M67.1,60.2l-30,17.4a1.8,1.8,0,0,0,0,3.1L67.1,98'/><path class='anim-elem3 cls-2' d='M132.9,60.2l30,17.4a1.8,1.8,0,0,1,0,3.1L132.9,98'/><line class='anim-elem2 cls-2' x1='117.5' y1='41.6' x2='82.5' y2='116.6'/></svg>",
+
+                    designs:[
+                        {
+                            img: this.path("web-design/Portfolio.webp"),
+                            isMobile: false
+                        },
+                        {
+                            img: this.path("web-design/Paw Guardians.webp"),
+                            isMobile: false
+                        },
+                        {
+                            img: this.path("web-design/VibeSync.webp"),
+                            isMobile: true
+                        },
+                        {
+                            img: this.path("web-design/My Ally.webp"),
+                            isMobile: true
+                        },
+                        {
+                            img: this.path("web-design/Cozy Fluff.webp"),
+                            isMobile: false
+                        },
+                        {
+                            img: this.path("web-design/Atombits.webp"),
+                            isMobile: false
+                        },
+
+                    ]
+                },
+
+                {
                     title: "Collaterals",
                     designClass: "design-row3 design-row-s",
-                    imgSrc: "<svg class='tile-svg3' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><path class='cls-1' d='M132,185.4V39.9'/><path class='cls-1' d='M132,36.4V190'/><path class='cls-1' d='M68,160.1V15.1'/><path class='cls-1' d='M68,163.6a11.2,11.2,0,0,1,4.4.9l53.9,24.3h0a14.1,14.1,0,0,0,11.4,0h0l56-25.2a3.8,3.8,0,0,0,2.3-3.5V14.6a4,4,0,0,0-5.7-3.5L136.4,35.5a11.2,11.2,0,0,1-4.4.9h0a11.2,11.2,0,0,1-4.4-.9L73.7,11.1h0a15,15,0,0,0-11.4,0h0L6.3,36.4A3.8,3.8,0,0,0,4,39.9V185.4a3.9,3.9,0,0,0,5.7,3.4l53.9-24.3a11.2,11.2,0,0,1,4.4-.9Z'/><path class='cls-1' d='M68,10V163.6'/></svg>",
+                    scrollContent: false,
+                    imgSrc: "<svg class='tile-svg4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><path class='cls-1' d='M132,185.4V39.9'/><path class='cls-1' d='M132,36.4V190'/><path class='cls-1' d='M68,160.1V15.1'/><path class='cls-1' d='M68,163.6a11.2,11.2,0,0,1,4.4.9l53.9,24.3h0a14.1,14.1,0,0,0,11.4,0h0l56-25.2a3.8,3.8,0,0,0,2.3-3.5V14.6a4,4,0,0,0-5.7-3.5L136.4,35.5a11.2,11.2,0,0,1-4.4.9h0a11.2,11.2,0,0,1-4.4-.9L73.7,11.1h0a15,15,0,0,0-11.4,0h0L6.3,36.4A3.8,3.8,0,0,0,4,39.9V185.4a3.9,3.9,0,0,0,5.7,3.4l53.9-24.3a11.2,11.2,0,0,1,4.4-.9Z'/><path class='cls-1' d='M68,10V163.6'/></svg>",
 
                     designs:[
                         this.path("collaterals/DJ.webp"),
@@ -357,7 +425,8 @@ export default defineComponent({
                 {
                     title: "Color Palettes",
                     designClass: "design-row3 design-row-h",
-                    imgSrc: "<svg class='tile-svg4' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><path class='cls-1' d='M144.4,125.4a33.4,33.4,0,0,0,5.2,1.4c7,1.4,19.6,2.7,30.4-3.5a28.7,28.7,0,0,0,7-5.5c5.4-5.6,8-13,8.8-20.7,1.1-10.5-2-21.1-6.5-30.7C175.5,37.1,146.2,14.9,114,11.2a109.5,109.5,0,0,0-46.2,4.6A101,101,0,0,0,43.4,27.9a92.4,92.4,0,0,0-26.2,27c-19.1,30-17.1,68,3.9,96.4a93.2,93.2,0,0,0,16.3,16.9c14.2,11.4,31.9,18.1,49.9,20.4a116.9,116.9,0,0,0,19.6.8c4.5-.3,9.8-.8,13.2-4.3s3.7-8.5.4-12-4.9-3.6-7.5-5.2c-9-5.5-16.2-15.7-13.2-26.6a23.3,23.3,0,0,1,10.4-12.7c3.2-1.9,9.8-4.5,19.3-4.9A45.3,45.3,0,0,1,144.4,125.4Z'/><circle class='cls-1' cx='48.6' cy='78.4' r='15.7'/><circle class='cls-1' cx='99.9' cy='49' r='15.7'/><circle class='cls-1' cx='151.6' cy='77' r='15.7'/><circle class='cls-1' cx='56.1' cy='136.9' r='15.7'/><g class='anim-elem1'><path class='cls-2' d='M138.4,119.4l53.3,53.3c4.1,4.1,4.4,10.4.7,14.1h0c-3.6,3.7-10,3.3-14.1-.7l-53.2-53.3'/><path class='cls-3' d='M120.1,92.9c6.6,3.1,10.4,5.9,13.7,11.1s7.1,17.1,0,24.1-18.6,3.4-24.1,0-8.1-7-11.2-13.7c-2.2-4.6-7.9-23.6-9.8-29.9a1.1,1.1,0,0,1,.7-1.4h.7C96.4,84.9,115.4,90.7,120.1,92.9Z'/></g></svg>",
+                    scrollContent: false,
+                    imgSrc: "<svg class='tile-svg5' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><path class='cls-1' d='M144.4,125.4a33.4,33.4,0,0,0,5.2,1.4c7,1.4,19.6,2.7,30.4-3.5a28.7,28.7,0,0,0,7-5.5c5.4-5.6,8-13,8.8-20.7,1.1-10.5-2-21.1-6.5-30.7C175.5,37.1,146.2,14.9,114,11.2a109.5,109.5,0,0,0-46.2,4.6A101,101,0,0,0,43.4,27.9a92.4,92.4,0,0,0-26.2,27c-19.1,30-17.1,68,3.9,96.4a93.2,93.2,0,0,0,16.3,16.9c14.2,11.4,31.9,18.1,49.9,20.4a116.9,116.9,0,0,0,19.6.8c4.5-.3,9.8-.8,13.2-4.3s3.7-8.5.4-12-4.9-3.6-7.5-5.2c-9-5.5-16.2-15.7-13.2-26.6a23.3,23.3,0,0,1,10.4-12.7c3.2-1.9,9.8-4.5,19.3-4.9A45.3,45.3,0,0,1,144.4,125.4Z'/><circle class='cls-1' cx='48.6' cy='78.4' r='15.7'/><circle class='cls-1' cx='99.9' cy='49' r='15.7'/><circle class='cls-1' cx='151.6' cy='77' r='15.7'/><circle class='cls-1' cx='56.1' cy='136.9' r='15.7'/><g class='anim-elem1'><path class='cls-2' d='M138.4,119.4l53.3,53.3c4.1,4.1,4.4,10.4.7,14.1h0c-3.6,3.7-10,3.3-14.1-.7l-53.2-53.3'/><path class='cls-3' d='M120.1,92.9c6.6,3.1,10.4,5.9,13.7,11.1s7.1,17.1,0,24.1-18.6,3.4-24.1,0-8.1-7-11.2-13.7c-2.2-4.6-7.9-23.6-9.8-29.9a1.1,1.1,0,0,1,.7-1.4h.7C96.4,84.9,115.4,90.7,120.1,92.9Z'/></g></svg>",
 
                     designs:[
                         this.path("color-palettes/lumifilms.webp"),
@@ -376,59 +445,68 @@ export default defineComponent({
                         this.path("color-palettes/wanda-cox.webp"),
                         this.path("color-palettes/kew-central.webp"),
                         this.path("color-palettes/Amazeam.webp"),
+                        this.path("color-palettes/Sincerely OMara.webp"),
+                        this.path("color-palettes/Hier im Ort.webp"),
+                        this.path("color-palettes/Jangflix Color Palette.webp"),
+                        this.path("color-palettes/My Ally.webp"),
+                        this.path("color-palettes/Cozy Fluff.webp"),
+                        this.path("color-palettes/Atombits.webp"),
+                        this.path("color-palettes/JoVenture.webp"),
+                        this.path("color-palettes/TallSoftBoi.webp"),
                     ]
                 },
 
                 {
                     title: "Pixel Art",
                     designClass: "design-row5 design-row-s",
-                    imgSrc: "<svg class='tile-svg5' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><rect class='anim-elem1 cls-1' x='134.4' y='96.9' width='18.8' height='18.75'/><rect class='anim-elem1 cls-1' x='146.9' y='84.4' width='18.8' height='18.75'/><rect class='anim-elem1 cls-1' x='46.9' y='96.9' width='18.8' height='18.75'/><rect class='anim-elem1 cls-1' x='59.4' y='84.4' width='18.8' height='18.75'/><rect class='cls-1' x='37.5' y='25' width='12.5' height='12.5'/><rect class='cls-1' x='25' y='37.5' width='12.5' height='12.5'/><polygon class='cls-1' points='25 125 12.5 125 12.5 137.5 12.5 150 25 150 25 137.5 25 125'/><rect class='cls-1' x='25' y='150' width='12.5' height='12.5'/><rect class='cls-1' x='37.5' y='162.5' width='12.5' height='12.5'/><polygon class='cls-1' points='62.5 175 50 175 50 187.5 62.5 187.5 75 187.5 75 175 62.5 175'/><polygon class='cls-1' points='100 150 87.5 150 75 150 75 162.5 87.5 162.5 100 162.5 112.5 162.5 125 162.5 125 150 112.5 150 100 150'/><rect class='cls-1' x='125' y='137.5' width='12.5' height='12.5'/><rect class='cls-1' x='62.5' y='137.5' width='12.5' height='12.5'/><polygon class='cls-1' points='100 187.5 87.5 187.5 75 187.5 75 200 87.5 200 100 200 112.5 200 125 200 125 187.5 112.5 187.5 100 187.5'/><polygon class='cls-1' points='125 175 125 187.5 137.5 187.5 150 187.5 150 175 137.5 175 125 175'/><rect class='cls-1' x='150' y='162.5' width='12.5' height='12.5'/><rect class='cls-1' x='162.5' y='150' width='12.5' height='12.5'/><polygon class='cls-1' points='175 137.5 175 150 187.5 150 187.5 137.5 187.5 125 175 125 175 137.5'/><path class='cls-1' d='M187.5,75V50H175V75H25V50H12.5V75H0v50H12.5V87.5H25v25H37.5V125H75V112.5H87.5v-25h25v25H125V125h37.5V112.5H175v-25h12.5V125H200V75ZM75,100H62.5v12.5H50V100H62.5V87.5H75Zm87.5,0H150v12.5H137.5V100H150V87.5h12.5Z'/><rect class='cls-1' x='162.5' y='37.5' width='12.5' height='12.5'/><rect class='cls-1' x='150' y='25' width='12.5' height='12.5'/><polygon class='cls-1' points='137.5 25 150 25 150 12.5 137.5 12.5 125 12.5 125 25 137.5 25'/><polygon class='cls-1' points='100 12.5 112.5 12.5 125 12.5 125 0 112.5 0 100 0 87.5 0 75 0 75 12.5 87.5 12.5 100 12.5'/><polygon class='cls-1' points='75 25 75 12.5 62.5 12.5 50 12.5 50 25 62.5 25 75 25'/></svg>",
+                    scrollContent: false,
+                    imgSrc: "<svg class='tile-svg6' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><rect class='anim-elem1 cls-1' x='134.4' y='96.9' width='18.8' height='18.75'/><rect class='anim-elem1 cls-1' x='146.9' y='84.4' width='18.8' height='18.75'/><rect class='anim-elem1 cls-1' x='46.9' y='96.9' width='18.8' height='18.75'/><rect class='anim-elem1 cls-1' x='59.4' y='84.4' width='18.8' height='18.75'/><rect class='cls-1' x='37.5' y='25' width='12.5' height='12.5'/><rect class='cls-1' x='25' y='37.5' width='12.5' height='12.5'/><polygon class='cls-1' points='25 125 12.5 125 12.5 137.5 12.5 150 25 150 25 137.5 25 125'/><rect class='cls-1' x='25' y='150' width='12.5' height='12.5'/><rect class='cls-1' x='37.5' y='162.5' width='12.5' height='12.5'/><polygon class='cls-1' points='62.5 175 50 175 50 187.5 62.5 187.5 75 187.5 75 175 62.5 175'/><polygon class='cls-1' points='100 150 87.5 150 75 150 75 162.5 87.5 162.5 100 162.5 112.5 162.5 125 162.5 125 150 112.5 150 100 150'/><rect class='cls-1' x='125' y='137.5' width='12.5' height='12.5'/><rect class='cls-1' x='62.5' y='137.5' width='12.5' height='12.5'/><polygon class='cls-1' points='100 187.5 87.5 187.5 75 187.5 75 200 87.5 200 100 200 112.5 200 125 200 125 187.5 112.5 187.5 100 187.5'/><polygon class='cls-1' points='125 175 125 187.5 137.5 187.5 150 187.5 150 175 137.5 175 125 175'/><rect class='cls-1' x='150' y='162.5' width='12.5' height='12.5'/><rect class='cls-1' x='162.5' y='150' width='12.5' height='12.5'/><polygon class='cls-1' points='175 137.5 175 150 187.5 150 187.5 137.5 187.5 125 175 125 175 137.5'/><path class='cls-1' d='M187.5,75V50H175V75H25V50H12.5V75H0v50H12.5V87.5H25v25H37.5V125H75V112.5H87.5v-25h25v25H125V125h37.5V112.5H175v-25h12.5V125H200V75ZM75,100H62.5v12.5H50V100H62.5V87.5H75Zm87.5,0H150v12.5H137.5V100H150V87.5h12.5Z'/><rect class='cls-1' x='162.5' y='37.5' width='12.5' height='12.5'/><rect class='cls-1' x='150' y='25' width='12.5' height='12.5'/><polygon class='cls-1' points='137.5 25 150 25 150 12.5 137.5 12.5 125 12.5 125 25 137.5 25'/><polygon class='cls-1' points='100 12.5 112.5 12.5 125 12.5 125 0 112.5 0 100 0 87.5 0 75 0 75 12.5 87.5 12.5 100 12.5'/><polygon class='cls-1' points='75 25 75 12.5 62.5 12.5 50 12.5 50 25 62.5 25 75 25'/></svg>",
 
                     designs:[
-                        this.path("pixel-art/rabbit.png"),
-                        this.path("pixel-art/fish1.png"),
-                        this.path("pixel-art/fish2.png"),
-                        this.path("pixel-art/fish3.png"),
+                        this.path("pixel-art/rabbit.webp"),
+                        this.path("pixel-art/fish1.webp"),
+                        this.path("pixel-art/fish2.webp"),
+                        this.path("pixel-art/fish3.webp"),
 
-                        this.path("pixel-art/average-guy.png"),
-                        this.path("pixel-art/alien.png"),
+                        this.path("pixel-art/average-guy.webp"),
+                        this.path("pixel-art/alien.webp"),
                         
-                        this.path("pixel-art/ice-cream.png"),
-                        this.path("pixel-art/apple.png"),
-                        this.path("pixel-art/apple-golden.png"),
-                        this.path("pixel-art/beef.png"),
-                        this.path("pixel-art/beef-cooked.png"),
-                        this.path("pixel-art/bread.png"),
-                        this.path("pixel-art/carrot.png"),
-                        this.path("pixel-art/cookie.png"),
-                        this.path("pixel-art/pie.png"),
-                        this.path("pixel-art/watermelon.png"),
-                        this.path("pixel-art/toadstool.png"),
-                        this.path("pixel-art/mushroom.png"),
+                        this.path("pixel-art/ice-cream.webp"),
+                        this.path("pixel-art/apple.webp"),
+                        this.path("pixel-art/apple-golden.webp"),
+                        this.path("pixel-art/beef.webp"),
+                        this.path("pixel-art/beef-cooked.webp"),
+                        this.path("pixel-art/bread.webp"),
+                        this.path("pixel-art/carrot.webp"),
+                        this.path("pixel-art/cookie.webp"),
+                        this.path("pixel-art/pie.webp"),
+                        this.path("pixel-art/watermelon.webp"),
+                        this.path("pixel-art/toadstool.webp"),
+                        this.path("pixel-art/mushroom.webp"),
 
-                        this.path("pixel-art/pickaxe.png"),
-                        this.path("pixel-art/axe.png"),
-                        this.path("pixel-art/shovel.png"),
-                        this.path("pixel-art/sword.png"),
-                        this.path("pixel-art/hoe.png"),
+                        this.path("pixel-art/pickaxe.webp"),
+                        this.path("pixel-art/axe.webp"),
+                        this.path("pixel-art/shovel.webp"),
+                        this.path("pixel-art/sword.webp"),
+                        this.path("pixel-art/hoe.webp"),
 
-                        this.path("pixel-art/iron helmet.png"),
-                        this.path("pixel-art/iron chestplate.png"),
-                        this.path("pixel-art/iron trousers.png"),
-                        this.path("pixel-art/iron boots.png"),
+                        this.path("pixel-art/iron helmet.webp"),
+                        this.path("pixel-art/iron chestplate.webp"),
+                        this.path("pixel-art/iron trousers.webp"),
+                        this.path("pixel-art/iron boots.webp"),
 
-                        this.path("pixel-art/golden helmet.png"),
-                        this.path("pixel-art/golden chestplate.png"),
-                        this.path("pixel-art/golden trousers.png"),
-                        this.path("pixel-art/golden boots.png"),
+                        this.path("pixel-art/golden helmet.webp"),
+                        this.path("pixel-art/golden chestplate.webp"),
+                        this.path("pixel-art/golden trousers.webp"),
+                        this.path("pixel-art/golden boots.webp"),
 
-                        this.path("pixel-art/iron ingot.png"),
-                        this.path("pixel-art/gold ingot.png"),
-                        this.path("pixel-art/coin.png"),
+                        this.path("pixel-art/iron ingot.webp"),
+                        this.path("pixel-art/gold ingot.webp"),
+                        this.path("pixel-art/coin.webp"),
 
-                        this.path("pixel-art/bomb.png"),
-                        this.path("pixel-art/bone.png"),
-                        this.path("pixel-art/egg.png"),
+                        this.path("pixel-art/bomb.webp"),
+                        this.path("pixel-art/bone.webp"),
+                        this.path("pixel-art/egg.webp"),
                     ]
                 }
 
@@ -446,6 +524,11 @@ export default defineComponent({
 
             // Other Variables
             mainSections: document.querySelectorAll(".main-section"),
+            wasSectionLoaded: {} as { [key: string]: boolean },
+
+            observer: null as IntersectionObserver | null,
+            isObserving: false,
+            
             options: {
                 root: null, // Use the viewport as the root
                 rootMargin: '50px', // Margin
@@ -459,36 +542,107 @@ export default defineComponent({
 
             /* Section Visibility Observation */
 
+        // Create the IntersectionObserver
+        this.observer = new IntersectionObserver(this.sectionIntersection, this.options);
+
+        // Set the sections
         this.mainSections = document.querySelectorAll(".main-section");
-        const observer = new IntersectionObserver(this.handleIntersection, this.options);
-        
-        this.$nextTick(() => {
-            this.mainSections.forEach((section) => {
 
-                section.classList.add("section-out");
-                observer.observe(section);
+        // Initialize the observer
+        this.observeSections();
 
-            });
-        });
+        // Disable the observer on mobile, so the sections are not animated (better perforamnce)
+        window.addEventListener("resize", this.disableObserverOnmobile);
 
+        window.addEventListener("click", this.loadComponents);
     },
 
     methods:{
 
-        handleIntersection(entries: IntersectionObserverEntry[]) {
-            entries.forEach((entry) => {
+        loadComponents(){
+
+            this.mainSections.forEach((section: Element) => {
+                this.wasSectionLoaded[section.id] = true;
+            });
+
+        },
+
+        observeSections(){
+
+            // Without this check, the observer would not function correctly when the window is resized
+            if (!this.isObserving){
+
+                this.isObserving = true;
+
+                this.mainSections.forEach((section: Element) => {
+
+                    const sectionId = section.id;
+
+                    // Do not fade out the sections if the user is scrolled past them
+                    const isAbove = section.getBoundingClientRect().top >= 0;
+                    if (isAbove){
+                        this.wasSectionLoaded[sectionId] = false;
+                        section.classList.add("section-out");
+                    }
+
+                    if (this.observer){
+                        this.observer.observe(section);
+                    }
+
+                });
+
+            }
+
+        },
+
+        sectionIntersection(entries: IntersectionObserverEntry[]){
+
+            entries.forEach((entry: IntersectionObserverEntry) => {
 
                 const section = entry.target;
+                const sectionId = section.id;
                 const isAbove = entry.boundingClientRect.top >= 0;
 
+                // Check if the user is scrolled past the section
                 if (entry.isIntersecting){
+                    this.wasSectionLoaded[sectionId] = true;
                     section.classList.remove("section-out");
                 } else if (isAbove){
                     section.classList.add("section-out");
                 }
 
             });
+
         },
+
+        disableObserverOnmobile(){
+
+            if (window.innerWidth > 768){
+                this.observeSections();
+            } else {
+                this.disconnectObserver();
+            }
+
+        },
+
+        disconnectObserver(){
+
+            // Disconnect the observer if it's already initialized
+            if (this.observer){
+
+                this.observer.disconnect();
+                this.isObserving = false;
+
+                // Make all of the sections faded in
+                this.mainSections.forEach((section) => {
+                    section.classList.remove("section-out");
+                });
+
+            }
+
+        },
+
+            /* Image Path */
 
         path(imgName: string){
             return require("@/assets/img/" + imgName);

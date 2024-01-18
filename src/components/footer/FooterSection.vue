@@ -101,6 +101,11 @@ footer.wrapper{
 
 }
 
+body:has(.section-out) footer{
+    // Prevent the footer from flashing while scrolling the page
+    opacity:0;
+}
+
 .modal-mode footer{
     opacity:0;
 }

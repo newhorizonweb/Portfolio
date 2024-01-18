@@ -66,7 +66,10 @@ export default defineComponent({
             max-width:100%;
         }
 
-        & svg:not(.tile-svg1, .tile-svg5){
+        & svg:not(.tile-svg1, .tile-svg6){
+            stroke-linecap:round;
+            stroke-linejoin:round;
+
             fill:none;
             stroke:#FFF;
             stroke-width:8px;
@@ -78,7 +81,7 @@ export default defineComponent({
                 stroke-miterlimit:10;
             }
 
-            &.tile-svg4 .anim-elem1{
+            &.tile-svg5 .anim-elem1{
                 fill:var(--colorBg2c);
             }
 
@@ -96,7 +99,7 @@ export default defineComponent({
 
         }
 
-        & .tile-svg5{
+        & .tile-svg6{
 
             & *{
                 fill:#FFF;
@@ -151,19 +154,41 @@ export default defineComponent({
 
     }
 
-    & .tile-svg3 *{
-        animation:tileSvgAnim3 2s ease-in-out infinite;
-        transform-origin:center;
+    & .tile-svg3{
+
+        & .anim-elem1{
+            animation:tileSvgAnim3a1 2s ease-in-out infinite;
+            transform-origin:center;
+        }
+        & .anim-elem3{
+            animation:tileSvgAnim3a2 2s ease-in-out infinite;
+            transform-origin:center;
+        }
+
+        & .anim-elem2{
+            animation:tileSvgAnim3b 2s ease-in-out infinite;
+            transform-origin:100px 79px;
+        }
+
+        & .anim-elem4{
+            animation:tileSvgAnim3c 2s ease-in-out infinite;
+            transform-origin:70px 138.6px;
+        }
+
     }
 
-    & .tile-svg4 .anim-elem1{
+    & .tile-svg4 *{
         animation:tileSvgAnim4 2s ease-in-out infinite;
-        transform-origin:bottom right;
+        transform-origin:center;
     }
 
     & .tile-svg5 .anim-elem1{
         animation:tileSvgAnim5 2s ease-in-out infinite;
+        transform-origin:bottom right;
+    }
 
+    & .tile-svg6 .anim-elem1{
+        animation:tileSvgAnim6 2s ease-in-out infinite;
     }
 
 }
@@ -250,7 +275,69 @@ export default defineComponent({
 
         /* Tile 3 */
 
-@keyframes tileSvgAnim3{
+@keyframes tileSvgAnim3a1{
+    0%{
+        transform:translate(0, 0);
+    }
+    10%{
+        transform:translate(0, -16px);
+    }
+    20%{
+        transform:translate(0, -16px);
+    }
+    30%{
+        transform:translate(0, 0);
+    }
+}
+
+@keyframes tileSvgAnim3a2{
+    0%{
+        transform:translate(0, 0);
+    }
+    10%{
+        transform:translate(0, 16px);
+    }
+    20%{
+        transform:translate(0, 16px);
+    }
+    30%{
+        transform:translate(0, 0);
+    }
+}
+
+@keyframes tileSvgAnim3b{
+    0%{
+        transform:rotate(0);
+    }
+    12%{
+        transform:rotate(12deg);
+    }
+    22%{
+        transform:rotate(-9deg);
+    }
+    25%{
+        transform:rotate(3deg);
+    }
+    30%{
+        transform:rotate(0);
+    }
+}
+
+@keyframes tileSvgAnim3c{
+    0%{
+        transform:scaleX(1);
+    }
+    10%{
+        transform:scaleX(1.95);
+    }
+    30%{
+        transform:scaleX(1);
+    }
+}
+
+        /* Tile 4 */
+
+@keyframes tileSvgAnim4{
     0%{
         transform:scale(1);
     }
@@ -262,9 +349,9 @@ export default defineComponent({
     }
 }
 
-        /* Tile 4 */
+        /* Tile 5 */
 
-@keyframes tileSvgAnim4{
+@keyframes tileSvgAnim5{
     0%{
         transform:rotate(0deg);
     }
@@ -282,9 +369,9 @@ export default defineComponent({
     }
 }
 
-        /* Tile 5 */
+        /* Tile 6 */
 
-@keyframes tileSvgAnim5{
+@keyframes tileSvgAnim6{
     0%{
         opacity:1;
     }

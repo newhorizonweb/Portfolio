@@ -3,8 +3,7 @@
 
 <template>
 
-    <div :id="sectionId" class="tile-section wrapper main-section"
-        :class="{'odd-tiles': !isTileNumberEven}">
+    <div class="inner-tile-section" :class="{'odd-tiles': !isTileNumberEven}">
 
         <h2 class="section-heading"
             :data-text="sectionTitle">
@@ -40,7 +39,6 @@ export default defineComponent({
     props:[
         "modalComp",
         "contents",
-        "sectionId",
         "sectionTitle"
     ],
 
@@ -186,7 +184,11 @@ export default defineComponent({
     overflow:hidden;
 }
 
-.tile-section{
+.main-section{
+    z-index:11000;
+}
+
+.inner-tile-section{
     display:flex;
     position:relative;
     flex-wrap:wrap;

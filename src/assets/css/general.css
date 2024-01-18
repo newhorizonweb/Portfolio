@@ -115,13 +115,13 @@
 
         /* Cursors */
 
-    --cursorDefault:url('../img/cursor.svg') 12 12, auto;
+    --cursorDefault:url('../img/0-portfolio/cursor.svg') 12 12, auto;
 
     /* Color 1a */
-    --cursorHover:url('../img/cursor-hover.svg') 12 12, pointer;
+    --cursorHover:url('../img/0-portfolio/cursor-hover.svg') 12 12, pointer;
 
     /* Color 1b */
-    --cursorText:url('../img/cursor-text.svg') 12 12, text;
+    --cursorText:url('../img/0-portfolio/cursor-text.svg') 12 12, text;
 
 }
 
@@ -134,11 +134,11 @@ body{
 
     --colorGrad1b:linear-gradient(to bottom right,
         var(--colorBg1d), var(--colorBg1e)),
-        url("../img/noise-texture.svg");
+        url("../img/0-portfolio/noise-texture.svg");
 
     --colorGrad2:linear-gradient(to bottom right,
         var(--colorBg2a), var(--colorBg2b)),
-        url("../img/noise-texture.svg");
+        url("../img/0-portfolio/noise-texture.svg");
 
         /* Borders */
 

@@ -92,7 +92,7 @@ export default defineComponent({
             navLinks.forEach((navLink) => {
                 navLink.addEventListener("click", () => {
 
-                    // scroll-behavior:smooth; on html is not compatible with the auto scroll hero code, so the nav links have to work this way
+                    // Scroll-behavior:smooth; on html is not compatible with the auto scroll hero code, so the nav links have to work this way
 
                     // Get the target ID
                     const linkTo = navLink.getAttribute("linkTo");
@@ -107,33 +107,51 @@ export default defineComponent({
                             this.scrollOffset = this.standardOffset;
                         }
 
-                        const topPosition = 
-                            targetElem.getBoundingClientRect().top + 
-                            window.pageYOffset - 
-                            this.scrollOffset;
+                        // Deactivate the Hero section auto scroll for a short time
+                        this.deactivHeroAutoScroll();
 
+                        // Smooth scroll to the section
                         window.scrollTo({
-                            top: topPosition,
+                            top: this.topPosition(targetElem),
                             behavior: "smooth"
                         });
+                
+                        // Get the updated position (section lazy loading on click)
+                        setTimeout(() => {
+                            window.scrollTo({
+                                top: this.topPosition(targetElem),
+                                behavior: "smooth"
+                            });
+                        }, 10);
+           
 
                     }
-
-                    // Deactivate the Hero section auto scroll for a short time
-                    this.deactivHeroAutoScroll();
 
                 });
             });
 
         },
 
+        topPosition(targetElem: Element){
+
+            const topPosition = 
+                targetElem.getBoundingClientRect().top + 
+                window.pageYOffset - 
+                this.scrollOffset;
+
+            return topPosition;
+
+        },
+
         deactivHeroAutoScroll(){
+
             document.body.classList.add("nav-link-clicked");
 
             // To make sure it's past the Hero section auto-scroll activation point
             setTimeout(() => {
                 document.body.classList.remove("nav-link-clicked");
-            }, 50); // 50ms is enough
+            }, 350);
+
         }
 
     }

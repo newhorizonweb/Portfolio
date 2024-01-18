@@ -3,90 +3,86 @@
 
 <template>
 
-    <div id="contact-form" class="contact-section wrapper main-section">
+    <h2 class="section-heading"
+        data-text="Contact">
+    </h2>
 
-        <h2 class="section-heading"
-            data-text="Contact">
-        </h2>
+    <form class="contact-form" ref="contactForm" method="POST">
 
-        <form class="contact-form" ref="contactForm" method="POST">
+        <div class="form-input glass-tile">
+            <input type="text" class="input-valid"
+                placeholder="Name*" name="name"
+                autocomplete="name" aria-label="Name Form Input">
+        </div>
 
-            <div class="form-input glass-tile">
-                <input type="text" class="input-valid"
-                    placeholder="Name*" name="name" aria-label="Name Form Input">
+        <div class="form-input glass-tile">
+            <input type="email" class="input-valid" ref="email"
+                placeholder="Email*" name="email"
+                autocomplete="email" aria-label="Email Form Input">
+        </div>
+
+        <div class="form-input glass-tile form-tumbleweed">
+            <input type="text" ref="tumbleweed"
+                placeholder="Address" name="address"
+                aria-label="Address Form Input">
+        </div>
+
+        <div class="form-input glass-tile">
+            <input type="text" class="input-valid"
+                placeholder="Subject*" name="subject"
+                aria-label="Subject Form Input">
+        </div>
+
+        <div class="form-input glass-tile">
+            <input type="text"
+                placeholder="Company" name="company"
+                autocomplete="organization" aria-label="Company Form Input">
+        </div>
+            
+        <div class="form-input form-textarea glass-tile">
+            <textarea class="input-valid"
+                placeholder="Message*" name="message"
+                aria-label="Message Form Input"></textarea>
+        </div>
+
+        <div class="form-footer">
+
+            <button class="send-form-btn glass-tile" ref="sendFormBtn"
+                @click="sendForm" aria-label="Submit the contact form">
+
+                <h3 class="send-btn-txt"
+                    data-text="Submit">
+                </h3>
+
+            </button>
+
+            <div class="form-socials">
+
+                <a href="https://github.com/newhorizonweb"
+                    class="form-link form-link1" aria-label="GitHub Link"
+                    target="_blank">
+
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><path class="anim-elem1 cls-1" d="M82.6,144.3c-21.1-2.4-43.2-10.5-43.2-46.9a36,36,0,0,1,9.8-25.5,33.5,33.5,0,0,1,.9-25.1s7.9-2.6,26.1,9.7a89.1,89.1,0,0,1,47.5,0c18.1-12.3,26.1-9.7,26.1-9.7a34,34,0,0,1,.9,25.1,36.8,36.8,0,0,1,9.8,25.5c0,36.4-22.1,44.4-43.3,46.8"/><path class="cls-1" d="M117.2,144.2a22.7,22.7,0,0,1,6.4,17.7v26c0,3.2,1.7,5.5,6.5,4.5a95.1,95.1,0,1,0-60.1,0c4.7.9,6.5-2,6.5-4.4V171.9c-26.5,5.7-32-12.8-32-12.8a25.4,25.4,0,0,0-10.7-14c-8.7-5.9.6-5.8.6-5.8a19.4,19.4,0,0,1,14.5,9.8c8.5,14.5,22.1,10.3,27.7,7.9a20.5,20.5,0,0,1,6-12.7"/></svg>
+                </a>
+
+                <a href="https://www.linkedin.com/in/wojciech-bocho/"
+                    aria-label="LinkedIn Link" class="form-link form-link2"
+                    target="_blank">
+
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle class="anim-elem1 cls-1" cx="27.8" cy="27.8" r="22.7"/><rect class="anim-elem2 cls-1" x="7.7" y="68.6" width="40.6" height="126.25" rx="2"/><path class="cls-1" d="M195,116.1c0-7.9,0-14.2-3.2-23.6A42.5,42.5,0,0,0,171,68.6c-2-1-20.7-10.5-39.9-1-12.7,6.4-18.5,16.8-19.9,24.6h0V70.6a2,2,0,0,0-2-2H74.6a2,2,0,0,0-2,2V192.9a2,2,0,0,0,2,2h34.6c2-1.2,2-1.9,2-2V127.8s-.5-18.2,10.4-25.1a24.2,24.2,0,0,1,24.8-.3c8.5,5.2,9.9,13.7,9.9,27.8v62.6a2,2,0,0,0,2,2H193c2-1.1,2-1.9,2-2V116.1"/></svg>
+                </a>
+
             </div>
 
-            <div class="form-input glass-tile">
-                <input type="email" class="input-valid" ref="email"
-                    placeholder="Email*" name="email" aria-label="Email Form Input">
-            </div>
+        </div>
 
-            <div class="form-input glass-tile form-tumbleweed">
-                <input type="text" ref="tumbleweed"
-                    placeholder="Address" name="address" aria-label="Address Form Input">
-            </div>
+    </form>
 
-            <div class="form-input glass-tile">
-                <input type="text" class="input-valid"
-                    placeholder="Subject*" name="subject" aria-label="Subject Form Input">
-            </div>
-
-            <div class="form-input glass-tile">
-                <input type="text"
-                    placeholder="Company" name="company" aria-label="Company Form Input">
-            </div>
-                
-            <div class="form-input form-textarea glass-tile">
-                <textarea class="input-valid"
-                    placeholder="Message*" name="message" aria-label="Message Form Input"></textarea>
-            </div>
-
-            <div class="form-footer">
-
-                <button class="send-form-btn glass-tile" ref="sendFormBtn"
-                    @click="sendForm" aria-label="Submit the contact form">
-
-                    <h3 class="send-btn-txt"
-                        data-text="Submit">
-                    </h3>
-
-                </button>
-
-                <div class="form-socials">
-
-                    <a href="https://github.com/newhorizonweb"
-                        class="form-link form-link1" aria-label="GitHub Link"
-                        target="_blank">
-
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><path class="anim-elem1 cls-1" d="M82.6,144.3c-21.1-2.4-43.2-10.5-43.2-46.9a36,36,0,0,1,9.8-25.5,33.5,33.5,0,0,1,.9-25.1s7.9-2.6,26.1,9.7a89.1,89.1,0,0,1,47.5,0c18.1-12.3,26.1-9.7,26.1-9.7a34,34,0,0,1,.9,25.1,36.8,36.8,0,0,1,9.8,25.5c0,36.4-22.1,44.4-43.3,46.8"/><path class="cls-1" d="M117.2,144.2a22.7,22.7,0,0,1,6.4,17.7v26c0,3.2,1.7,5.5,6.5,4.5a95.1,95.1,0,1,0-60.1,0c4.7.9,6.5-2,6.5-4.4V171.9c-26.5,5.7-32-12.8-32-12.8a25.4,25.4,0,0,0-10.7-14c-8.7-5.9.6-5.8.6-5.8a19.4,19.4,0,0,1,14.5,9.8c8.5,14.5,22.1,10.3,27.7,7.9a20.5,20.5,0,0,1,6-12.7"/></svg>
-                    </a>
-
-                    <a href="https://www.linkedin.com/in/wojciech-bocho/"
-                        aria-label="LinkedIn Link" class="form-link form-link2"
-                        target="_blank">
-
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle class="anim-elem1 cls-1" cx="27.8" cy="27.8" r="22.7"/><rect class="anim-elem2 cls-1" x="7.7" y="68.6" width="40.6" height="126.25" rx="2"/><path class="cls-1" d="M195,116.1c0-7.9,0-14.2-3.2-23.6A42.5,42.5,0,0,0,171,68.6c-2-1-20.7-10.5-39.9-1-12.7,6.4-18.5,16.8-19.9,24.6h0V70.6a2,2,0,0,0-2-2H74.6a2,2,0,0,0-2,2V192.9a2,2,0,0,0,2,2h34.6c2-1.2,2-1.9,2-2V127.8s-.5-18.2,10.4-25.1a24.2,24.2,0,0,1,24.8-.3c8.5,5.2,9.9,13.7,9.9,27.8v62.6a2,2,0,0,0,2,2H193c2-1.1,2-1.9,2-2V116.1"/></svg>
-                    </a>
-
-                </div>
-
-            </div>
-
-        </form>
-
-    </div>
-
-    <div class="form-popup glass-tile" 
-        :class="{'popup-visible': popupVisible}">
-
-        <p class="info-msg" ref="infoMsg"></p>
-
-        <CloseBtn
-            :glassTile="false"
-            @click="popupVisible = false"
-        />
-
-    </div>
+    <FormPopup
+        :popupVisible="popupVisible"
+        :popupMsg="popupMsg"
+        @closePopup="closePopup"
+    />
 
 </template>
 
@@ -94,13 +90,13 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import CloseBtn from "../pageElements/CloseBtn.vue";
+import FormPopup from "../main/FormPopup.vue";
 
 export default defineComponent({
     name: "MailForm",
 
     components:{
-        CloseBtn
+        FormPopup
     },
 
     data(){
@@ -113,7 +109,7 @@ export default defineComponent({
             msgFailed: "Something went terribly wrong :( Please try again!",
 
             msgLongResponse: "Your email is on its way, but it may take a bit longer!",
-            msgReallyLongResponse: "It seems like there are some technical difficulties :/",
+            msgReallyLongResponse: "It seems like there are some technical difficulties :/<br>Feel free to contact me directly at wbocho378@gmail.com.",
 
             msgAttempts: "Too many attempts! Try again in a few minutes.",
             msgEmptyFields: "Didn't you forget something? :)",
@@ -124,6 +120,7 @@ export default defineComponent({
             popupScrollTime: 0.5, // The time after the popup is hidden after scroling
 
             // Popup
+            popupMsg: "",
             popupVisible: false,
             popupTimeout: null as null | number,
 
@@ -159,7 +156,7 @@ export default defineComponent({
         this.formInpVal = Array.from(this.form.querySelectorAll(".input-valid")) as HTMLInputElement[];
 
         // Set the popup message in case something is wrong
-        (this.$refs.infoMsg as HTMLElement).innerHTML = this.msgFailed;
+ //       (this.$refs.infoMsg as HTMLElement).innerHTML = this.msgFailed;
 
         // Close the popup faster when scrolling
         document.addEventListener("scroll", () => {
@@ -205,6 +202,10 @@ export default defineComponent({
 
             /* Popup */
 
+        closePopup(){
+            this.popupVisible = false;
+        },
+
         showPopup(){
 
             this.popupVisible = true;
@@ -222,7 +223,7 @@ export default defineComponent({
         formTxt(message: string){
 
             const formInfoTxt = (this.$refs.infoMsg as HTMLElement);
-            formInfoTxt.innerHTML = message;
+            this.popupMsg = message;
             this.showPopup();
 
         },
@@ -615,44 +616,6 @@ export default defineComponent({
 
 }
 
-    /* Form Popup */
-
-main .form-popup{
-    width:min(
-        1024px, 
-        calc(100% - var(--size6) * 2)
-    );
-    padding:var(--size8);
-
-    position:fixed;
-    bottom:calc((var(--size8) * -2) - 3rem);
-    left:50%;
-    transform:translate(-50%, 0);
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    transition:var(--trans4);
-    z-index:1000;
-    
-    &.popup-visible{
-        bottom:var(--size6);
-    }
-
-    & .info-msg{
-        text-align:center;
-        text-wrap:balance;
-    }
-
-    & .close-btn{
-        position:absolute;
-        top:var(--size6);
-        right:var(--size6);
-    }
-
-}
-
     /* Media */
 
 @media screen and (width <= 540px){
@@ -707,20 +670,6 @@ main .form-popup{
             & .form-socials{
                 height:var(--size7);
                 justify-content:flex-end;
-            }
-
-        }
-
-    }
-
-    main .form-popup{
-        padding:var(--size8) var(--size6);
-
-        & .close-btn{
-            width:calc(var(--size6) + 4px);
-
-            & span{
-                width:var(--size4);
             }
 
         }
