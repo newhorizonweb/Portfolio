@@ -522,13 +522,13 @@ export default defineComponent({
             ProjectModal: markRaw(ProjectModal),
             DesignModal: markRaw(DesignModal),
 
-            // Other Variables
+            // Sections
             mainSections: document.querySelectorAll(".main-section"),
             wasSectionLoaded: {} as { [key: string]: boolean },
 
+            // Observer
             observer: null as IntersectionObserver | null,
-            isObserving: false,
-            
+
             options: {
                 root: null, // Use the viewport as the root
                 rootMargin: '50px', // Margin
@@ -551,13 +551,17 @@ export default defineComponent({
         // Initialize the observer
         this.observeSections();
 
-        // Disable the observer on mobile, so the sections are not animated (better perforamnce)
-        window.addEventListener("resize", this.disableObserverOnmobile);
+        // Disable the fade-in/out animation on mobile (performance improvement)
+        window.addEventListener("resize", this.sectionsOnResize);
 
+        // Load the sections on click (anywhere) - nav links fix
         window.addEventListener("click", this.loadComponents);
+
     },
 
     methods:{
+
+            /* Section Observer */
 
         loadComponents(){
 
@@ -569,29 +573,34 @@ export default defineComponent({
 
         observeSections(){
 
-            // Without this check, the observer would not function correctly when the window is resized
-            if (!this.isObserving){
+            this.mainSections.forEach((section: Element) => {
 
-                this.isObserving = true;
+                this.wasSectionLoaded[section.id] = false;
 
-                this.mainSections.forEach((section: Element) => {
+                if (this.observer){
+                    this.observer.observe(section);
+                }
 
-                    const sectionId = section.id;
+            });
 
-                    // Do not fade out the sections if the user is scrolled past them
-                    const isAbove = section.getBoundingClientRect().top >= 0;
-                    if (isAbove){
-                        this.wasSectionLoaded[sectionId] = false;
-                        section.classList.add("section-out");
-                    }
+            this.sectionsOnResize();
 
-                    if (this.observer){
-                        this.observer.observe(section);
-                    }
+        },
 
-                });
+        sectionsOnResize(){
 
-            }
+            this.mainSections.forEach((section: Element) => {
+
+                // Check if the section is above the page view
+                const isAboveView = section.getBoundingClientRect().top >= window.innerHeight;
+
+                if (window.innerWidth > 768 && isAboveView){
+                    section.classList.add("section-out");
+                } else {
+                    section.classList.remove("section-out");
+                }
+
+            });
 
         },
 
@@ -602,43 +611,20 @@ export default defineComponent({
                 const section = entry.target;
                 const sectionId = section.id;
                 const isAbove = entry.boundingClientRect.top >= 0;
-
+                
                 // Check if the user is scrolled past the section
                 if (entry.isIntersecting){
+
                     this.wasSectionLoaded[sectionId] = true;
                     section.classList.remove("section-out");
-                } else if (isAbove){
+
+                } else if (isAbove && window.innerWidth > 768){
+
                     section.classList.add("section-out");
+
                 }
 
             });
-
-        },
-
-        disableObserverOnmobile(){
-
-            if (window.innerWidth > 768){
-                this.observeSections();
-            } else {
-                this.disconnectObserver();
-            }
-
-        },
-
-        disconnectObserver(){
-
-            // Disconnect the observer if it's already initialized
-            if (this.observer){
-
-                this.observer.disconnect();
-                this.isObserving = false;
-
-                // Make all of the sections faded in
-                this.mainSections.forEach((section) => {
-                    section.classList.remove("section-out");
-                });
-
-            }
 
         },
 
