@@ -59,8 +59,8 @@ export default defineComponent({
 
     data(){
         return{
-            standardOffset: 150, // Scroll offset in px
-            sectionOutOffset: 300, // Standard scroll offset + section-out top value
+            standardOffset: 0, // Scroll offset in px
+            sectionOutOffset: 0, // Standard scroll offset + section-out top value
             scrollOffset: 0
         }
     },
@@ -78,9 +78,12 @@ export default defineComponent({
 
         adjustTargetPosition(){
 
-            if (window.innerWidth <= 768){
+            if (window.innerWidth <= 768){      // Mobile
                 this.standardOffset = 48;
                 this.sectionOutOffset = 150 + 48;
+            } else {                            // Desktop
+                this.standardOffset = 150;
+                this.sectionOutOffset = 300;
             }
 
         },

@@ -43,14 +43,12 @@ export default defineComponent({
     methods:{
 
         logoScroll(){
-
-            if (window.innerWidth > 768){
-                window.scrollTo({
-                    top: 0,
-                    behavior: "smooth"
-                });
-            }
-
+    
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        
         }
         
     }

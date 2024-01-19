@@ -160,7 +160,6 @@ export default defineComponent({
     }
 
     &:hover .toggle-txt{
-        
 
         &.toggle-txt-slash:before,
         &.toggle-txt-mobile:before{
@@ -408,14 +407,6 @@ export default defineComponent({
 
     .mockup-outer{
         --mockupSize:var(--size2);
-    }
-
-    .mockup{
-
-        &.desktop-mockup{
-            aspect-ratio:4/3;
-        }
-
     }
 
 }
