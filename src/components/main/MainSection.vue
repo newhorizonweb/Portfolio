@@ -108,7 +108,7 @@ export default defineComponent({
                     about:[
                         "This is my first major project. Primarily, it was supposed to be a simple cookbook app without any additional features. Then, I added the ability to save products, group everything into categories, search for everything with tags, and much more.",
                         "I had been using jQuery for quite some time, but it was my first big PHP + SQL project.",
-                        "I learned a lot - especially how to integrate back-end with front-end, use databases in practice and how to do cool stuff with js, like scroll effects and parallax effect.",
+                        "I learned a lot - especially how to integrate back-end with front-end, use databases in practice and how to do cool stuff with js, like scroll effects and parallax effects.",
                         "This is also the project where I learned a lot about user interface, user experience and SEO."
                     ],
 
@@ -238,6 +238,40 @@ export default defineComponent({
                         "SASS (SCSS)"
                     ]
                     
+                },
+
+                {
+                    title: "Keep It Fit",
+                    imgSrc: this.path('dev-projects/keep-it-fit-logo.svg'),
+
+                    gitHubLink: "https://github.com/newhorizonweb/keepitfit",
+                    pageLink: "https://newhorizonweb.github.io/keepitfit/",
+
+                    mobileMockup: this.path('dev-projects/keep-it-fit-mobile.webp'),
+                    desktopMockup: this.path('dev-projects/keep-it-fit-desktop.webp'),
+
+                    overview:[
+                        "Your ultimate app for accessing comprehensive nutritional data.",
+                        "Based on the Nutritionix API, Keep It Fit boasts information about a wide range of items - from apples and carrots to pierogi and cheesecakes!"
+                    ],
+                    
+                    about:[
+                        "A major part of people's lives is diet. The problem with that is the constant search for nutritional information. Popular nutritional web-apps often suffer from outdated designs, clunky UIs, and a lack of certain features. I thought I could improve those things, so I learned React and got to work!",
+                        "Hours of research on diets, food, combined with even more time spent studying React and its ecosystem, resulted in the creation of \"Keep It Fit\". It boasts a user-friendly UI, integration with a highly reliable and well-known Nutritionix API, and multiple user experience enhancements that take the app to the next level. Users can change the serving size, calculate the percentage of recommended daily value that searched items fulfill, mark searches as favorites, print the page, and more!",
+                        "This project was fun to develop, though quite frustrating at times. Building an entire app around an external API can be quite challenging, especially when using so many new technologies. Creating Keep It Fit from scratch has been an incredible journey, and I'm really proud of what I've achieved!",
+                    ],
+
+                    stack:[
+                        "HTML & CSS",
+                        "React",
+                        "TypeScript",
+                        "Redux Toolkit",
+                        "Typed.js",
+                        "i18next for React",
+                        "Framer Motion",
+                        "Nutritionix REST API"
+                    ]
+                    
                 }
 
             ],
@@ -274,6 +308,8 @@ export default defineComponent({
                         this.path("logos/Cozy Fluff Logo.svg"),
                         this.path("logos/Atombits.svg"),
                         this.path("logos/jangflix.svg"),
+                        this.path("logos/Keep It Fit logo full.svg"),
+                        this.path("logos/dream team.svg"),
                     ]
                 },
 
@@ -310,6 +346,8 @@ export default defineComponent({
                         this.path("icons/website-icon.svg"),
                         this.path("icons/list-icon.svg"),
                         this.path("icons/list-icon2.svg"),
+                        this.path("icons/fav-list-icon.svg"),
+                        this.path("icons/bookmark-icon.svg"),
                         this.path("icons/note-icon.svg"),
                         this.path("icons/stats-icon.svg"),
                         this.path("icons/seo-icon.svg"),
@@ -397,7 +435,10 @@ export default defineComponent({
                             img: this.path("web-design/Atombits.webp"),
                             isMobile: false
                         },
-
+                        {
+                            img: this.path("web-design/Keep-If-Fit.webp"),
+                            isMobile: false
+                        },
                     ]
                 },
 
@@ -453,6 +494,9 @@ export default defineComponent({
                         this.path("color-palettes/Atombits.webp"),
                         this.path("color-palettes/JoVenture.webp"),
                         this.path("color-palettes/TallSoftBoi.webp"),
+                        this.path("color-palettes/i-am-remote.webp"),
+                        this.path("color-palettes/gabriella-v1.webp"),
+                        this.path("color-palettes/gabriella-v2.webp"),
                     ]
                 },
 

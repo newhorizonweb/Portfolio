@@ -14,7 +14,7 @@
 
         <div class="footer-version">
             <p>Portfolio v{{ appVersion }}</p>
-            <p>© 2023 Wojciech Bocho</p>
+            <p>© 2024 Wojciech Bocho</p>
         </div>
     </footer>
 
@@ -48,7 +48,7 @@ export default defineComponent({
                 top: 0,
                 behavior: "smooth"
             });
-        
+
         }
         
     }

@@ -397,7 +397,7 @@ h6{
     outline:0 !important;
 }
 
-*:selection{
+*::selection{
     background:var(--mainColor) !important;
 }
 
