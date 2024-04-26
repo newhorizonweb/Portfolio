@@ -1,0 +1,46 @@
+{
+  "short_name": "Portfolio",
+  "name": "Wojciech Bocho's Personal Portfolio",
+  "icons": [
+    {
+      "src": "favicon-wb.svg",
+      "sizes": "any",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "manifest-icons/favicon-wb-48.png",
+      "type": "image/png",
+      "sizes": "48x48"
+    },
+    {
+      "src": "manifest-icons/favicon-wb-120.png",
+      "type": "image/png",
+      "sizes": "120x120"
+    },
+    {
+      "src": "manifest-icons/favicon-wb-144.png",
+      "type": "image/png",
+      "sizes": "144x144"
+    },
+    {
+      "src": "manifest-icons/favicon-wb-180.png",
+      "type": "image/png",
+      "sizes": "180x180"
+    },
+    {
+      "src": "manifest-icons/favicon-wb-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "manifest-icons/favicon-wb-512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "maskable"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#B963FF",
+  "background_color": "#14063E"
+}
