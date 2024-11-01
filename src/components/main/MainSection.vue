@@ -209,6 +209,42 @@ export default defineComponent({
                 },
 
                 {
+                    title: "Converter",
+                    imgSrc: this.path('dev-projects/uverit-logo.svg'),
+
+                    gitHubLink: "https://github.com/newhorizonweb/Uverit-Converter",
+                    pageLink: "https://newhorizonweb.github.io/Uverit-Converter/",
+
+                    mobileMockup: this.path('dev-projects/converter-mobile.webp'),
+                    desktopMockup: this.path('dev-projects/converter-desktop.webp'),
+
+                    overview:[
+                        "Bridging Measurements Across Eras and Borders.",
+                        "Effortlessly streamline your workflow when dealing with unit conversions.",
+                        "No matter what, no matter where - you are only a few clicks away from accurate results!"
+                    ],
+                    
+                    about:[
+                        "Many web converter applications are clunky, inaccurate and lack fundamental features. They are often hard to navigate and therefore disrupt workflow. This is why I felt there was a need for a comprehensive, modern unit converter.",
+                        "Developing it was no easy task. I spent hundreds of hours researching data for over 20 converters, spanning categories from length to pressure to data storage units. The fact that many sources contradict each other did not make things easier. Eventually, I managed to implement a few useful and unique features, such as support for major European languages, an exponential notation toggle, and comprehensive tables with valuable data.",
+                        "This was a great project and a test of my patience. Handling huge numbers and conversions in JS can be quite challenging. Fortunately, there is a solution to almost every problem!",
+                    ],
+
+                    stack:[
+                        "HTML & CSS",
+                        "React",
+                        "TypeScript",
+                        "React Testing Library",
+                        "React Router",
+                        "Framer Motion",
+                        "i18next for React",
+                        "Cypress",
+                        "Decimal.js"
+                    ]
+                    
+                },
+
+                {
                     title: "Rapid Core",
                     imgSrc: this.path('dev-projects/rapid-core-logo.svg'),
 
@@ -265,6 +301,7 @@ export default defineComponent({
                         "HTML & CSS",
                         "React",
                         "TypeScript",
+                        "React Testing Library",
                         "Redux Toolkit",
                         "Typed.js",
                         "i18next for React",
@@ -310,6 +347,7 @@ export default defineComponent({
                         this.path("logos/jangflix.svg"),
                         this.path("logos/Keep It Fit logo full.svg"),
                         this.path("logos/dream team.svg"),
+                        this.path("logos/uverit-mn-logo-.svg"),
                     ]
                 },
 
@@ -320,38 +358,6 @@ export default defineComponent({
                     imgSrc: "<svg class='tile-svg2' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><g class='anim-elem1'><path class='cls-1' d='M106.5,27H120c17.4,0,31.5,14.6,31.5,30.3h0'/><path class='cls-1' d='M170.2,55.8,155.6,70.4a5.7,5.7,0,0,1-8.2,0L132.8,55.8'/></g><g class='anim-elem1'><path class='cls-1' d='M93.5,173H80c-17.4,0-31.4-14.7-31.4-30.3h0'/><path class='cls-1' d='M29.9,144.1l14.6-14.6a5.9,5.9,0,0,1,8.2,0l14.5,14.6'/></g><g class='anim-elem2 anim-elem2a'><circle class='cls-1' cx='151.5' cy='112.7' r='23'/><path class='cls-1' d='M126.3,196a22,22,0,0,1-12.2-3.6l-.7-.5c-4.2-3.1-6.4-8.3-6.8-13.3a61.4,61.4,0,0,1,.3-10.5,46.6,46.6,0,0,1,3.7-13.1,26,26,0,0,1,7.2-10.5,14.7,14.7,0,0,1,10.2-3.7c4.6.1,7.3,2.7,11.5,4.2a42.2,42.2,0,0,0,11.6,2h.3a40.9,40.9,0,0,0,11.6-2c4.2-1.5,6.9-4.1,11.5-4.2a16.6,16.6,0,0,1,10.2,3.7c3,2.3,5.6,6.6,7.3,10.5a50,50,0,0,1,3.6,13.1,61.4,61.4,0,0,1,.3,10.5c-.4,5-2.6,10.2-6.8,13.3a1.8,1.8,0,0,1-.7.5,22,22,0,0,1-12.2,3.6Z'/></g><g class='anim-elem2 anim-elem2b'><circle class='cls-1' cx='49' cy='27' r='23'/><path class='cls-1' d='M23.8,110.2a21.9,21.9,0,0,1-12.2-3.5l-.7-.6C6.7,103,4.5,97.9,4.2,92.8a52.7,52.7,0,0,1,.2-10.5,45,45,0,0,1,3.7-13c1.6-3.9,3.8-7.8,7.2-10.5A14.8,14.8,0,0,1,25.5,55c4.6.2,7.3,2.7,11.5,4.2a35.8,35.8,0,0,0,11.6,2h.3a34.9,34.9,0,0,0,11.6-2c4.2-1.5,6.9-4,11.6-4.2s7.2,1.5,10.2,3.8,5.5,6.6,7.2,10.5a48.3,48.3,0,0,1,3.6,13,61.4,61.4,0,0,1,.3,10.5,18,18,0,0,1-6.7,13.3l-.8.6a21.7,21.7,0,0,1-12.2,3.5Z'/></g></svg>",
 
                     designs:[
-                        this.path("icons/camera-icon.svg"),
-                        this.path("icons/chat-icon.svg"),
-                        this.path("icons/mail-icon.svg"),
-                        this.path("icons/contact-icon.svg"),
-
-                        this.path("icons/clock-icon.svg"),
-                        this.path("icons/time-icon.svg"),
-                        this.path("icons/time-active-new.svg"),
-                        this.path("icons/time-passive-new.svg"),
-                        this.path("icons/time-total-new.svg"),
-
-                        this.path("icons/checkmark new.svg"),
-                        this.path("icons/checkmark-icon.svg"),
-                        this.path("icons/do-icon.svg"),
-                        this.path("icons/dont-icon.svg"),
-
-                        this.path("icons/pin-icon.svg"),
-                        this.path("icons/pin-icon2.svg"),
-                        this.path("icons/upload-icon.svg"),
-                        this.path("icons/settings-icon.svg"),
-
-                        this.path("icons/phone-icon.svg"),
-                        this.path("icons/mute-icon.svg"),
-                        this.path("icons/website-icon.svg"),
-                        this.path("icons/list-icon.svg"),
-                        this.path("icons/list-icon2.svg"),
-                        this.path("icons/fav-list-icon.svg"),
-                        this.path("icons/bookmark-icon.svg"),
-                        this.path("icons/note-icon.svg"),
-                        this.path("icons/stats-icon.svg"),
-                        this.path("icons/seo-icon.svg"),
-
                         this.path("icons/baked-goods-icon.svg"),
                         this.path("icons/dessert-icon.svg"),
                         this.path("icons/fruits-vegetables-icon.svg"),
@@ -374,6 +380,63 @@ export default defineComponent({
                         this.path("icons/weight-icon.svg"),
                         this.path("icons/delete-icon.svg"),
 
+                        this.path("icons/angle.svg"),
+                        this.path("icons/archaic.svg"),
+                        this.path("icons/area.svg"),
+                        this.path("icons/astronomical.svg"),
+                        this.path("icons/common.svg"),
+                        this.path("icons/data_storage.svg"),
+                        this.path("icons/density.svg"),
+                        this.path("icons/energy.svg"),
+                        this.path("icons/force.svg"),
+                        this.path("icons/frequency.svg"),
+                        this.path("icons/marine.svg"),
+                        this.path("icons/mass.svg"),
+                        this.path("icons/microscopic.svg"),
+                        this.path("icons/numeral_systems.svg"),
+                        this.path("icons/power.svg"),
+                        this.path("icons/pressure.svg"),
+                        this.path("icons/quantity.svg"),
+                        this.path("icons/speed.svg"),
+                        this.path("icons/temperature.svg"),
+                        this.path("icons/time.svg"),
+                        this.path("icons/volume.svg"),
+
+                        this.path("icons/camera-icon.svg"),
+                        this.path("icons/chat-icon.svg"),
+                        this.path("icons/mail-icon.svg"),
+                        this.path("icons/contact-icon.svg"),
+
+                        this.path("icons/clock-icon.svg"),
+                        this.path("icons/time-icon.svg"),
+                        this.path("icons/time-active-new.svg"),
+                        this.path("icons/time-passive-new.svg"),
+                        this.path("icons/time-total-new.svg"),
+
+                        this.path("icons/checkmark new.svg"),
+                        this.path("icons/checkmark-icon.svg"),
+                        this.path("icons/do-icon.svg"),
+                        this.path("icons/dont-icon.svg"),
+
+                        this.path("icons/clock.svg"),
+                        this.path("icons/pin-icon.svg"),
+                        this.path("icons/pin-icon2.svg"),
+                        this.path("icons/upload-icon.svg"),
+                        this.path("icons/settings-icon.svg"),
+
+                        this.path("icons/phone-icon.svg"),
+                        this.path("icons/mute-icon.svg"),
+                        this.path("icons/website-icon.svg"),
+                        this.path("icons/list-icon.svg"),
+                        this.path("icons/list-icon2.svg"),
+                        this.path("icons/fav-list-icon.svg"),
+                        this.path("icons/bookmark-icon.svg"),
+                        this.path("icons/copy-icon.svg"),
+                        this.path("icons/dice-icon.svg"),
+                        this.path("icons/note-icon.svg"),
+                        this.path("icons/stats-icon.svg"),
+                        this.path("icons/seo-icon.svg"),
+
                         this.path("icons/briefcase.svg"),
                         this.path("icons/course-icon.svg"),
                         this.path("icons/color-palette-icon.svg"),
@@ -385,6 +448,7 @@ export default defineComponent({
                         this.path("icons/light-bulb.svg"),
 
                         this.path("icons/pixel-art-icon.svg"),
+                        this.path("icons/emoji-icon.svg"),
                         this.path("icons/battery-icon.svg"),
                         this.path("icons/brush-icon.svg"),
                         this.path("icons/crosshair.svg"),
@@ -394,13 +458,19 @@ export default defineComponent({
                         this.path("icons/star.svg"),
                         this.path("icons/link new.svg"),
                         this.path("icons/turn-page-icon.svg"),
+                        this.path("icons/switch-icon.svg"),
+                        this.path("icons/placeholder-icon.svg"),
 
                         this.path("icons/calculator-icon.svg"),
                         this.path("icons/main-icon.svg"),
                         this.path("icons/pdf-btn.svg"),
+                        this.path("icons/multi-page-pdf-icon.svg"),
 
                         this.path("icons/calendar.svg"),
                         this.path("icons/mod_calendar.svg"),
+
+                        this.path("icons/404-clock-icon.svg"),
+                        this.path("icons/404-avocado-icon.svg"),
                     ]
                 },
 
